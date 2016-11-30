@@ -1,0 +1,179 @@
+<div class="row" >
+  
+<div class="prueba">   
+
+      
+      <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#Entidad_inicio"><i class="fa fa-home fa-lg"></i> Inicio</a></li>
+
+       
+         <li><a href="#Entidad_registrarContacto"><i class="fa fa-user-plus fa-lg"></i> Registrar Contacto</a></li>
+         <li><a href="#Entidad_verMisContactos"><i class="fa fa-user fa-lg"></i> Mis Contactos</a></li>
+        
+          <ul class="nav navbar-nav navbar-right">
+        <li  class="dropdown active" >
+          <a href="#Entidad_modificarEntidad" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa  fa-building fa-lg"></i> Mi Entidad <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+           <li><a href="#Entidad_modificarEntidad"> Mi información</a></li>
+           <li><a href="#Entidad_modificarServicios"> Mis servicios</a></li>
+           
+          </ul>
+
+        </li>
+       
+      </ul>
+        
+      </ul>
+      
+     <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown" >
+          <a href="#Entidad_modificarEntidad" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa  fa-user-circle fa-lg"></i> Cuenta<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+           <li><a href="#Entidad_configuraciones"><i class="fa  fa-cog"></i> Configuraciones</a></li>
+            <li ng-click="cerrarSesion()"><a><i class="fa fa-sign-out"></i> Cerrar sesión</a></li>
+          </ul>
+
+        </li>
+       
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<div class="col-sm-12 col-xs-12 row2">
+  
+    <form   ng-submit="guardoDatos()">
+    
+            <CENTER>
+    <hr class="acomodarBarra">
+         <label class="acomodarFr text-center"> I. INFORMACIÓN GENERAL DE LA ENTIDAD </label>
+         <hr class="acomodarB"> 
+</CENTER>
+<div class="col-xs-10 col-xs-offset-9">
+  <button class="btn btn-info" ng-click="hacerEditable()">{{textoBtn}}</button>
+  
+     <input type="submit" class="btn btn-success" value="Guardar Entidad" ng-if="esEditable">
+</div>
+ 
+<div class="col-xs-4">
+  <img ng-src="Vista/LogosEmpresas/{{miInfo.url_logo}}" width="250" height="250" class="img-responsive" alt="Img logo entidad ">
+
+<div class="form-group" ng-show="esEditable">
+<label for="pwd">Actualizar Logo de la empresa (Formato jpg o png menores 100 kb):</label>
+  <p id="f1_upload_form"><br/>
+   
+  <input  type="file" name="file" uploader-model="file" class="form-control" id="logo" class="btn btn" size="30"/>
+</p>
+</div>  
+
+</div>
+
+
+         <div class="col-xs-8 " ng-if="!esEditable">
+                <div class="form-group margenT">
+                   
+                    <label class="acomodarL">NOMBRE ENTIDAD</label>
+                    <input type="text" class="form-controlP" ng-model="miInfo.nombre_entidad" placeholder="Nombre entidad" required readonly>
+            
+                </div>
+                
+                <div class="form-group margenT">
+                   
+                    <label class="acomodarL">NIT</label>
+                    <input type="number" class="form-controlP" ng-model="miInfo.nit_entidad" placeholder="Nit" required readonly>
+              </div>
+              <div class="form-group margenT">
+                    <label class="acomodarL">TELEFONO</label>
+                    <input type="tel" class="form-controlP" ng-model="miInfo.tel_entidad" placeholder="Teléfono" required readonly>
+                </div>
+               
+                <div class="form-group margenT">
+                    <label class="acomodarL" >DIRECCIÓN</label>
+                    <input type="text" class="form-controlP" ng-model="miInfo.direccion" placeholder="Dirección" required readonly>
+                </div>
+              <div class="form-group margenT">
+                    <label class="acomodarL">CORREO ELECTRONICO ENTIDAD</label>
+                    <input type="email" class="form-controlP" ng-model="miInfo.correo_entidad" placeholder="Correo electronico" required readonly>
+                </div>
+            </div>
+        
+             <div class="col-xs-12" ng-if="!esEditable">
+                <div class="form-group">
+                     <label class="acomodarL">DESCRIPCIÓN</label>
+                    <textarea class="form-control" ng-model="miInfo.descrip_entidad" name="observaciones" rows="5" required readonly  ></textarea>
+                   
+                   </div>  
+                
+              
+            </div>
+            
+ 
+<hr class="acomodarBarra">
+<!-- /////////////////////FORMULARIO SOLO EDITABLE ////////////////////////////////////// -->
+
+
+ <div class="col-xs-8 " ng-if="esEditable">
+                <div class="form-group margenT">
+                   
+                    <label class="acomodarL">NOMBRE ENTIDAD</label>
+                    <input type="text" class="form-controlP" ng-model="miInfo.nombre_entidad" placeholder="Nombre entidad" required>
+            
+                </div>
+                
+                <div class="form-group margenT">
+                   
+                    <label class="acomodarL">NIT</label>
+                    <input type="number" class="form-controlP" ng-model="miInfo.nit_entidad" placeholder="Nit" required readonly>
+              </div>
+              <div class="form-group margenT">
+                    <label class="acomodarL">TELEFONO</label>
+                    <input type="tel" class="form-controlP" ng-model="miInfo.tel_entidad" placeholder="Teléfono" required>
+                </div>
+               
+                <div class="form-group margenT">
+                    <label class="acomodarL" >DIRECCIÓN</label>
+                    <input type="text" class="form-controlP" ng-model="miInfo.direccion" placeholder="Dirección" required>
+                </div>
+              <div class="form-group margenT">
+                    <label class="acomodarL">CORREO ELECTRONICO ENTIDAD</label>
+                    <input type="email" class="form-controlP" ng-model="miInfo.correo_entidad" placeholder="Correo electronico" required>
+                </div>
+            </div>
+        
+             <div class="col-xs-12" ng-if="esEditable">
+                <div class="form-group">
+                     <label class="acomodarL">DESCRIPCIÓN</label>
+                    <textarea class="form-control" ng-model="miInfo.descrip_entidad" name="observaciones" rows="5" required></textarea>
+                   
+                   </div>  
+                
+              
+            </div>
+            
+ 
+<hr class="acomodarBarra">
+           
+           
+    </form>
+
+</div>
+</div>
+</div>
+        
+      
+ 
+ 
+

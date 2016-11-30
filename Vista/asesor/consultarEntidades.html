@@ -1,0 +1,172 @@
+
+<div class="row" >
+<div class="prueba">   
+
+      <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li ><a href="#Asesor_inicio"><i class="fa fa-home fa-lg"></i> Inicio</a></li>
+
+        <li class="dropdown">
+          <a href="#Asesor_consultarEntidades" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-industry fa-lg"></i> Registrar Empresa<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#Asesor_registrarEmpresaEmprendedora">Empresa Emprendedora</a></li>
+            <li><a href="#Asesor_registrarEmpresaTuristica">Empresa Turistica</a></li>
+          </ul>
+        </li>
+         <li><a href="#Asesor_registrarContacto"><i class="fa fa-user-plus fa-lg"></i> Registrar Contacto</a></li>
+         <li class="active"><a href="#Asesor_consultarEntidades"><i class="fa fa-building fa-lg"></i> Entidades</a></li>
+         <li><a href="#Asesor_consultarLogroServicio"><i class="fa fa-server fa-lg"></i> Logros y Servicios</a></li>
+          <!-- <li><a href="#Asesor_configuraciones"><i class="fa fa-cog fa-lg"></i> Configuraciones</a></li> -->
+      </ul>
+      
+     <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown" >
+          <a href="#Asesor_consultarEntidades" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa  fa-user-circle fa-lg"></i> Cuenta<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#Asesor_configuraciones"><i class="fa  fa-cog"></i> Configuraciones</a></li>
+            <li ng-click="cerrarSesion()"><a><i class="fa fa-sign-out"></i> Cerrar sesión</a></li>
+          </ul>
+
+        </li>
+       
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div class="col-sm-12 col-xs-12 row2" style="min-height: 600px; border:none">
+
+  <!-- Button trigger modal -->
+<legend>ENTIDADES ADSCRITAS AL MINCIT</legend>
+   <table class="table table-responsive" >
+  <thead>
+    <tr>
+      <th>LOGO</th>
+      <th>NIT</th>
+      <th>NOMBRE</th>
+      <th>CORREO</th>
+      <th>VER MAS</th>
+
+    </tr> 
+  </thead>
+  <tbody>
+    <tr ng-repeat="entidad in entidades | startFromGrid: currentPage * pageSize | limitTo: pageSize" ng-class="$even?'odd':'even'">
+      <td><img ng-src="Vista/LogosEmpresas/{{entidad.url_logo}}" width="100" height="100" class="img-responsive" alt="logo entidad"></td>
+      <td>{{entidad.nit_entidad}}</td>
+      <td>{{entidad.nombre_entidad}}</td>
+      <td>{{entidad.correo_entidad}}</td>
+         
+      <td><i class="fa fa-info fa-2x btn" data-target="#myModal" data-toggle="modal" ng-click="verMas($index)"></i></td>
+    </tr>
+    <!--
+    <tr>
+        <td>IMPULSA</td>
+        <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non adipisci, odit pariatur sint dignissimos, maiores enim. Quam numquam accusamus dolorum corrupti aperiam voluptatum impedit suscipit dolorem, eum labore tenetur distinctio.</td>
+        <td>336422112366</td>
+        <td><i class="fa fa-info fa-2x btn" data-target="#myModal2" data-toggle="modal"></i></td>
+        <td><i class="fa fa-pencil-square-o fa-2x btn" data-target="#myModal" data-toggle="modal"></i></td>
+        <td><i class="fa fa-trash-o fa-2x btn"ng-click="eliminar()"></i></td>
+
+    </tr>
+     <tr>
+        <td>SUPERCOMERCIO</td>
+       <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non adipisci, odit pariatur sint dignissimos, maiores enim. Quam numquam accusamus dolorum corrupti aperiam voluptatum impedit suscipit dolorem, eum labore tenetur distinctio.</td>
+        <td>123654789321</td>
+        <td><i class="fa fa-info fa-2x btn" data-target="#myModal2" data-toggle="modal"></i></td>
+        <td><i class="fa fa-pencil-square-o fa-2x btn"data-target="#myModal" data-toggle="modal"></i></td>
+        <td><i class="fa fa-trash-o fa-2x btn"ng-click="eliminar()"></i></td>
+    </tr>
+    <tr>
+        <td>FONDO NACIONAL DE GARANTIAS</td>
+       <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non adipisci, odit pariatur sint dignissimos, maiores enim. Quam numquam accusamus dolorum corrupti aperiam voluptatum impedit suscipit dolorem, eum labore tenetur distinctio.</td>
+        <td>478932152896</td>
+        <td><i class="fa fa-info fa-2x btn" data-target="#myModal2" data-toggle="modal"></i></td>
+        <td><i class="fa fa-pencil-square-o fa-2x btn"data-target="#myModal" data-toggle="modal"></i></td>
+        <td><i class="fa fa-trash-o fa-2x btn"ng-click="eliminar()"></i></td>
+    </tr>
+    <tr>
+        <td>PROCOLOMBIA</td>
+       <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non adipisci, odit pariatur sint dignissimos, maiores enim. Quam numquam accusamus dolorum corrupti aperiam voluptatum impedit suscipit dolorem, eum labore tenetur distinctio.</td>
+        <td>214778963221</td>
+        <td><i class="fa fa-info fa-2x btn" data-target="#myModal2" data-toggle="modal"></i></td>
+        <td><i class="fa fa-pencil-square-o fa-2x btn"data-target="#myModal" data-toggle="modal"></i></td>
+        <td><i class="fa fa-trash-o fa-2x btn"ng-click="eliminar()"></i></td>
+    </tr>
+ -->
+  </tbody>
+</table>
+<div class='btn-group col-md-4 col-md-offset-5 col-sm-4 col-sm-offset-5 margenBotton'>
+<button type='button' class='btn btn-default .paginacion' ng-disabled='currentPage == 0' ng-click='currentPage = currentPage - 1'>&laquo;</button>
+<button type='button' class='btn btn-default .paginacion' ng-disabled='currentPage == page.no - 1' ng-click='setPage(page.no)' ng-repeat='page in pages'>{{page.no}}</button>
+<button type='button' class='btn btn-default .paginacion' ng-disabled='currentPage >= entidades.length/pageSize - 1', ng-click='currentPage =  currentPage + 1'>&raquo;</button>
+
+</div>
+</div>
+
+<!-- Modal visualizable -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+  <div class="modal-dialog" role="document" style="width:90%">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Información de Entidad</h4>
+      </div>
+      <div class="modal-body">
+         <table class="table table-responsive">
+  <thead>
+  <tr>
+     
+      <th>NIT</th>
+      <th>NOMBRE</th>
+      <th>CORREO</th>
+      <th>TELEFONO</th>
+      <th>DIRECCIÓN</th>
+      <th>DESCRIPCIÓN</th>
+      <th>CORREO USUARIO</th>
+      
+
+    </tr> 
+  </thead>
+  <tbody>
+    <tr>
+
+      <td>{{entidadVerMas.nit_entidad}}</td>
+      <td>{{entidadVerMas.nombre_entidad}}</td>
+      <td>{{entidadVerMas.correo_entidad}}</td>
+      <td>{{entidadVerMas.tel_entidad}}</td>
+      <td>{{entidadVerMas.direccion}}</td>
+      <td>{{entidadVerMas.descrip_entidad}}</td>
+      <td>{{entidadVerMas.correo_usuario_asociado}}</td>
+
+
+    </tr>
+
+ 
+  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+
+    

@@ -1,0 +1,170 @@
+
+<div class="row" >
+ 
+ <div class="prueba">
+
+      <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#Admin_inicio"><i class="fa fa-home fa-lg"></i> Inicio</a></li>
+
+        <li class="dropdown">
+          <a href="#Admin_logros" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-building fa-lg"></i> Entidades<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#Admin_registrarEntidad">Registrar Entidad</a></li>
+            <li><a href="#Admin_verEntidad">Ver Entidades</a></li>
+          </ul>
+        </li>
+         
+          <li class="active"><a href="#Admin_logros"><i class="fa fa-trophy fa-lg" ></i> Registrar Logros</a></li>
+          <li><a href="#Admin_asociar"><i class="fa fa-handshake-o fa-lg" ></i> Asociar logros-entidades <span class="badge badge-info">{{cant_pendientes}}</span></a></li>
+         
+      </ul>
+      
+       <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown" >
+          <a href="#Admin_logros" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa  fa-user-circle fa-lg"></i> Cuenta<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#Admin_configuraciones"><i class="fa  fa-cog"></i> Configuraciones</a></li>
+            <li ng-click="cerrarSesion()"><a><i class="fa fa-sign-out"></i> Cerrar sesión</a></li>
+          </ul>
+
+        </li>
+       
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div class="col-sm-12 col-xs-12 row2">
+  <div class="row">
+    <h4 class="text-center"><b>AGREGAR UN NUEVO LOGRO </b></h4>
+
+          <form class="form-horizontal" ng-submit="registrarContacto();">
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label for="logro">NOMBRE</label>
+                    <input type="text" class="form-control" ng-model="nombreLogro" placeholder="Nombres" required>
+                </div>
+                <div class="form-group">
+                <label for="descripcion">DESCRIPCIÓN</label>
+                   
+                    
+                    <textarea class="form-control" ng-model="descripLogro" placeholder="Descripcíon" required></textarea>
+                </div>
+               
+            </div>
+            <div class="clearfix">
+              
+            </div>
+            <div class="form-group">
+              <div class="col-xs-6 col-xs-offset-7">                
+             <button class="btn btn-primary" ng-click="registrarLogro()">Guardar</button>
+             <br><br>
+              </div>
+
+           </div>
+            
+          
+        </form>
+      
+    </div>
+</div>
+<div class="col-sm-12 col-xs-12 col-md-12 row2">
+  
+
+<label class="acomodarFr text-center" style="font-size:18px; ">Buscar logros</label>
+
+   <div class="col-sm-3">
+      <div class="form-group">
+                    <label> Nombre Logro</label>
+                    <input type="text" class="form-control" ng-model="nombreFilter" placeholder="Nombre logro">
+                    <br>
+                    
+    </div>
+    </div>
+
+  <!-- Button trigger modal -->
+<label class="acomodarFr text-center" style="font-size:18px; ">Logros Registrados</label>
+   <table class="table table-responsive">
+  <thead>
+    <tr>
+      <th>Número</th>
+      <th>Nombre Logro</th>
+      <th>Descripción</th>
+      <th>Modificar</th>
+    </tr> 
+  </thead>
+  <tbody>
+   <tr ng-repeat='logro in logros |filter:{nombre_logro:nombreFilter} | startFromGrid: currentPage * pageSize | limitTo: pageSize' ng-class="$even?'odd':'even'">
+        <td>{{$index+1}}</td>
+        <td>{{logro.nombre_logro}}</td>
+        <td>{{logro.descrip_logro}}</td>
+              
+        <td><i class="fa fa-pencil-square-o fa-2x btn" data-target="#myModal" data-toggle="modal" ng-click="editarLogro($index)"></i></td>
+              
+    </tr>
+     
+  </tbody>
+</table>
+  
+
+</div>
+  <div class='btn-group col-md-4 col-md-offset-5 col-sm-4 col-sm-offset-5 margenBotton'>
+<button type='button' class='btn btn-default .paginacion' ng-disabled='currentPage == 0' ng-click='currentPage = currentPage - 1'>&laquo;</button>
+<button type='button' class='btn btn-default .paginacion' ng-disabled='currentPage == page.no - 1' ng-click='setPage(page.no)' ng-repeat='page in pages'>{{page.no}}</button>
+<button type='button' class='btn btn-default .paginacion' ng-disabled='currentPage >= logros.length/pageSize - 1', ng-click='currentPage =  currentPage + 1'>&raquo;</button>
+  </div>
+
+
+<!-- Modal -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+  <div class="modal-dialog" role="document" style="width:90%">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Editar Logro</h4>
+      </div>
+      <div class="modal-body">
+         <table class="table table-responsive">
+  <thead>
+  <tr>    
+      <th>NOMBRE</th>     
+      <th>DESCRIPCIÓN</th>      
+    </tr> 
+  </thead>
+  <tbody>
+    <tr>
+      <td><input class="inputNoBorder" type="text" ng-model="logroEdit.nombre_logro"></td>
+      <td><input class="inputNoBorder" type="text" ng-model="logroEdit.descrip_logro"></td>
+      
+    </tr>
+
+ 
+  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary"  data-dismiss="modal" ng-click="guardoDatos()">Guardar cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+</div>
+</div>

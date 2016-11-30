@@ -1,0 +1,97 @@
+
+<div class="row" >
+  
+<div class="prueba">	    
+
+      <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#Admin_inicio"><i class="fa fa-home fa-lg"></i> Inicio</a></li>
+
+        <li class="dropdown">
+          <a href="#Admin_asociar" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-building fa-lg"></i> Entidades<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#Admin_registrarEntidad">Registrar Entidad</a></li>
+            <li><a href="#Admin_verEntidad">Ver Entidades</a></li>
+          </ul>
+        </li>
+         
+          <li><a href="#Admin_logros"><i class="fa fa-trophy fa-lg" ></i> Registrar Logros</a></li>
+          <li class="active"><a href="#Admin_asociar"><i class="fa fa-handshake-o fa-lg" ></i> Asociar logros-entidades <span class="badge badge-info">{{cant_pendientes}}</span></a></li>
+         
+      </ul>
+      
+       <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown" >
+          <a href="#Admin_asociar" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa  fa-user-circle fa-lg"></i> Cuenta<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#Admin_configuraciones"><i class="fa  fa-cog"></i> Configuraciones</a></li>
+            <li ng-click="cerrarSesion()"><a><i class="fa fa-sign-out"></i> Cerrar sesión</a></li>
+          </ul>
+
+        </li>
+       
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+<div class="col-sm-12 col-xs-12  row2" >
+<select class="form-control" ng-model="la" id="select1" required>
+                      <option value="">--Seleccione--</option>
+                      <option ng-repeat="l in logros">{{l.nombre_logro}}</option>
+                                
+       </select>
+  <!-- Button trigger modal -->
+<legend>SERVICIOS PENDIENTES PARA ASOCIAR CON LOGROS</legend>
+<br><br>
+   <table class="table table-responsive row2" style="min-height: 500px; border:none"> 
+  <thead>
+    <tr>
+      <th>NIT</th>
+      <th>ENTIDAD</th>
+      <th>SERVICIO OFRECIDO</th>
+      <th>ASOCIAR CON</th>
+      <th>Guardar</th>
+    </tr> 
+  </thead>
+ <tbody>
+       <tr ng-repeat="sp in serviciosPendientes | startFromGrid: currentPage * pageSize | limitTo: pageSize" ng-class="$even?'odd':'even'">
+       <td>{{sp.nit}}</td>
+        <td>{{sp.nombre_entidad}}</td>
+        <td>{{sp.nombre_servicio}}--{{sp.descripcion}}</td>
+        <td><select class="form-control"  ng-model="values['field_' + $index]" required>
+                      <option value="">--Seleccione--</option>
+                      <option value="{{l.id_logro}}"ng-repeat="l in logros">{{l.nombre_logro}}</option>
+                                
+       </select></td>
+       <td><button class="btn btn-success" ng-click="guardar($index)"><i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i></button></td>
+    </tr>
+     
+ 
+  </tbody>
+</table>
+<div class='btn-group col-md-4 col-md-offset-5 col-sm-4 col-sm-offset-5 margenBotton'>
+<button type='button' class='btn btn-default .paginacion' ng-disabled='currentPage == 0' ng-click='currentPage = currentPage - 1'>&laquo;</button>
+<button type='button' class='btn btn-default .paginacion' ng-disabled='currentPage == page.no - 1' ng-click='setPage(page.no)' ng-repeat='page in pages'>{{page.no}}</button>
+<button type='button' class='btn btn-default .paginacion' ng-disabled='currentPage >= serviciosPendientes.length/pageSize - 1', ng-click='currentPage =  currentPage + 1'>&raquo;</button>
+
+</div>
+
+<!-- Modal -->
+
+</div>
+  </div>

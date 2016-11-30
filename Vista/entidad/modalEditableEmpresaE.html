@@ -1,0 +1,560 @@
+
+
+
+
+<div class="modal fade" id="myModalEmpresaE" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+  <div class="modal-dialog" role="document" style="width:90%">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"></h4>
+      </div>
+      <div class="modal-body">
+        
+<div class="col-sm-12 col-xs-12 row2">
+<legend >Empresa: {{EmpEdit.nombre_empresa}} </legend> 
+  <button class="btn btn-info" style="float:right" ng-click="hacerEditable()">{{textoBtn}}</button>  
+<CENTER>    
+   </CENTER>
+    
+         <legend>I. DATOS DEL CONTACTO </legend> 
+            <CENTER>
+    <hr class="acomodarBarra">
+    
+         <label class="acomodarFr text-center"> I. CLASIFICACIÓN DE CLIENTES </label>
+         <hr class="acomodarB"> 
+    <div class="form-group">
+      <div class="col-xs-3">
+        <div class="radio">
+    <label>
+
+      <input type="radio" name="optionsRadios" id="optionsRadios1" value="Emprendedor" ng-model="EmpEdit.clasif_cliente" ng-disabled="!esEditable">
+      1.EMPRENDEDOR
+    </label>
+  </div>
+  </div>
+ <div class="col-xs-3">
+  <div class="radio">
+    <label>
+      <input type="radio" name="optionsRadios" id="optionsRadios2" value="Empresa Formal" ng-model="EmpEdit.clasif_cliente" ng-disabled="!esEditable">
+      2.EMPRESA FORMAL
+    </label>
+  </div>
+</div>
+ <div class="col-xs-3">
+   <div class="radio">
+    <label>
+      <input type="radio" name="optionsRadios" id="optionsRadios2" value="Empresa Informal" ng-model="EmpEdit.clasif_cliente"  ng-disabled="!esEditable">
+      2.EMPRESA INFORMAL
+    </label>
+  </div>
+</div>
+ <div class="col-xs-3">
+  <div class="radio">
+    <label>
+      <input type="radio" name="optionsRadios" id="optionsRadios2" value="Empresa Gacela" ng-model="EmpEdit.clasif_cliente"  ng-disabled="!esEditable">
+      2.EMPRESA GACELA
+    </label>
+  </div>
+</div>
+
+    </div>
+</CENTER>
+<hr class="acomodarBarra">
+         <label class="acomodarFr text-center"> II. DATOS DEL CONTACTO </label>
+<hr class="acomodarB"> 
+
+
+
+            <div class="col-xs-6">
+                <div class="form form-inline">
+                   
+                    <label class="acomodarL">Cedula</label>
+                    <input type="number" class="form-controlP" ng-model="contactoEdit.cc_contacto" placeholder="Cedula" required  ng-disabled="!esEditable">
+
+                    <button type="button" class="btn btn-info form-control" aria-label="Left Align" ng-click="buscarContacto();">
+                     <span class="glyphicon glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+
+                </div>
+                <div class="form-group margenT">
+                    <label for="email">Apellidos</label>
+                    <input type="text" class="form-control" ng-model="contactoEdit.apellido_cont" placeholder="Apellidos" required  ng-disabled="!esEditable">
+                </div>
+              
+            </div>
+            <div class="col-xs-6 ">
+             <div class="form-group ">
+                <label for="lastname">Nombres</label>
+                    <input type="text" class="form-control" ng-model="contactoEdit.nombre_cont" placeholder="Nombres" required  ng-disabled="!esEditable">
+                    
+                </div>
+              
+                
+                <div class="form-group">
+                    <label for="password">Cargo</label>
+                    <input type="text" class="form-control" ng-model="contactoEdit.cargo_cont" placeholder="Cargo" required  ng-disabled="!esEditable">
+                </div>
+            </div>
+
+             <div class="col-xs-6">
+             <div class="form-group">
+                    <label for="apellidos">Fecha en que obtuvo el cargo:</label>
+                    <input type="date" class="form-control" ng-model="contactoEdit.fecha_ingreso_cargo"required date-format  ng-disabled="!esEditable">
+                </div>
+                <div class="form-group">
+                    <label>Fecha de nacimiento</label>
+                  <input type="date" class="form-control" ng-model="contactoEdit.fecha_nacimiento" placeholder="Fecha de nacimiento" required date-format  ng-disabled="!esEditable">
+                </div>
+                
+            </div>
+
+             <div class="col-xs-6">
+                <div class="form-group">
+                    <label for="lastname">Lugar de nacimiento:</label>
+                    <input type="text" class="form-control" ng-model="contactoEdit.lugar_nacimiento" placeholder="Lugar de nacimiento" required  ng-disabled="!esEditable">
+
+                </div>
+                <div class="form-group">
+                    <label for="password">Nivel de estudios</label>
+                    <select class="form-control" ng-model="contactoEdit.nivel_estudio" required  ng-disabled="!esEditable">
+                      <option value="">--Seleccione--</option>
+                      <option >Primaria</option>
+                      <option>Bachiller</option>
+                      <option>Tecnica</option>
+                      <option>Profesional</option>
+                      <option>Postgrado</option>
+                   
+                  </select>
+                </div>
+            </div>
+
+             <div class="col-xs-6">
+                <div class="form-group">
+                    <label for="lastname">Direccion</label>
+                    <input type="text" class="form-control" ng-model="contactoEdit.direccion" placeholder="Direccion" required  ng-disabled="!esEditable">
+                </div>
+                 <div class="form-group">
+                     <label for="password">Telefono Fijo</label>
+                    <input type="number" class="form-control" ng-model="contactoEdit.tel_fijo" placeholder="Telefono Fijo" required  ng-disabled="!esEditable">
+                </div>
+               
+
+              
+            </div>
+
+             <div class="col-xs-6">
+               <div class="form-group">
+                    <label for="password">Telefono Celular</label>
+                    <input type="number" class="form-control" ng-model="contactoEdit.tel_cel" placeholder="Telefono Celular" required  ng-disabled="!esEditable">
+                </div>
+                 <div class="form-group">
+                  <label >Departamento</label>
+
+                    <select class="form-control" ng-model="contactoEdit.departamento" id="dptoContacto" required  ng-disabled="!esEditable">
+                      <option value="">--Seleccione--</option>
+                      <option ng-repeat="d in dptosCombo">{{d.nombre}}</option>
+                                
+                  </select>                   
+                </div>
+             
+              
+            </div>
+
+            <div class="col-xs-6">
+                <div class="form-group">
+                     <label >Ciudad</label>
+                  <select class="form-control" ng-model="contactoEdit.ciudad"  required  ng-disabled="!esEditable">
+                      <option value="">--Seleccione--</option>
+                      <option ng-repeat="c in ciudadesCombo">{{c.nombre}}</option>
+                     
+           
+                  </select>
+                </div>
+              <div class="form-group">
+                     <label for="Nombres">Genero</label>
+                   <select class="form-control" ng-model="contactoEdit.genero" required  ng-disabled="!esEditable">
+                      <option value="">--Seleccione--</option>
+                      <option >Masculino</option>
+                      <option>Femenino</option>
+                      <option>LGTBI</option>
+           
+                  </select>
+                </div>
+
+                <div class="form-group">
+                     <label for="Nombres">¿Está en Condición de Desplazamiento? </label>
+                   <select class="form-control" ng-model="contactoEdit.desplazado" required  ng-disabled="!esEditable">
+                      <option value="">--Seleccione--</option>
+                      <option >Si</option>
+                      <option>No</option>
+                  </select>
+                </div>
+               
+            </div>
+            <div class="col-xs-6">
+             <div class="form-group">
+                    <label for="password">Correo Electronico</label>
+                    <input type="email" class="form-control" ng-model="contactoEdit.correo" placeholder="correo@mail.com" required  ng-disabled="!esEditable">
+                </div>
+                 <div class="form-group">
+                    <label for="password">Grupo Etnico</label>
+                     <select class="form-control" ng-model="contactoEdit.etnia" required  ng-disabled="!esEditable">
+                      <option value="">--Seleccione--</option>
+                      <option >Rrom(Gitanos)</option>
+                      <option>Indigenas</option>
+                      <option>Afrocolombianos</option>
+                      <option>Raizales</option>
+                      <option>Otro</option>
+           
+                  </select>
+                </div>
+
+                 <div class="form-group">
+                      <label for="Nombres">¿Presenta algún tipo de discapacidad? </label>
+                   <select class="form-control" ng-model="contactoEdit.discapacidad" required  ng-disabled="!esEditable">
+                      <option value="">--Seleccione--</option>
+                      <option >Si</option>
+                      <option>No</option>
+                  </select>
+                </div>
+      
+            </div>
+            <div class="col-xs-6">
+                
+        
+            </div>
+
+             <div class="col-xs-6 acomodarBT">
+             
+             </div>
+              <div class="col-xs-6 acomodarBT">
+             
+             </div>
+             <div class="col-xs-6 acomodarBT">
+             
+             </div>
+             <div class="col-xs-6 acomodarBT">
+             
+             </div>
+             <br>
+      
+            <legend>II. INFORMACIÓN DE LA EMPRESA </legend>
+             
+             <div class="col-xs-6">
+              <label >Logo de Empresa</label>
+               <center>
+                 <img ng-src="Vista/LogosEmpresas/{{EmpEdit.url_logo}}" width="200" height="200" class="img-responsive" alt="Cinque Terre" style="margin:0;">
+               </center>
+                
+              
+            </div>
+          <div class="col-xs-6">
+                <div class="form-group">
+                    <label for="pwd">Nombre de la empresa</label>
+                    <input type="text" class="form-control" ng-model="EmpEdit.nombre_empresa" placeholder="Nombre de la empresa" required ng-disabled="!esEditable">
+                  
+                </div>
+              
+                <div class="form-group">
+                  <label for="pwd">Nit:</label>
+                  
+                  <input type="number" class="form-control" ng-model="EmpEdit.nit"  placeholder="NIT" required ng-disabled="!esEditable">
+                </div>
+              
+            </div>
+            <div class="col-xs-6">
+             <div class="form-group">
+            <label for="pwd">Nombre del representante legal:</label>
+            <input type="text" class="form-control" ng-model="EmpEdit.nombre_rep_legal"  placeholder="Nombre del representante" required ng-disabled="!esEditable">
+          </div>
+            
+            <div class="form-group">
+                  <label for="pwd">Constitucion legal:</label>
+                   <select class="form-control" ng-model="EmpEdit.tipo_constitucion"  id="constitucion_legal"  ng-disabled="!esEditable">
+                      <option value="">--Seleccione-</option>
+                      <option >SAS</option>
+                      <option>Limitada</option>
+                      <option>Anonima</option>
+                      <option>Persona natural</option>
+                      <option>Otra</option>
+                                        
+                   </select>
+                 
+                   <br>
+                  <input type="text" class="form-control" ng-model="EmpEdit.tipo_constitucion"  placeholder="Escriba la constitución legal de la empresa" required ng-disabled="!esEditable">
+            </div>
+          </div>
+
+           <div class="col-xs-6">
+               <div class="form-group">
+            <label for="pwd">Fecha de constitucion o inicio de labores:</label>
+            <input type="date" size="50" class="form-control" ng-model="EmpEdit.fecha_const_legal"  placeholder="" required date-format ng-disabled="!esEditable">
+          </div>
+              
+                
+           <div class="form-group form-inline">
+            <label for="pwd">No empleados</label>
+            <label for="pwd">T.C</label> <input type="number" ng-model="EmpEdit.no_emple_tc"  class="form-control campo"  ng-disabled="!esEditable">
+            <label for="pwd">M.T</label> <input type="number" ng-model="EmpEdit.no_emple_mt"  class="form-control campo" ng-disabled="!esEditable">
+            <label for="pwd">Directos</label> <input type="number" ng-model="EmpEdit.no_emple_directo"  class="form-control campo" ng-disabled="!esEditable">
+            <label for="pwd">Indirectos</label> <input type="number" ng-model="EmpEdit.no_emple_indirecto"  class="form-control campo" ng-disabled="!esEditable">
+          </div>
+
+           <div class="form-group">
+                  <label >Departamento</label>
+
+                    <select class="form-control" ng-model="EmpEdit.departamento" id="dptoEmpresa" required ng-disabled="!esEditable">
+                      <option value="">--Seleccione--</option>
+                      <option ng-repeat="d in dptosCombo">{{d.nombre}}</option>
+                                
+                  </select>                   
+                </div>
+
+       </div>
+
+        <div class="col-xs-6">
+               <div class="form-group">
+               <label for="pwd">Direccion:</label>
+               <input type="text" class="form-control" ng-model="EmpEdit.direccion" placeholder="Direccion" required ng-disabled="!esEditable">
+              </div>
+              
+                            
+              
+              
+            </div>
+
+         <div class="col-xs-6">
+                <div class="form-group">
+                <label for="pwd">Telefono fijo:</label>
+                <input type="text" class="form-control" ng-model="EmpEdit.telefonoF" placeholder="Telefono fijo" required ng-disabled="!esEditable">
+              </div>
+              
+                            
+               <div class="form-group">
+                <label for="pwd">Telefono Celular</label>
+                <input type="text"  class="form-control" ng-model="EmpEdit.telefonoC" placeholder="Telefono Celular" required ng-disabled="!esEditable">
+              </div>
+              
+            </div>
+
+
+            <div class="col-xs-6">
+                <div class="form-group">
+                     <label >Ciudad</label>
+                  <select class="form-control" ng-model="EmpEdit.ciudad"  required ng-disabled="!esEditable">
+                      <option value="">--Seleccione--</option>
+                      <option ng-repeat="c in ciudadesCombo">{{c.nombre}}</option>
+                     
+           
+                  </select>
+                </div>
+                  
+                   <div class="form-group">
+                    <label for="pwd">Sitio Web</label>
+                    <input type="text" class="form-control" ng-model="EmpEdit.url_sitio_web" name="sitioWeb" placeholder="Sitio Web" required ng-disabled="!esEditable">
+                  </div>
+              
+                            
+              
+              
+            </div>
+      
+
+           <div class="col-xs-6">
+             <div class="form-group">
+                <div class="form-group">
+                    <label for="pwd">Correo:</label>
+                    <input type="email" class="form-control" ng-model="EmpEdit.correo" name="correoEm" placeholder="ejemplo@correo.com" required ng-disabled="true">
+                  </div>
+              
+                  <label for="pwd">Tipo de Empresa</label>
+                   <select class="form-control"  ng-model="EmpEditEmprend.tipo_activ_empresa" name="tipoEm" id="tipo" required ng-disabled="!esEditable">
+                    <option value="">--Seleccione-</option>
+                    <option >Industrial</option>
+                    <option>Comercial</option>
+                    <option>Servicio</option>
+                    <option>Agroindustria</option>
+                    <option>Otra</option>
+                         
+                   </select>
+                    <br>
+                  
+                  
+                  <input type="text" class="form-control" ng-model="EmpEditEmprend.tipo_activ_empresa"  placeholder="Escriba el tipo de empresa" required ng-disabled="!esEditable"> 
+
+                  <select class="form-control"  ng-model="EmpEditEmprend.tipo_activ_empresa"   required ng-disabled="!esEditable">
+                    <option value="">--Comercial al:--</option>
+                    <option >Al por mayor</option>
+                    <option >Al por menor</option>                 
+                         
+                   </select> 
+
+
+            </div> 
+
+              
+            </div>
+
+    <div class="col-xs-6">
+                               
+                <div class="form-group">
+      <label for="pwd">Tiene registro mercantil?</label>
+        <div class="radio">
+    <label>
+      <input type="radio" ng-model="EmpEdit.registro_mercantil" name="registroM" value="si" checked ng-disabled="!esEditable">
+      Si
+    </label>
+  </div>
+  <div class="radio">
+    <label>
+      <input type="radio" ng-model="EmpEdit.registro_mercantil" name="registroM" value="no" ng-disabled="!esEditable">
+      No
+    </label>
+  </div>
+ 
+    </div>
+     <div class="form-group">
+                    <label for="pwd">Numero Registro Mercantil</label>
+                    <input type="number" class="form-control" ng-model="EmpEdit.numero_registro_mercantil"  name="numeroRegis" placeholder="Numero registro mercantil" required ng-disabled="!esEditable">
+                  </div>
+ 
+    </div>
+
+       <div class="col-xs-6">
+                    <div class="form-group">
+                    <label for="pwd" >¿Último año de renovación?: </label>
+                    <input type="number" class="form-control" ng-model="EmpEdit.renov_mercantil"  name="anoRenova" placeholder="ultimo año de renovacion" required ng-disabled="!esEditable">
+                    </div>           
+         
+                
+
+      </div>
+
+    
+  
+ 
+     
+
+        <legend>III. INFORMACIÓN DE LA EMPRESA EMPRENDEDORA</legend>
+        
+            <div class="col-xs-6">
+              <div class="form-group">
+                    <label for="pwd">Codigo principal CIIU</label>
+                    <input type="number" class="form-control" ng-model="EmpEditEmprend.cod_ciiu" name="cii" placeholder="Codigo principal CIIU" required ng-disabled="!esEditable">
+               </div>
+
+                  <div class="form-group">
+                    <label for="pwd">Actividad Internacional</label>
+                    <select class="form-control"  ng-model="EmpEditEmprend.activ_intern"  name="actividadI" required ng-disabled="!esEditable">
+                    <option value="">--Seleccione-</option>
+                    <option >Expotacion</option>
+                    <option>Importacion</option>
+                     <option>Ambas</option>
+                         
+                   </select>
+               </div>            
+         
+
+        </div>
+
+    <div class="col-xs-6">
+       <div class="form-group">
+                    <label for="pwd">Mencione lo paises con los cuales comercializa</label>
+                    <input type="text" class="form-control" ng-model="EmpEditEmprend.paises_comercializa" name="paisescomer" placeholder="Paises con los cuales comercializa" required ng-disabled="!esEditable">
+           </div>
+                  <div class="form-group">
+                    <label for="pwd">Realiza negocios por internet</label>
+                                         <div class="radio">
+                          <label>
+                            <input type="radio" ng-model="EmpEditEmprend.negoc_internet" name="inter" value="si" checked ng-disabled="!esEditable">
+                            Si
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" ng-model="EmpEditEmprend.negoc_internet"  name="inter" value="no" ng-disabled="!esEditable">
+                            No
+                          </label>
+                        </div>
+               </div>            
+         
+    
+               
+
+    </div>
+    <div class="col-xs-6">
+                     
+                    <div class="form-group">
+                    <label for="pwd">¿Por qué medio se enteró del Centro de Desarrollo Empresarial- CDE?</label>
+                     <select class="form-control"  ng-model="EmpEditEmprend.como_se_entero" name="medio" id="medioCde" required ng-disabled="!esEditable">
+                    <option value="">--Seleccione-</option>
+                    <option >Referido del Ministerio de Comercio Industria y Turismo o entidad gubernamental</option>
+                    <option>Referido de empresarios </option>
+                     <option>Universidad</option>
+                     <option> Medios masivos(radio, TV, prensa, etc.)</option>
+                     <option>Página Web</option>
+                     <option>Red sociales</option>
+                      <option>Otro</option>
+                         
+                   </select>
+                   <br>
+                    <input type="text" class="form-control" ng-model="EmpEditEmprend.como_se_entero"  placeholder="Escriba el medio por cual se entero"  maxlength="100" required ng-disabled="!esEditable">
+                   </div>
+               
+   
+         
+
+      </div>
+
+       <div class="col-xs-6">
+
+                    <div class="form-group">
+                    <label for="pwd">Productos y servicios que ofrece la empresa</label>
+                    <textarea class="form-control" ng-model="EmpEdit.servicios_ofrecidos" rows="5" name="servicios" required ng-disabled="!esEditable"></textarea>
+                   
+                   </div>  
+                  
+
+         
+
+      </div>
+
+    
+
+      <hr class="acomodarBarra">
+         <label class="acomodarFr text-center"> IV.OBSERVACIONES </label>
+<hr class="acomodarB"> 
+ 
+ 
+<div class="col-xs-12">
+
+                    <div class="form-group">
+                    <label for="pwd">Observaciones</label>
+                    <textarea class="form-control" ng-model="EmpEdit.observaciones" name="observaciones" rows="10" required ng-disabled="!esEditable"></textarea>
+                   
+                   </div>  
+
+
+         
+
+      </div> 
+
+
+    
+</div>
+      </div>
+      <div class="modal-footer">
+        <div class="form-group">
+                    <label for="pwd" style="float:left;">Actualizar Logo de la empresa (Formato jpg o png menores 100k):</label>
+                      <p id="f1_upload_form" align=""><br/>
+                       
+                              <input  type="file" name="file" uploader-model="file" class="form-control" id="logo" class="btn btn" size="30"ng-disabled="!esEditable" />
+                    </p>
+                   </div>  
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary"  data-dismiss="modal" ng-click="updateEmpresaE()">Guardar cambios</button>
+      </div>
+    </div>
+  </div>
+</div>

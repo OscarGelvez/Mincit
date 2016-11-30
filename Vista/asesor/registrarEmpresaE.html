@@ -1,0 +1,601 @@
+ <script type="text/javascript">
+        $(document).ready(function(){
+            $("#SignupForm").formToWizard({ submitButton: 'SaveAccount' })
+
+        });
+    </script>
+
+
+
+<div class="row" >
+  
+<div class="prueba">   
+
+      <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#Asesor_inicio"><i class="fa fa-home fa-lg"></i> Inicio</a></li>
+
+        <li class="dropdown active">
+          <a href="#Asesor_registrarEmpresaEmprendedora" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-industry fa-lg"></i> Registrar Empresa<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#Asesor_registrarEmpresaEmprendedora">Empresa Emprendedora</a></li>
+            <li><a href="#Asesor_registrarEmpresaTuristica">Empresa Turistica</a></li>
+          </ul>
+        </li>
+         <li><a href="#Asesor_registrarContacto"><i class="fa fa-user-plus fa-lg"></i> Registrar Contacto</a></li>
+         <li><a href="#Asesor_consultarEntidades"><i class="fa fa-building fa-lg"></i> Entidades</a></li>
+         <li><a href="#Asesor_consultarLogroServicio"><i class="fa fa-server fa-lg"></i> Logros y Servicios</a></li>
+          <!-- <li><a href="#Asesor_configuraciones"><i class="fa fa-cog fa-lg"></i> Configuraciones</a></li> -->
+      </ul>
+      
+     <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown" >
+          <a href="#Asesor_registrarEmpresaEmprendedora" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa  fa-user-circle fa-lg"></i> Cuenta<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+           <li><a href="#Asesor_configuraciones"><i class="fa  fa-cog"></i> Configuraciones</a></li>
+            <li ng-click="cerrarSesion()"><a><i class="fa fa-sign-out"></i> Cerrar sesión</a></li>
+          </ul>
+
+        </li>
+       
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div class="col-sm-12 col-xs-12 row2">
+    <h4 class="text-center"><b>REGISTRO DE CLIENTES/EMPRESAS EMPRENDEDORAS</b> </h4>
+    <form id="SignupForm"  name="myform"  ng-submit="registrarEmpresa()" ng-cloak>
+        <fieldset>
+         <legend>I. DATOS DEL CONTACTO </legend> 
+            <CENTER>
+    <hr class="acomodarBarra">
+         <label class="acomodarFr text-center"> I. CLASIFICACIÓN DE CLIENTES </label>
+         <hr class="acomodarB"> 
+    <div class="form-group">
+      <div class="col-xs-3">
+        <div class="radio">
+    <label>
+      <input type="radio" name="optionsRadios" id="optionsRadios1" value="Emprendedor" ng-model="clasificacion">
+      1.EMPRENDEDOR
+    </label>
+  </div>
+  </div>
+ <div class="col-xs-3">
+  <div class="radio">
+    <label>
+      <input type="radio" name="optionsRadios" id="optionsRadios2" value="Empresa Formal" ng-model="clasificacion">
+      2.EMPRESA FORMAL
+    </label>
+  </div>
+</div>
+ <div class="col-xs-3">
+   <div class="radio">
+    <label>
+      <input type="radio" name="optionsRadios" id="optionsRadios2" value="Empresa Informal" ng-model="clasificacion">
+      2.EMPRESA INFORMAL
+    </label>
+  </div>
+</div>
+ <div class="col-xs-3">
+  <div class="radio">
+    <label>
+      <input type="radio" name="optionsRadios" id="optionsRadios2" value="Empresa Gacela" ng-model="clasificacion">
+      2.EMPRESA GACELA
+    </label>
+  </div>
+</div>
+
+    </div>
+</CENTER>
+<hr class="acomodarBarra">
+         <label class="acomodarFr text-center"> II. DATOS DEL CONTACTO </label>
+<hr class="acomodarB"> 
+
+
+
+            <div class="col-xs-6">
+                <div class="form form-inline">
+                   
+                    <label class="acomodarL">Cedula</label>
+                    <input type="text" class="form-controlP" ng-model="cedula" placeholder="Cedula" required>
+
+                    <button type="button" class="btn btn-info form-control" aria-label="Left Align" ng-click="buscarContacto();">
+                     <span class="glyphicon glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+
+                </div>
+                <div class="form-group margenT">
+                    <label for="email">Apellidos</label>
+                    <input type="text" class="form-control" ng-model="apellidos" placeholder="Apellidos" required>
+                </div>
+              
+            </div>
+            <div class="col-xs-6 ">
+             <div class="form-group ">
+                <label for="lastname">Nombres</label>
+                    <input type="text" class="form-control" ng-model="nombres" placeholder="Nombres" required>
+                    
+                </div>
+              
+                
+                <div class="form-group">
+                    <label for="password">Cargo</label>
+                    <input type="text" class="form-control" ng-model="cargo" placeholder="Cargo" required>
+                </div>
+            </div>
+
+             <div class="col-xs-6">
+             <div class="form-group">
+                    <label for="apellidos">Fecha en que obtuvo el cargo:</label>
+                    <input type="date" class="form-control" ng-model="antiguedad"required date-format>
+                </div>
+                <div class="form-group">
+                    <label>Fecha de nacimiento</label>
+                  <input type="date" class="form-control" ng-model="fechaN" placeholder="Fecha de nacimiento" required date-format>
+                </div>
+                
+            </div>
+
+             <div class="col-xs-6">
+                <div class="form-group">
+                    <label for="lastname">Lugar de nacimiento:</label>
+                    <input type="text" class="form-control" ng-model="lugarN" placeholder="Lugar de nacimiento" required>
+
+                </div>
+                <div class="form-group">
+                    <label for="password">Nivel de estudios</label>
+                    <select class="form-control" ng-model="nivelEstudio" required>
+                      <option value="">--Seleccione--</option>
+                      <option >Primaria</option>
+                      <option>Bachiller</option>
+                      <option>Tecnica</option>
+                      <option>Profesional</option>
+                      <option>Postgrado</option>
+                      <option>number</option>
+                  </select>
+                </div>
+            </div>
+
+             <div class="col-xs-6">
+                <div class="form-group">
+                    <label for="lastname">Direccion</label>
+                    <input type="text" class="form-control" ng-model="direccion" placeholder="Direccion" required>
+                </div>
+                 <div class="form-group">
+                     <label for="password">Telefono Fijo</label>
+                    <input type="number" class="form-control" ng-model="telefonoF" placeholder="Telefono Fijo" required>
+                </div>
+               
+
+              
+            </div>
+
+             <div class="col-xs-6">
+               <div class="form-group">
+                    <label for="password">Telefono Celular</label>
+                    <input type="number" class="form-control" ng-model="telefonoC" placeholder="Telefono Celular" required>
+                </div>
+                 <div class="form-group">
+                  <label >Departamento</label>
+
+                    <select class="form-control" ng-model="departamento" id="dptoContacto" required>
+                      <option value="">--Seleccione--</option>
+                      <option ng-repeat="d in dptosCombo">{{d.nombre}}</option>
+                                
+                  </select>                   
+                </div>
+             
+              
+            </div>
+
+            <div class="col-xs-6">
+                <div class="form-group">
+                     <label >Ciudad</label>
+                  <select class="form-control" ng-model="ciudad"  required>
+                      <option value="">--Seleccione--</option>
+                      <option ng-repeat="c in ciudadesCombo">{{c.nombre}}</option>
+                     
+           
+                  </select>
+                </div>
+              <div class="form-group">
+                     <label for="Nombres">Genero</label>
+                   <select class="form-control" ng-model="genero" required>
+                      <option value="">--Seleccione--</option>
+                      <option >Masculino</option>
+                      <option>Femenino</option>
+                      <option>LGTBI</option>
+           
+                  </select>
+                </div>
+
+                <div class="form-group">
+                     <label for="Nombres">¿Está en Condición de Desplazamiento? </label>
+                   <select class="form-control" ng-model="condicionD" required>
+                      <option value="">--Seleccione--</option>
+                      <option >Si</option>
+                      <option>No</option>
+                  </select>
+                </div>
+               
+            </div>
+            <div class="col-xs-6">
+             <div class="form-group">
+                    <label for="password">Correo Electronico</label>
+                    <input type="email" class="form-control" ng-model="correo" placeholder="correo@mail.com" required>
+                </div>
+                 <div class="form-group">
+                    <label for="password">Grupo Etnico</label>
+                     <select class="form-control" ng-model="grupoE" required>
+                      <option value="">--Seleccione--</option>
+                      <option >Rrom(Gitanos)</option>
+                      <option>Indigenas</option>
+                      <option>Afrocolombianos</option>
+                      <option>Raizales</option>
+                      <option>Otro</option>
+           
+                  </select>
+                </div>
+
+                 <div class="form-group">
+                      <label for="Nombres">¿Presenta algún tipo de discapacidad? </label>
+                   <select class="form-control" ng-model="discapacidad" required>
+                      <option value="">--Seleccione--</option>
+                      <option >Si</option>
+                      <option>No</option>
+                  </select>
+                </div>
+      
+            </div>
+            <div class="col-xs-6">
+                
+        
+            </div>
+
+             <div class="col-xs-6 acomodarBT">
+             
+             </div>
+              <div class="col-xs-6 acomodarBT">
+             
+             </div>
+             <div class="col-xs-6 acomodarBT">
+             
+             </div>
+             <div class="col-xs-6 acomodarBT">
+             
+             </div>
+             <br>
+        </fieldset>
+    <fieldset>
+            <legend>II. INFORMACIÓN DE LA EMPRESA </legend>
+          <div class="col-xs-6">
+                <div class="form-group">
+                    <label for="pwd">Nombre de la empresa</label>
+                    <input type="text" class="form-control" ng-model="nombreE" placeholder="Nombre de la empresa" required>
+                  
+                </div>
+              
+                <div class="form-group">
+                  <label for="pwd">Nit:</label>
+                  
+                  <input type="number" class="form-control" ng-model="nit"  placeholder="NIT" required>
+                </div>
+              
+            </div>
+            <div class="col-xs-6">
+             <div class="form-group">
+            <label for="pwd">Nombre del representante legal:</label>
+            <input type="text" class="form-control" ng-model="nombreR"  placeholder="Nombre del representante" required>
+          </div>
+            
+            <div class="form-group">
+                  <label for="pwd">Constitucion legal:</label>
+                   <select class="form-control" ng-model="constitucion"  id="constitucion_legal" >
+                      <option value="">--Seleccione-</option>
+                      <option >SAS</option>
+                      <option>Limitada</option>
+                      <option>Anonima</option>
+                      <option>Persona natural</option>
+                      <option>Otra</option>
+                                        
+                   </select>
+                 
+                   <br>
+                  <input type="text" class="form-control" ng-model="auxiliar.constitucion2" ng-if="otra_activa" placeholder="Escriba la constitución legal de la empresa" required>
+            </div>
+          </div>
+
+           <div class="col-xs-6">
+               <div class="form-group">
+            <label for="pwd">Fecha de constitucion o inicio de labores:</label>
+            <input type="date" size="50" class="form-control" ng-model="fechaC"  placeholder="" required date-format>
+          </div>
+              
+                
+           <div class="form-group form-inline">
+            <label for="pwd">No empleados</label>
+            <label for="pwd">T.C</label> <input type="number" ng-model="tc"  class="form-control campo" >
+            <label for="pwd">M.T</label> <input type="number" ng-model="mt"  class="form-control campo">
+            <label for="pwd">Directos</label> <input type="number" ng-model="directos"  class="form-control campo">
+            <label for="pwd">Indirectos</label> <input type="number" ng-model="indirectos"  class="form-control campo">
+          </div>
+
+           <div class="form-group">
+                  <label >Departamento</label>
+
+                    <select class="form-control" ng-model="dptoEm" id="dptoEmpresa" required>
+                      <option value="">--Seleccione--</option>
+                      <option ng-repeat="d in dptosCombo">{{d.nombre}}</option>
+                                
+                  </select>                   
+                </div>
+
+       </div>
+
+        <div class="col-xs-6">
+               <div class="form-group">
+               <label for="pwd">Direccion:</label>
+               <input type="text" class="form-control" ng-model="direccionEm" placeholder="Direccion" required>
+              </div>
+              
+                            
+              
+              
+            </div>
+
+         <div class="col-xs-6">
+                <div class="form-group">
+                <label for="pwd">Telefono fijo:</label>
+                <input type="text" class="form-control" ng-model="telefonoFijo" placeholder="Telefono fijo" required>
+              </div>
+              
+                            
+               <div class="form-group">
+                <label for="pwd">Telefono Celular</label>
+                <input type="text"  class="form-control" ng-model="telefonoCelular" placeholder="Telefono Celular" required>
+              </div>
+              
+            </div>
+
+
+            <div class="col-xs-6">
+                <div class="form-group">
+                     <label >Ciudad</label>
+                  <select class="form-control" ng-model="ciudadEm"  required>
+                      <option value="">--Seleccione--</option>
+                      <option ng-repeat="c in ciudadesCombo2">{{c.nombre}}</option>
+                     
+           
+                  </select>
+                </div>
+                  
+                   <div class="form-group">
+                    <label for="pwd">Sitio Web</label>
+                    <input type="text" class="form-control" ng-model="sitioWeb" name="sitioWeb" placeholder="Sitio Web" required>
+                  </div>
+              
+                            
+              
+              
+            </div>
+      
+
+           <div class="col-xs-6">
+             <div class="form-group">
+                <div class="form-group">
+                    <label for="pwd">Correo:</label>
+                    <input type="email" class="form-control" ng-model="correoEm" name="correoEm" placeholder="ejemplo@correo.com" required>
+                  </div>
+              
+                  <label for="pwd">Tipo de Empresa</label>
+                   <select class="form-control"  ng-model="tipoEm" name="tipoEm" id="tipoEm" required>
+                    <option value="">--Seleccione-</option>
+                    <option >Industrial</option>
+                    <option>Comercial</option>
+                    <option>Servicio</option>
+                    <option>Agroindustria</option>
+                    <option>Otra</option>
+                         
+                   </select>
+                    <br>
+                  
+                  
+                  <input type="text" class="form-control" ng-model="auxiliar.tipoEm2" ng-if="comercial_otra_activa" placeholder="Escriba el tipo de empresa" required> 
+
+                  <select class="form-control"  ng-model="auxiliar.tipoEm3"  ng-if="comercial_activa" required>
+                    <option value="">--Comercial al:--</option>
+                    <option >Al por mayor</option>
+                    <option >Al por menor</option>                 
+                         
+                   </select> 
+
+
+            </div> 
+
+              
+            </div>
+
+    <div class="col-xs-6">
+                               
+                <div class="form-group">
+      <label for="pwd">Tiene registro mercantil?</label>
+        <div class="radio">
+    <label>
+      <input type="radio" ng-model="registroM" name="registroM" value="si" checked>
+      Si
+    </label>
+  </div>
+  <div class="radio">
+    <label>
+      <input type="radio" ng-model="registroM" name="registroM" value="no">
+      No
+    </label>
+  </div>
+ 
+    </div>
+     <div class="form-group">
+                    <label for="pwd" ng-if="tiene_rm" >Numero Registro Mercantil</label>
+                    <input type="number" class="form-control" ng-model="auxiliar.numRegistro" ng-if="tiene_rm" name="numeroRegis" placeholder="Numero registro mercantil" required>
+                  </div>
+ 
+    </div>
+
+       <div class="col-xs-6">
+                    <div class="form-group">
+                    <label for="pwd" ng-if="tiene_rm">¿Último año de renovación?: </label>
+                    <input type="number" class="form-control" ng-model="auxiliar.anoRenova" ng-if="tiene_rm" name="anoRenova" placeholder="ultimo año de renovacion" required>
+                    </div>           
+         
+                
+
+      </div>
+
+    
+  
+ 
+        </fieldset>
+
+        <fieldset>
+        <legend>III. INFORMACIÓN DE LA EMPRESA EMPRENDEDORA</legend>
+        
+            <div class="col-xs-6">
+              <div class="form-group">
+                    <label for="pwd">Codigo principal CIIU</label>
+                    <input type="number" class="form-control" ng-model="ciiu" name="cii" placeholder="Codigo principal CIIU" required>
+               </div>
+
+                  <div class="form-group">
+                    <label for="pwd">Actividad Internacional</label>
+                    <select class="form-control"  ng-model="actividadI"  name="actividadI" required>
+                    <option value="">--Seleccione-</option>
+                    <option >Expotacion</option>
+                    <option>Importacion</option>
+                     <option>Ambas</option>
+                         
+                   </select>
+               </div>            
+         
+
+        </div>
+
+    <div class="col-xs-6">
+       <div class="form-group">
+                    <label for="pwd">Mencione lo paises con los cuales comercializa</label>
+                    <input type="text" class="form-control" ng-model="paisesCome" name="paisescomer" placeholder="Paises con los cuales comercializa" required>
+           </div>
+                  <div class="form-group">
+                    <label for="pwd">Realiza negocios por internet</label>
+                                         <div class="radio">
+                          <label>
+                            <input type="radio" ng-model="neg_internet" name="inter" value="si" checked>
+                            Si
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" ng-model="neg_internet"  name="inter" value="no">
+                            No
+                          </label>
+                        </div>
+               </div>            
+         
+    
+               
+
+    </div>
+    <div class="col-xs-6">
+                     
+                    <div class="form-group">
+                    <label for="pwd">¿Por qué medio se enteró del Centro de Desarrollo Empresarial- CDE?</label>
+                     <select class="form-control"  ng-model="medioCde" name="medio" id="medioCde" required>
+                    <option value="">--Seleccione-</option>
+                    <option >Referido del Ministerio de Comercio Industria y Turismo o entidad gubernamental</option>
+                    <option>Referido de empresarios </option>
+                     <option>Universidad</option>
+                     <option> Medios masivos(radio, TV, prensa, etc.)</option>
+                     <option>Página Web</option>
+                     <option>Red sociales</option>
+                      <option>Otro</option>
+                         
+                   </select>
+                   <br>
+                    <input type="text" class="form-control" ng-model="auxiliar.medioCde2" ng-if="medioCde_otro_activo" placeholder="Escriba el medio por cual se entero"  maxlength="100" required>
+                   </div>
+                    <div class="form-group">
+                    <label for="pwd">Cargar Logo de la empresa (Formato jpg o png menores 100k):</label>
+                      <p id="f1_upload_form" align=""><br/>
+                       
+                              <input  type="file" name="file" uploader-model="file" class="form-control" id="logo" class="btn btn" size="30" required/>
+                       
+                         
+                     </p>
+                     <!-- <button class="btn btn-success" ng-click="subirLogo()" ng-disabled="subeLogo">Subir logo</button> -->
+                   </div>  
+   
+         
+
+      </div>
+
+       <div class="col-xs-6">
+
+                    <div class="form-group">
+                    <label for="pwd">Productos y servicios que ofrece la empresa</label>
+                    <textarea class="form-control" ng-model="serviciosEmpre" rows="5" name="servicios" required></textarea>
+                   
+                   </div>  
+                  
+
+         
+
+      </div>
+
+    
+
+      <hr class="acomodarBarra">
+         <label class="acomodarFr text-center"> IV.OBSERVACIONES </label>
+<hr class="acomodarB"> 
+ 
+ 
+<div class="col-xs-12">
+
+                    <div class="form-group">
+                    <label for="pwd">Observaciones</label>
+                    <textarea class="form-control" ng-model="observaciones" name="observaciones" rows="10" required></textarea>
+                   
+                   </div>  
+
+
+         
+
+      </div> 
+
+
+<center><input type="submit" class="btn btn-success acomodarRegis" id="SaveAccount" value="Registrar" ng-disabled="false"></center>
+
+
+
+
+        </fieldset>
+            
+            
+        
+        </form>
+      
+    
+</div>
+</div>
+</div>   

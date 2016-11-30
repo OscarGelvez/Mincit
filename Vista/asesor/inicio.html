@@ -1,0 +1,247 @@
+<div class="row" >
+ 
+<div class="prueba">	    
+
+      <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#Asesor_inicio"><i class="fa fa-home fa-lg"></i> Inicio</a></li>
+
+        <li class="dropdown">
+          <a href="#Asesor_inicio" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-industry fa-lg"></i> Registrar Empresa<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#Asesor_registrarEmpresaEmprendedora">Empresa Emprendedora</a></li>
+            <li><a href="#Asesor_registrarEmpresaTuristica">Empresa Turistica</a></li>
+          </ul>
+        </li>
+         <li><a href="#Asesor_registrarContacto"><i class="fa fa-user-plus fa-lg"></i> Registrar Contacto</a></li>
+         <li><a href="#Asesor_consultarEntidades"><i class="fa fa-building fa-lg"></i> Entidades</a></li>
+         <li><a href="#Asesor_consultarLogroServicio"><i class="fa fa-server fa-lg"></i> Logros y Servicios</a></li>
+          <!-- <li><a href="#Asesor_configuraciones"><i class="fa fa-cog fa-lg"></i> Configuraciones</a></li> -->
+      </ul>
+      
+     <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown" >
+          <a href="#Asesor_inicio" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa  fa-user-circle fa-lg"></i> Cuenta<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+           <li><a href="#Asesor_configuraciones"><i class="fa  fa-cog"></i> Configuraciones</a></li>
+            <li ng-click="cerrarSesion()"><a><i class="fa fa-sign-out"></i> Cerrar sesión</a></li>
+          </ul>
+
+        </li>
+       
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+ <div class="col-sm-12 col-xs-12 row2" ng-cloak style="min-height: 600px; border:none">
+
+    <h3><b>Buscar</b></h3>
+    <div class="form-group">
+      <div class="col-xs-2">
+        <div class="radio">
+    <label>
+      <input type="radio" name="optionsRadiosInicio" id="optionsRadiosInicio1" value="Empresas" ng-model="tipo_busqueda_inicio">
+      Empresas
+    </label>
+  </div>
+  </div>
+ <div class="col-xs-2">
+  <div class="radio">
+    <label>
+      <input type="radio" name="optionsRadiosInicio" id="optionsRadiosInicio2" value="Contactos" ng-model="tipo_busqueda_inicio">
+      Contactos
+    </label>
+  </div>
+</div>
+ 
+ 
+
+</div>
+<div class="clearfix">
+  
+</div>
+
+    <div class="col-sm-3">
+      <div class="form-group" ng-if="tipo_filter">
+                    <label> Nombre empresa</label>
+                    <input type="text" class="form-control" ng-model="filtro.nombreEmpFilter" placeholder="Nombre empresa">
+                    <br>
+                     <label>Nit empresa</label>
+                    <input type="text" class="form-control" ng-model="filtro.NitEmpFilter" placeholder="Nit">
+
+                    
+    </div>
+
+    <div class="form-group" ng-if="!tipo_filter">
+                    <label> Nombre contacto</label>
+                    <input type="text" class="form-control" ng-model="filtro.nombreContFilter" placeholder="Nombre contacto">
+                    <br>
+                     <label>Cedula contacto</label>
+                    <input type="text" class="form-control" ng-model="filtro.cedulaContFilter" placeholder="Cédula">
+    </div>
+    </div>
+    <div class="col-sm-3" ng-if="tipo_filter">
+      <div class="form-group" >
+                    <label for="pwd">Constitucion legal:</label>
+                   <select class="form-control" ng-model="filtro.constitucionFilter"  id="constitucion_legal" >
+                      <option value="">--Seleccione--</option>
+                      <option>SAS</option>
+                      <option>Limitada</option>
+                      <option>Anonima</option>
+                      <option>Persona natural</option>
+                      <option>Otra</option>
+                                        
+                   </select>
+                   <br>
+                  <label for="pwd">Tipo de empresa</label>
+                   <select class="form-control"  ng-model="filtro.tipoEmpFilter" name="tipoEm" >
+                    <option value="">--Seleccione-.</option>
+                    <option>Emprendedora</option>
+                    <option>Turística</option>
+                                            
+                   </select> 
+    </div>
+
+    </div>
+
+    <div class="col-sm-3">
+       <div class="form-group">
+                   
+                   <label >Departamento</label>
+
+                    <select class="form-control" ng-model="dptoFilter" id="dptoEmpFilter">
+                      <option value="">--Seleccione--</option>
+                      <option ng-repeat="d in dptosCombo">{{d.nombre}}</option>
+                                
+                   </select> 
+                   <br>
+                     <label >Ciudad</label>
+                  <select class="form-control" ng-model="ciudadFilter" >
+                      <option value="">--Seleccione--</option>
+                      <option ng-repeat="c in ciudadesCombo">{{c.nombre}}</option>
+                     
+           
+                  </select>  
+                  
+                   
+    </div> 
+    </div>
+    <div class="col-sm-3">
+      <div class="form-group" ng-if="tipo_filter" >
+        <label for="pwd">Tipo de cliente:</label>
+                   <select class="form-control" ng-model="filtro.clasificFilter"  id="constitucion_legal" >
+                      <option value="">--Seleccione--</option>
+                      <option>Emprendedor</option>
+                      <option>Empresa formal</option>
+                      <option>Empresa informal</option>
+                      <option>Empresa Gacela</option>
+                      <option>Otra</option>
+                                        
+                   </select>
+      </div>
+      <div class="form-group" ng-if="!tipo_filter">
+        <label> CDE</label>
+                    <input type="text" class="form-control" ng-model="filtro.cdeFilter" placeholder="Centro desarrollo empresarial">
+                    
+      </div>
+    <div class="form-group">
+      <br>
+      <button class="btn btn-info" ng-click="borrarFiltros()">Borrar filtros</button>  
+    </div>
+                     
+    </div>
+    <!-- TABLA PARA FILTRAR BUSQUEDA DE EMPRESAS -->
+   <table   class="table table-responsive" id="table_emp" style="border-top-style: groove !important; border-width: 3px; border-color: #e8e8e8;" ng-if="tipo_filter">
+  <thead>
+    <tr>
+      <th>Logo</th>
+      <th>Nombre de la empresa</th>
+      <th>NIT</th>
+      <th>Const. Legal</th>
+      <th>Tipo Empresa</th>
+      <th>Ciudad</th>
+      
+
+      <th>Accion</th>
+    </tr> 
+  </thead>
+  <tbody>
+    <tr ng-repeat='empresa in empresas | filter:{nombre:filtro.nombreEmpFilter} | filter:{nit:filtro.NitEmpFilter} | filter:{const_legal:filtro.constitucionFilter} | filter:{tipo_emp:filtro.tipoEmpFilter} | filter:{clasif_cliente:filtro.clasificFilter} | filter:{dpto:dptoFilter} | filter:{ciudad:ciudadFilter} | startFromGrid: currentPage * pageSize | limitTo: pageSize' ng-class="$even?'odd':'even'">
+        <td><img ng-src="Vista/LogosEmpresas/{{empresa.img_logo}}" width="100" height="100" class="img-responsive" alt="Cinque Terre"></td>
+        <td>{{empresa.nombre}}</td>
+        <td>{{empresa.nit}}</td>
+        <td>{{empresa.const_legal}}</td>
+        <td>{{empresa.tipo_emp}}</td>
+         <td>{{empresa.ciudad}}</td>
+        
+        
+        <td>
+        <button class="btn btn-success" ng-click="verMas($index);" ng-disabled="true">Ver mas</button>
+        </td>
+              
+    </tr>
+
+  </tbody>
+
+</table>
+<!-- TABLA PARA FILTRAR BUSQUEDA DE CONTACTOS -->
+<table   class="table table-responsive" id="table_emp" style="border-top-style: groove !important; border-width: 3px; border-color: #e8e8e8;" ng-if="!tipo_filter">
+  <thead>
+    <tr>
+      <th>Nombres</th>
+      <th>Cédula</th>
+      <th>Correo</th>
+      <th>CDE</th>
+      <th>Ciudad</th>
+      <th>Accion</th>
+    </tr> 
+  </thead>
+  <tbody>
+    <tr ng-repeat='contacto in contactos | filter:{nombre_cont:filtro.nombreContFilter} | filter:{cc_contacto:filtro.cedulaContFilter} | filter:{departamento:dptoFilter} | filter:{ciudad:ciudadFilter} | filter:{cde:filtro.cdeFilter} | startFromGrid: currentPage * pageSize | limitTo: pageSize' ng-class="$even?'odd':'even'" >
+       
+        <td>{{contacto.nombre_cont}} {{contacto.apellido_cont}}</td>
+        <td>{{contacto.cc_contacto}}</td>
+        <td>{{contacto.correo}}</td>
+        <td>{{contacto.cde}}</td>
+        <td>{{contacto.ciudad}}</td>
+        
+        
+        <td>
+        <button class="btn btn-success" ng-click="verMas($index);" ng-disabled="true">Ver mas</button>
+        </td>
+              
+    </tr>
+
+  </tbody>
+
+</table>
+
+</div>
+<div class='btn-group col-md-4 col-md-offset-5 col-sm-4 col-sm-offset-5 margenBotton'>
+<button type='button' class='btn btn-default .paginacion' ng-disabled='currentPage == 0' ng-click='currentPage = currentPage - 1'>&laquo;</button>
+<button type='button' class='btn btn-default .paginacion' ng-disabled='currentPage == page.no - 1' ng-click='setPage(page.no)' ng-repeat='page in pages'>{{page.no}}</button>
+<button type='button' class='btn btn-default .paginacion' ng-disabled='currentPage >= {{paginacionDinamica}}.length/pageSize - 1', ng-click='currentPage =  currentPage + 1'>&raquo;</button>
+
+</div>
+
+
+
+</div>
+
+</div>
+
+

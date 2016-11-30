@@ -1,0 +1,1598 @@
+
+
+<div class="row " >
+<div class="prueba">
+  
+
+	    
+
+      <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      
+      <button type="button" class="navbar-toggle collapsed"  data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
+
+      <ul class="nav navbar-nav" >
+        <li class="active"><a href="#Admin_inicio"><i class="fa fa-home fa-lg"></i> Inicio</a></li>
+
+        <li class="dropdown">
+          <a href="#Admin_inicio" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-building fa-lg"></i> Entidades<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#Admin_registrarEntidad">Registrar Entidad</a></li>
+            <li><a href="#Admin_verEntidad">Ver Entidades</a></li>
+          </ul>
+        </li>
+         
+          <li><a href="#Admin_logros"><i class="fa fa-trophy fa-lg" ></i> Registrar Logros</a></li>
+          <li><a href="#Admin_asociar"><i class="fa fa-handshake-o fa-lg" ></i> Asociar logros-entidades <span class="badge badge-info">{{cant_pendientes}}</span></a></li>
+         
+      </ul>
+      
+       <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown" >
+          <a href="#Admin_inicio" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa  fa-user-circle fa-lg"></i> Cuenta<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#Admin_configuraciones"><i class="fa  fa-cog"></i> Configuraciones</a></li>
+            <li ng-click="cerrarSesion()"><a><i class="fa fa-sign-out"></i> Cerrar sesión</a></li>
+          </ul>
+
+        </li>
+       
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div class="col-sm-12 col-xs-12 row2" ng-cloak style="min-height: 600px; border:none">
+    <h3><b>Buscar Empresas</b></h3>
+
+    <div class="col-sm-3">
+      <div class="form-group">
+                    <label> Nombre empresa</label>
+                    <input type="text" class="form-control" ng-model="nombreEmpFilter" placeholder="Nombre empresa">
+                    <br>
+                     <label>Nit empresa</label>
+                    <input type="text" class="form-control" ng-model="NitEmpFilter" placeholder="Nit">
+    </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="form-group">
+                    <label for="pwd">Constitucion legal:</label>
+                   <select class="form-control" ng-model="constitucionFilter"  id="constitucion_legal" >
+                      <option value="">--Seleccione--</option>
+                      <option>SAS</option>
+                      <option>Limitada</option>
+                      <option>Anonima</option>
+                      <option>Persona natural</option>
+                      <option>Otra</option>
+                                        
+                   </select>
+                   <br>
+                  <label for="pwd">Tipo de empresa</label>
+                   <select class="form-control"  ng-model="tipoEmpFilter" name="tipoEm" >
+                    <option value="">--Seleccione-.</option>
+                    <option>Emprendedora</option>
+                    <option>Turística</option>
+                                            
+                   </select> 
+    </div>
+    </div>
+
+    <div class="col-sm-3">
+       <div class="form-group">
+                    <label for="pwd">Tipo de cliente:</label>
+                   <select class="form-control" ng-model="clasificFilter"  id="constitucion_legal" >
+                      <option value="">--Seleccione--</option>
+                      <option>Emprendedor</option>
+                      <option>Empresa formal</option>
+                      <option>Empresa informal</option>
+                      <option>Empresa Gacela</option>
+                      <option>Otra</option>
+                                        
+                   </select>
+    <br>
+                      <label >Departamento</label>
+
+                    <select class="form-control" ng-model="dptoFilter" id="dptoEmpFilter">
+                      <option value="">--Seleccione--</option>
+                      <option ng-repeat="d in dptosCombo">{{d.nombre}}</option>
+                                
+                   </select> 
+                   
+    </div> 
+    </div>
+    <div class="col-sm-3" >
+   
+
+       <label >Ciudad</label>
+                  <select class="form-control" ng-model="ciudadFilter" >
+                      <option value="">--Seleccione--</option>
+                      <option ng-repeat="c in ciudadesCombo">{{c.nombre}}</option>
+                     
+           
+                  </select>  
+                  <br> 
+
+         <button class="btn btn-info" ng-click="borrarFiltros()">Borrar filtros</button>                   
+    </div>
+   <table   class="table table-responsive" id="table_emp"  style="border-top-style: groove !important; border-width: 3px; border-color: #e8e8e8;">
+  <thead >
+    <tr>
+      <th>Logo</th>
+      <th>Nombre de la empresa</th>
+      <th>NIT</th>
+      <th>Const. Legal</th>
+      <th>Tipo Empresa</th>
+      <th>Ciudad</th>
+      
+
+      <th>Accion</th>
+    </tr> 
+  </thead>
+  <tbody>
+    <tr ng-repeat='empresa in empresas | filter:{nombre_empresa:filtro.nombreEmpFilter} | filter:{nit:filtro.NitEmpFilter} | filter:{tipo_constitucion:filtro.constitucionFilter} | filter:{tipo_empresa:filtro.tipoEmpFilter} | filter:{clasif_cliente:filtro.clasificFilter} | filter:{departamento:dptoFilter} | filter:{ciudad:ciudadFilter} | startFromGrid: currentPage * pageSize | limitTo: pageSize' ng-class="$even?'odd':'even'">
+        <td><img ng-src="Vista/LogosEmpresas/{{empresa.url_logo}}" width="100" height="100" class="img-responsive" alt="Cinque Terre"></td>
+        <td>{{empresa.nombre_empresa}}</td>
+        <td>{{empresa.nit}}</td>
+        <td>{{empresa.tipo_constitucion}}</td>
+        <td>{{empresa.tipo_empresa}}</td>
+         <td>{{empresa.ciudad}}</td>
+        
+        
+        <td>
+          <button class="btn btn-success" ng-click="verMasEmpresa($index, empresa.tipo_empresa, empresa.correo, empresa.contacto_cc)" data-target="#myModalEmpresaE" data-toggle="modal" ng-show="empresa.tipo_empresa=='Emprendedora'?true:false">Ver mas</button>
+
+         <button class="btn btn-success" ng-click="verMasEmpresa($index, empresa.tipo_empresa, empresa.correo, empresa.contacto_cc)" data-target="#myModalEmpresaT" data-toggle="modal" ng-show="empresa.tipo_empresa=='Turística'?true:false">Ver mas</button>
+        </td>
+              
+    </tr>
+
+  </tbody>
+
+</table>
+
+</div>
+  <div class='btn-group col-md-4 col-md-offset-5 col-sm-4 col-sm-offset-5 margenBotton'>
+<button type='button' class='btn btn-default .paginacion' ng-disabled='currentPage == 0' ng-click='currentPage = currentPage - 1'>&laquo;</button>
+<button type='button' class='btn btn-default .paginacion' ng-disabled='currentPage == page.no - 1' ng-click='setPage(page.no)' ng-repeat='page in pages'>{{page.no}}</button>
+<button type='button' class='btn btn-default .paginacion' ng-disabled='currentPage >= empresas.length/pageSize - 1', ng-click='currentPage =  currentPage + 1'>&raquo;</button>
+  </div>
+
+
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="modal fade" id="myModalEmpresaE" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+  <div class="modal-dialog" role="document" style="width:90%">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"></h4>
+      </div>
+      <div class="modal-body">
+        
+<div class="col-sm-12 col-xs-12 row2">
+<legend >Empresa: {{EmpEdit.nombre_empresa}} </legend> 
+  
+<CENTER>    
+   </CENTER>
+    
+         <legend>I. DATOS DEL CONTACTO </legend> 
+            <CENTER>
+    <hr class="acomodarBarra">
+    
+         <label class="acomodarFr text-center"> I. CLASIFICACIÓN DE CLIENTES </label>
+         <hr class="acomodarB"> 
+    <div class="form-group">
+      <div class="col-xs-3">
+        <div class="radio">
+    <label>
+
+      <input type="radio" name="optionsRadios" id="optionsRadios1" value="Emprendedor" ng-model="EmpEdit.clasif_cliente" ng-disabled="true">
+      1.EMPRENDEDOR
+    </label>
+  </div>
+  </div>
+ <div class="col-xs-3">
+  <div class="radio">
+    <label>
+      <input type="radio" name="optionsRadios" id="optionsRadios2" value="Empresa Formal" ng-model="EmpEdit.clasif_cliente" ng-disabled="true">
+      2.EMPRESA FORMAL
+    </label>
+  </div>
+</div>
+ <div class="col-xs-3">
+   <div class="radio">
+    <label>
+      <input type="radio" name="optionsRadios" id="optionsRadios2" value="Empresa Informal" ng-model="EmpEdit.clasif_cliente"  ng-disabled="true">
+      2.EMPRESA INFORMAL
+    </label>
+  </div>
+</div>
+ <div class="col-xs-3">
+  <div class="radio">
+    <label>
+      <input type="radio" name="optionsRadios" id="optionsRadios2" value="Empresa Gacela" ng-model="EmpEdit.clasif_cliente"  ng-disabled="true">
+      2.EMPRESA GACELA
+    </label>
+  </div>
+</div>
+
+    </div>
+</CENTER>
+<hr class="acomodarBarra">
+         <label class="acomodarFr text-center"> II. DATOS DEL CONTACTO </label>
+<hr class="acomodarB"> 
+
+
+
+            <div class="col-xs-6">
+                <div class="form form-inline">
+                   
+                    <label class="acomodarL">Cedula</label>
+                    <input type="number" class="form-controlP" ng-model="contactoEdit.cc_contacto" placeholder="Cedula" required  ng-disabled="true">
+
+                  
+                </div>
+                <div class="form-group margenT">
+                    <label for="email">Apellidos</label>
+                    <input type="text" class="form-control" ng-model="contactoEdit.apellido_cont" placeholder="Apellidos" required  ng-disabled="true">
+                </div>
+              
+            </div>
+            <div class="col-xs-6 ">
+             <div class="form-group ">
+                <label for="lastname">Nombres</label>
+                    <input type="text" class="form-control" ng-model="contactoEdit.nombre_cont" placeholder="Nombres" required  ng-disabled="true">
+                    
+                </div>
+              
+                
+                <div class="form-group">
+                    <label for="password">Cargo</label>
+                    <input type="text" class="form-control" ng-model="contactoEdit.cargo_cont" placeholder="Cargo" required  ng-disabled="true">
+                </div>
+            </div>
+
+             <div class="col-xs-6">
+             <div class="form-group">
+                    <label for="apellidos">Fecha en que obtuvo el cargo:</label>
+                    <input type="date" class="form-control" ng-model="contactoEdit.fecha_ingreso_cargo"required date-format  ng-disabled="true">
+                </div>
+                <div class="form-group">
+                    <label>Fecha de nacimiento</label>
+                  <input type="date" class="form-control" ng-model="contactoEdit.fecha_nacimiento" placeholder="Fecha de nacimiento" required date-format  ng-disabled="true">
+                </div>
+                
+            </div>
+
+             <div class="col-xs-6">
+                <div class="form-group">
+                    <label for="lastname">Lugar de nacimiento:</label>
+                    <input type="text" class="form-control" ng-model="contactoEdit.lugar_nacimiento" placeholder="Lugar de nacimiento" required  ng-disabled="true">
+
+                </div>
+                <div class="form-group">
+                    <label for="password">Nivel de estudios</label>
+                   <input type="text" class="form-control" ng-model="contactoEdit.nivel_estudio" required  ng-disabled="true">
+                </div>
+            </div>
+
+             <div class="col-xs-6">
+                <div class="form-group">
+                    <label for="lastname">Direccion</label>
+                    <input type="text" class="form-control" ng-model="contactoEdit.direccion" placeholder="Direccion" required  ng-disabled="true">
+                </div>
+                 <div class="form-group">
+                     <label for="password">Telefono Fijo</label>
+                    <input type="number" class="form-control" ng-model="contactoEdit.tel_fijo" placeholder="Telefono Fijo" required  ng-disabled="true">
+                </div>
+               
+
+              
+            </div>
+
+             <div class="col-xs-6">
+               <div class="form-group">
+                    <label for="password">Telefono Celular</label>
+                    <input type="number" class="form-control" ng-model="contactoEdit.tel_cel" placeholder="Telefono Celular" required  ng-disabled="true">
+                </div>
+                 <div class="form-group">
+                  <label >Departamento</label>
+
+                    <input type="text" class="form-control" ng-model="contactoEdit.departamento"  required  ng-disabled="true">  
+
+                </div>
+             
+              
+            </div>
+
+            <div class="col-xs-6">
+                <div class="form-group">
+                     <label >Ciudad</label>
+                 
+                  <input type="text" class="form-control" ng-model="contactoEdit.ciudad"  required  ng-disabled="true">  
+
+                </div>
+              <div class="form-group">
+                     <label >Genero</label>
+                    <input type="text" class="form-control" ng-model="contactoEdit.genero"  required  ng-disabled="true"> 
+                </div>
+
+                <div class="form-group">
+                     <label >¿Está en Condición de Desplazamiento? </label>
+                      <input type="text" class="form-control" ng-model="contactoEdit.desplazado"  required  ng-disabled="true"> 
+                </div>
+               
+            </div>
+            <div class="col-xs-6">
+             <div class="form-group">
+                    <label for="password">Correo Electronico</label>
+                    <input type="email" class="form-control" ng-model="contactoEdit.correo" placeholder="correo@mail.com" required  ng-disabled="true">
+                </div>
+                 <div class="form-group">
+                    <label >Grupo Etnico</label>
+                    
+                  <input type="text" class="form-control" ng-model="contactoEdit.etnia"  required  ng-disabled="true"> 
+                </div>
+
+                 <div class="form-group">
+                      <label >¿Presenta algún tipo de discapacidad? </label>
+                   
+                  <input type="text" class="form-control" value="contactoEdit.discapacidad"ng-model="contactoEdit.discapacidad"  required  ng-disabled="true"> 
+                </div>
+      
+            </div>
+            <div class="col-xs-6">
+                
+        
+            </div>
+
+             <div class="col-xs-6 acomodarBT">
+             
+             </div>
+              <div class="col-xs-6 acomodarBT">
+             
+             </div>
+             <div class="col-xs-6 acomodarBT">
+             
+             </div>
+             <div class="col-xs-6 acomodarBT">
+             
+             </div>
+             <br>
+      
+            <legend>II. INFORMACIÓN DE LA EMPRESA </legend>
+             
+             <div class="col-xs-6">
+              <label >Logo de Empresa</label>
+               <center>
+                 <img ng-src="Vista/LogosEmpresas/{{EmpEdit.url_logo}}" width="200" height="200" class="img-responsive" alt="Cinque Terre" style="margin:0;">
+               </center>
+                
+              
+            </div>
+          <div class="col-xs-6">
+                <div class="form-group">
+                    <label for="pwd">Nombre de la empresa</label>
+                    <input type="text" class="form-control" ng-model="EmpEdit.nombre_empresa" placeholder="Nombre de la empresa" required ng-disabled="true">
+                  
+                </div>
+              
+                <div class="form-group">
+                  <label for="pwd">Nit:</label>
+                  
+                  <input type="number" class="form-control" ng-model="EmpEdit.nit"  placeholder="NIT" required ng-disabled="true">
+                </div>
+              
+            </div>
+            <div class="col-xs-6">
+             <div class="form-group">
+            <label for="pwd">Nombre del representante legal:</label>
+            <input type="text" class="form-control" ng-model="EmpEdit.nombre_rep_legal"  placeholder="Nombre del representante" required ng-disabled="true">
+          </div>
+            
+            <div class="form-group">
+                  <label for="pwd">Constitucion legal:</label>
+                  
+                 <input type="text" class="form-control" ng-model="EmpEdit.tipo_constitucion"  placeholder="Escriba la constitución legal de la empresa" required ng-disabled="true">
+            </div>
+          </div>
+
+           <div class="col-xs-6">
+               <div class="form-group">
+            <label for="pwd">Fecha de constitucion o inicio de labores:</label>
+            <input type="date" size="50" class="form-control" ng-model="EmpEdit.fecha_const_legal"  placeholder="" required date-format ng-disabled="true">
+          </div>
+              
+                
+           <div class="form-group form-inline">
+            <label for="pwd">No empleados</label>
+            <label for="pwd">T.C</label> <input type="number" ng-model="EmpEdit.no_emple_tc"  class="form-control campo"  ng-disabled="true">
+            <label for="pwd">M.T</label> <input type="number" ng-model="EmpEdit.no_emple_mt"  class="form-control campo" ng-disabled="true">
+            <label for="pwd">Directos</label> <input type="number" ng-model="EmpEdit.no_emple_directo"  class="form-control campo" ng-disabled="true">
+            <label for="pwd">Indirectos</label> <input type="number" ng-model="EmpEdit.no_emple_indirecto"  class="form-control campo" ng-disabled="true">
+          </div>
+
+           <div class="form-group">
+                  <label >Departamento</label>
+
+                  <input type="text" class="form-control" ng-model="EmpEdit.departamento"  required  ng-disabled="true"> 
+                                  
+                </div>
+
+       </div>
+
+        <div class="col-xs-6">
+               <div class="form-group">
+               <label for="pwd">Direccion:</label>
+               <input type="text" class="form-control" ng-model="EmpEdit.direccion" placeholder="Direccion" required ng-disabled="true">
+              </div>
+              
+                            
+              
+              
+            </div>
+
+         <div class="col-xs-6">
+                <div class="form-group">
+                <label for="pwd">Telefono fijo:</label>
+                <input type="text" class="form-control" ng-model="EmpEdit.telefonoF" placeholder="Telefono fijo" required ng-disabled="true">
+              </div>
+              
+                            
+               <div class="form-group">
+                <label for="pwd">Telefono Celular</label>
+                <input type="text"  class="form-control" ng-model="EmpEdit.telefonoC" placeholder="Telefono Celular" required ng-disabled="true">
+              </div>
+              
+            </div>
+
+
+            <div class="col-xs-6">
+                <div class="form-group">
+                     <label >Ciudad</label>
+                     <input type="text" class="form-control" ng-model="EmpEdit.ciudad"  required  ng-disabled="true"> 
+                 
+                </div>
+                  
+                   <div class="form-group">
+                    <label for="pwd">Sitio Web</label>
+                    <input type="text" class="form-control" ng-model="EmpEdit.url_sitio_web" name="sitioWeb" placeholder="Sitio Web" required ng-disabled="true">
+                  </div>
+              
+                            
+              
+              
+            </div>
+      
+
+           <div class="col-xs-6">
+             <div class="form-group">
+                <div class="form-group">
+                    <label for="pwd">Correo:</label>
+                    <input type="email" class="form-control" ng-model="EmpEdit.correo" name="correoEm" placeholder="ejemplo@correo.com" required ng-disabled="true">
+                  </div>
+              
+                  <label for="pwd">Tipo de Empresa</label>
+                                  
+                  
+                  <input type="text" class="form-control" ng-model="EmpEditEmprend.tipo_activ_empresa"  placeholder="Escriba el tipo de empresa" required ng-disabled="true"> 
+
+            </div> 
+
+              
+            </div>
+
+    <div class="col-xs-6">
+                               
+                <div class="form-group">
+      <label for="pwd">Tiene registro mercantil?</label>
+        <div class="radio">
+    <label>
+      <input type="radio" ng-model="EmpEdit.registro_mercantil" name="registroM" value="si" checked ng-disabled="true">
+      Si
+    </label>
+  </div>
+  <div class="radio">
+    <label>
+      <input type="radio" ng-model="EmpEdit.registro_mercantil" name="registroM" value="no" ng-disabled="true">
+      No
+    </label>
+  </div>
+ 
+    </div>
+     <div class="form-group">
+                    <label for="pwd">Numero Registro Mercantil</label>
+                    <input type="number" class="form-control" ng-model="EmpEdit.numero_registro_mercantil"  name="numeroRegis" placeholder="Numero registro mercantil" required ng-disabled="true">
+                  </div>
+ 
+    </div>
+
+       <div class="col-xs-6">
+                    <div class="form-group">
+                    <label for="pwd" >¿Último año de renovación?: </label>
+                    <input type="number" class="form-control" ng-model="EmpEdit.renov_mercantil"  name="anoRenova" placeholder="ultimo año de renovacion" required ng-disabled="true">
+                    </div>           
+         
+                
+
+      </div>
+
+    
+  
+ 
+     
+
+        <legend>III. INFORMACIÓN DE LA EMPRESA EMPRENDEDORA</legend>
+        
+            <div class="col-xs-6">
+              <div class="form-group">
+                    <label for="pwd">Codigo principal CIIU</label>
+                    <input type="number" class="form-control" ng-model="EmpEditEmprend.cod_ciiu" name="cii" placeholder="Codigo principal CIIU" required ng-disabled="true">
+               </div>
+
+                  <div class="form-group">
+                    <label for="pwd">Actividad Internacional</label>
+                    
+                   <input type="text" class="form-control" ng-model="EmpEditEmprend.activ_intern"  required  ng-disabled="true"> 
+                 
+               </div>            
+         
+
+        </div>
+
+    <div class="col-xs-6">
+       <div class="form-group">
+                    <label for="pwd">Mencione lo paises con los cuales comercializa</label>
+                    <input type="text" class="form-control" ng-model="EmpEditEmprend.paises_comercializa" name="paisescomer" placeholder="Paises con los cuales comercializa" required ng-disabled="true">
+           </div>
+                  <div class="form-group">
+                    <label for="pwd">Realiza negocios por internet</label>
+                                         <div class="radio">
+                          <label>
+                            <input type="radio" ng-model="EmpEditEmprend.negoc_internet" name="inter" value="si" checked ng-disabled="true">
+                            Si
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" ng-model="EmpEditEmprend.negoc_internet"  name="inter" value="no" ng-disabled="true">
+                            No
+                          </label>
+                        </div>
+               </div>            
+         
+    
+               
+
+    </div>
+    <div class="col-xs-6">
+                     
+                    <div class="form-group">
+                    <label for="pwd">¿Por qué medio se enteró del Centro de Desarrollo Empresarial- CDE?</label>
+                    
+                   
+                    <input type="text" class="form-control" ng-model="EmpEditEmprend.como_se_entero"  placeholder="Escriba el medio por cual se entero"  maxlength="100" required ng-disabled="true">
+                   </div>
+               
+   
+         
+
+      </div>
+
+       <div class="col-xs-6">
+
+                    <div class="form-group">
+                    <label for="pwd">Productos y servicios que ofrece la empresa</label>
+                    <textarea class="form-control" ng-model="EmpEdit.servicios_ofrecidos" rows="5" name="servicios" required ng-disabled="true"></textarea>
+                   
+                   </div>  
+                  
+
+         
+
+      </div>
+
+    
+
+      <hr class="acomodarBarra">
+         <label class="acomodarFr text-center"> IV.OBSERVACIONES </label>
+<hr class="acomodarB"> 
+ 
+ 
+<div class="col-xs-12">
+
+                    <div class="form-group">
+                    <label for="pwd">Observaciones</label>
+                    <textarea class="form-control" ng-model="EmpEdit.observaciones" name="observaciones" rows="10" required ng-disabled="true"></textarea>
+                   
+                   </div>  
+
+
+         
+
+      </div> 
+
+
+    
+</div>
+      </div>
+      <div class="modal-footer">
+       
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ////////////////////////////////////////MODAL EMPRESA TURISTICA//////////////////////////////////////////-->
+
+<div class="modal fade" id="myModalEmpresaT" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+  <div class="modal-dialog" role="document" style="width:90%">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"></h4>
+      </div>
+      <div class="modal-body">
+        
+<div class="col-sm-12 col-xs-12 row2">
+<legend >Empresa: {{EmpEdit.nombre_empresa}} </legend> 
+  <!-- <button class="btn btn-info" style="float:right" ng-click="hacerEditable()">{{textoBtn}}</button> -->  
+<CENTER>    
+   </CENTER>
+    
+         <legend>I. DATOS DEL CONTACTO </legend> 
+            <CENTER>
+    <hr class="acomodarBarra">
+         <label class="acomodarFr text-center"> I. CLASIFICACIÓN DE CLIENTES </label>
+         <hr class="acomodarB"> 
+    <div class="form-group">
+      <div class="col-xs-3">
+        <div class="radio">
+    <label>
+      <input type="radio" name="optionsRadiosP" id="optionsRadios1" value="Emprendedor" ng-model="EmpEdit.clasif_cliente" ng-disabled="true">
+      1.EMPRENDEDOR
+    </label>
+  </div>
+  </div>
+ <div class="col-xs-3">
+  <div class="radio">
+    <label>
+      <input type="radio" name="optionsRadiosP" id="optionsRadios2" value="Empresa Formal" ng-model="EmpEdit.clasif_cliente" ng-disabled="true">
+      2.EMPRESA FORMAL
+    </label>
+  </div>
+</div>
+ <div class="col-xs-3">
+   <div class="radio">
+    <label>
+      <input type="radio" name="optionsRadiosP" id="optionsRadios2" value="Empresa Informal" ng-model="EmpEdit.clasif_cliente" ng-disabled="true">
+      2.EMPRESA INFORMAL
+    </label>
+  </div>
+</div>
+ <div class="col-xs-3">
+  <div class="radio">
+    <label>
+      <input type="radio" name="optionsRadiosP" id="optionsRadios2" value="Empresa Gacela" ng-model="EmpEdit.clasif_cliente" ng-disabled="true">
+      2.EMPRESA GACELA
+    </label>
+  </div>
+</div>
+
+    </div>
+</CENTER>
+<hr class="acomodarBarra">
+         <label class="acomodarFr text-center"> II. DATOS DEL CONTACTO </label>
+<hr class="acomodarB"> 
+
+
+
+            <div class="col-xs-6">
+                <div class="form form-inline">
+                   
+                    <label class="acomodarL">Cedula</label>
+                    <input type="text" class="form-controlP" ng-model="contactoEdit.cc_contacto" placeholder="Cedula" required ng-disabled="true">
+
+                    
+
+                </div>
+                <div class="form-group margenT">
+                    <label for="email">Apellidos</label>
+                    <input type="text" class="form-control" ng-model="contactoEdit.apellido_cont"  placeholder="Apellidos" required ng-disabled="true">
+                </div>
+              
+            </div>
+            <div class="col-xs-6 ">
+             <div class="form-group ">
+                <label for="lastname">Nombres</label>
+                    <input type="text" class="form-control" ng-model="contactoEdit.nombre_cont" placeholder="Nombres" required ng-disabled="true">
+                    
+                </div>
+              
+                
+                <div class="form-group">
+                    <label for="password">Cargo</label>
+                    <input type="text" class="form-control" ng-model="contactoEdit.cargo_cont" placeholder="Cargo" required ng-disabled="true">
+                </div>
+            </div>
+
+             <div class="col-xs-6">
+             <div class="form-group">
+                    <label for="apellidos">Fecha en que obtuvo el cargo:</label>
+                    <input type="date" class="form-control" ng-model="contactoEdit.fecha_ingreso_cargo"required date-format ng-disabled="true">
+                </div>
+                <div class="form-group">
+                    <label>Fecha de nacimiento</label>
+                  <input type="date" class="form-control" ng-model="contactoEdit.fecha_nacimiento" placeholder="Fecha de nacimiento" required date-format ng-disabled="true">
+                </div>
+                
+            </div>
+
+             <div class="col-xs-6">
+                <div class="form-group">
+                    <label for="lastname">Lugar de nacimiento:</label>
+                    <input type="text" class="form-control" ng-model="contactoEdit.lugar_nacimiento" placeholder="Lugar de nacimiento" required  ng-disabled="true">
+
+                </div>
+                <div class="form-group">
+                    <label for="password">Nivel de estudios</label>
+                     <!-- <select class="form-control" ng-model="nivelEstudio" required>
+                      <option value="">--Seleccione--</option>
+                      <option >Primaria</option>
+                      <option>Bachiller</option>
+                      <option>Tecnica</option>
+                      <option>Profesional</option>
+                      <option>Postgrado</option>
+                      <option>number</option> 
+                  </select>-->
+                   <input type="text" class="form-control" ng-model="contactoEdit.nivel_estudio" required  ng-disabled="true">
+                </div>
+            </div>
+
+             <div class="col-xs-6">
+                <div class="form-group">
+                    <label for="lastname">Direccion</label>
+                    <input type="text" class="form-control" ng-model="contactoEdit.direccion" placeholder="Direccion" required  ng-disabled="true">
+                </div>
+                 <div class="form-group">
+                     <label for="password">Telefono Fijo</label>
+                    <input type="number" class="form-control" ng-model="contactoEdit.tel_fijo" placeholder="Telefono Fijo" required  ng-disabled="true">
+                </div>
+               
+
+              
+            </div>
+
+             <div class="col-xs-6">
+               <div class="form-group">
+                    <label for="password">Telefono Celular</label>
+                    <input type="number" class="form-control" ng-model="contactoEdit.tel_cel" placeholder="Telefono Celular" required  ng-disabled="true">
+                </div>
+                 <div class="form-group">
+                  <label >Departamento</label>
+
+                   <!--  <select class="form-control" ng-model="departamento" id="dptoContacto" required>
+                      <option value="">--Seleccione--</option>
+                      <option ng-repeat="d in dptosCombo">{{d.nombre}}</option>
+                                
+                  </select> -->
+                  <input type="text" class="form-control" ng-model="contactoEdit.departamento"  required  ng-disabled="true">                   
+                </div>
+             
+              
+            </div>
+
+            <div class="col-xs-6">
+                <div class="form-group">
+                     <label >Ciudad</label>
+                  <!--<select class="form-control" ng-model="ciudad"  required>
+                      <option value="">--Seleccione--</option>
+                      <option ng-repeat="c in ciudadesCombo">{{c.nombre}}</option>
+                     
+           
+                  </select>-->
+                  <input type="text" class="form-control" ng-model="contactoEdit.ciudad"  required  ng-disabled="true">  
+                </div>
+              <div class="form-group">
+                     <label for="Nombres">Genero</label>
+                  <!-- <select class="form-control" ng-model="genero" required>
+                      <option value="">--Seleccione--</option>
+                      <option >Masculino</option>
+                      <option>Femenino</option>
+                      <option>LGTBI</option>
+           
+                  </select>-->
+                  <input type="text" class="form-control" ng-model="contactoEdit.genero"  required  ng-disabled="true"> 
+                </div>
+
+                <div class="form-group">
+                     <label for="Nombres">¿Está en Condición de Desplazamiento? </label>
+                   <!--<select class="form-control" ng-model="condicionD" required>
+                      <option value="">--Seleccione--</option>
+                      <option >Si</option>
+                      <option>No</option>
+                  </select>-->
+                  <input type="text" class="form-control" ng-model="contactoEdit.desplazado"  required  ng-disabled="true"> 
+                </div>
+               
+            </div>
+            <div class="col-xs-6">
+             <div class="form-group">
+                    <label for="password">Correo Electronico</label>
+                    <input type="email" class="form-control" ng-model="contactoEdit.correo" placeholder="correo@mail.com" required  ng-disabled="true">
+                </div>
+                 <div class="form-group">
+                    <label for="password">Grupo Etnico</label>
+                    <!-- <select class="form-control" ng-model="grupoE" required>
+                      <option value="">--Seleccione--</option>
+                      <option >Rrom(Gitanos)</option>
+                      <option>Indigenas</option>
+                      <option>Afrocolombianos</option>
+                      <option>Raizales</option>
+                      <option>Otro</option>
+           
+                  </select> -->
+                  <input type="text" class="form-control" ng-model="contactoEdit.etnia"  required  ng-disabled="true"> 
+                </div>
+
+                 <div class="form-group">
+                      <label for="Nombres">¿Presenta algún tipo de discapacidad? </label>
+                   <!--<select class="form-control" ng-model="discapacidad" required>
+                      <option value="">--Seleccione--</option>
+                      <option >Si</option>
+                      <option>No</option>
+                  </select>-->
+                   <input type="text" class="form-control" value="contactoEdit.discapacidad"ng-model="contactoEdit.discapacidad"  required  ng-disabled="true"> 
+                </div>
+      
+            </div>
+            <div class="col-xs-6">
+                
+        
+            </div>
+
+             <div class="col-xs-6 acomodarBT">
+             
+             </div>
+              <div class="col-xs-6 acomodarBT">
+             
+             </div>
+             <div class="col-xs-6 acomodarBT">
+             
+             </div>
+             <div class="col-xs-6 acomodarBT">
+             
+             </div>
+             <br>
+
+        
+    
+             <legend>II. INFORMACIÓN DE LA EMPRESA </legend>
+
+             <div class="col-xs-6">
+              <label >Logo de Empresa</label>
+               <center>
+                 <img ng-src="Vista/LogosEmpresas/{{EmpEdit.url_logo}}" width="200" height="200" class="img-responsive" alt="Cinque Terre" style="margin:0;">
+               </center>
+                
+              
+            </div>
+          <div class="col-xs-6">
+                <div class="form-group">
+                    <label for="pwd">Nombre de la empresa</label>
+                    <input type="text" class="form-control" ng-model="EmpEdit.nombre_empresa" placeholder="Nombre de la empresa" required ng-disabled="true">
+                  
+                </div>
+              
+                <div class="form-group">
+                  <label for="pwd">Nit:</label>
+                  <input type="number" class="form-control" ng-model="EmpEdit.nit"  placeholder="NIT" required ng-disabled="true">
+                </div>
+              
+            </div>
+            <div class="col-xs-6">
+             <div class="form-group">
+            <label for="pwd">Nombre del representante legal:</label>
+            <input type="text" class="form-control" ng-model="EmpEdit.nombre_rep_legal"  placeholder="Nombre del representante" required ng-disabled="true">
+          </div>
+            
+            <div class="form-group">
+                  <label for="pwd">Constitucion legal:</label>
+                   <!--<select class="form-control" ng-model="constitucion"  id="constitucion_legal" >
+                      <option value="">--Seleccione-</option>
+                      <option >SAS</option>
+                      <option>Limitada</option>
+                      <option>Anonima</option>
+                      <option>Persona natural</option>
+                      <option>Otra</option>
+                                        
+                   </select>-->
+                 
+                   <br>
+                   <input type="text" class="form-control" ng-model="EmpEdit.tipo_constitucion"  placeholder="Escriba la constitución legal de la empresa" required ng-disabled="true">
+
+                  
+            </div>
+          </div>
+
+           <div class="col-xs-6">
+               <div class="form-group">
+            <label for="pwd">Fecha de constitucion o inicio de labores:</label>
+            <input type="date" size="50" class="form-control" ng-model="EmpEdit.fecha_const_legal"  placeholder="" required date-format ng-disabled="true">
+          </div>
+              
+                
+            <div class="form-group form-inline">
+            <label for="pwd">No empleados</label>
+            <label for="pwd">T.C</label> <input type="number" ng-model="EmpEdit.no_emple_tc"  class="form-control campo"  ng-disabled="true">
+            <label for="pwd">M.T</label> <input type="number" ng-model="EmpEdit.no_emple_mt"  class="form-control campo" ng-disabled="true">
+            <label for="pwd">Directos</label> <input type="number" ng-model="EmpEdit.no_emple_directo"  class="form-control campo" ng-disabled="true">
+            <label for="pwd">Indirectos</label> <input type="number" ng-model="EmpEdit.no_emple_indirecto"  class="form-control campo" ng-disabled="true">
+          </div>
+
+           <div class="form-group">
+                  <label >Departamento</label>
+
+                   <!--<select class="form-control" ng-model="dptoEm" id="dptoEmpresa" required>
+                      <option value="">--Seleccione--</option>
+                      <option ng-repeat="d in dptosCombo">{{d.nombre}}</option>
+                                
+                  </select> -->
+                   <input type="text" class="form-control" ng-model="EmpEdit.departamento"  required  ng-disabled="true">                    
+                </div>
+
+       </div>
+
+        <div class="col-xs-6">
+               <div class="form-group">
+               <label for="pwd">Direccion:</label>
+               <input type="text" class="form-control" ng-model="EmpEdit.direccion" placeholder="Direccion" required ng-disabled="true">
+              </div>
+              
+                 <div class="form-group">
+                    <label for="pwd">Correo:</label>
+                    <input type="email" class="form-control" ng-model="EmpEdit.correo" name="correoEm" placeholder="ejemplo@correo.com" required ng-disabled="true">
+                  </div>
+                         
+              
+              
+            </div>
+
+         <div class="col-xs-6">
+                <div class="form-group">
+                     <label >Ciudad</label>
+                 <!--<select class="form-control" ng-model="ciudadEm"  required>
+                      <option value="">--Seleccione--</option>
+                      <option ng-repeat="c in ciudadesCombo2">{{c.nombre}}</option>
+                     
+           
+                  </select>-->
+                  <input type="text" class="form-control" ng-model="EmpEdit.ciudad"  required  ng-disabled="true"> 
+                </div>
+                  
+            </div>
+
+
+            <div class="col-xs-6">
+                <div class="form-group">
+                <label for="pwd">Telefono fijo:</label>
+                <input type="text" class="form-control" ng-model="EmpEdit.telefonoF" placeholder="Telefono fijo" required ng-disabled="true">
+              </div>
+              
+                            
+               <div class="form-group">
+                <label for="pwd">Telefono Celular</label>
+                <input type="text"  class="form-control" ng-model="EmpEdit.telefonoC" placeholder="Telefono Celular" required ng-disabled="true">
+              </div>
+              
+              
+                   <div class="form-group">
+                    <label for="pwd">Sitio Web</label>
+                    <input type="text" class="form-control" ng-model="EmpEdit.url_sitio_web" name="sitioWeb" placeholder="Sitio Web" required ng-disabled="true">
+                  </div>
+              
+                            
+              
+              
+            </div>
+      
+
+       <div class="col-xs-6">
+                               
+       <div class="form-group">
+      <label for="pwd">Tiene registro mercantil?</label>
+        <div class="radio">
+    <label>
+      <input type="radio" ng-model="EmpEdit.registro_mercantil" name="registroM" value="si" checked ng-disabled="true">
+      Si
+    </label>
+  </div>
+  <div class="radio">
+    <label>
+      <input type="radio" ng-model="EmpEdit.registro_mercantil" name="registroM" value="no" ng-disabled="true">
+      No
+    </label>
+  </div>
+ 
+    </div>
+     <div class="form-group">
+                    <label for="pwd"  >Numero Registro Mercantil</label>
+                    <input type="number" class="form-control" ng-model="EmpEdit.numero_registro_mercantil"  name="numeroRegis" placeholder="Numero registro mercantil" required ng-disabled="true">
+                  </div>
+ 
+    </div>
+
+       <div class="col-xs-6">
+                    <div class="form-group">
+                    <label for="pwd" ng-show="tiene_rm">¿Último año de renovación?: </label>
+                     <input type="number" class="form-control" ng-model="EmpEdit.renov_mercantil"  name="anoRenova" placeholder="ultimo año de renovacion" required ng-disabled="true">
+                    </div>           
+         
+                
+
+      </div>
+
+    
+
+      <div class="col-xs-6 acomodarBT">
+        
+      </div>
+
+      <div class="col-xs-6 acomodarBT">
+        
+      </div>
+
+    
+  
+          <br><br>
+        
+
+        
+        <legend>III. INFORMACIÓN DE LA EMPRESA TURISTICA </legend>
+      
+ 
+              <div class="col-xs-6">
+              
+                       <div class="form-group">
+                    <label for="pwd">Registro nacional de turismo</label>
+                                         <div class="radio">
+                          <label>
+                            <input type="radio" ng-model="EmpEditTuristica.reg_nal_turismo"  value="si" checked ng-disabled="true">
+                            Si
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" ng-model="EmpEditTuristica.reg_nal_turismo"   value="no" ng-disabled="true">
+                            No
+                          </label>
+                        </div>
+               </div>           
+         
+             <div class="form-group">
+                    <label for="pwd">Maneja algun tipo de poliza</label>
+                                         <div class="radio">
+                          <label>
+                            <input type="radio" ng-model="EmpEditTuristica.poliza_turistica" ng-disabled="true" value="si" checked>
+                            Si
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" ng-model="EmpEditTuristica.poliza_turistica" ng-disabled="true"  value="no">
+                            No
+                          </label>
+                        </div>
+               </div> 
+        </div>
+
+
+  <div class="col-xs-6">
+
+                    <div class="form-group">
+                    <label for="pwd">Productos y servicios que ofrece la empresa</label>
+                    <textarea class="form-control" ng-model="EmpEdit.servicios_ofrecidos" rows="5" name="servicios" required ng-disabled="true"></textarea>
+                   
+                   </div>  
+                  
+
+         
+
+      </div>
+ <div class="col-xs-6">
+      <div class="form-group">
+                    <label for="pwd">Seguro de viaje</label>
+                                         <div class="radio">
+                          <label>
+                            <input type="radio" ng-model="EmpEditTuristica.num_seguro"  value="si" checked ng-disabled="true">
+                            Si
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" ng-model="EmpEditTuristica.num_seguro"   value="no" ng-disabled="true">
+                            No
+                          </label>
+                        </div>
+               </div>  
+
+<!--<input type="text" class="form-control" ng-model="EmpEditTuristica.num_seguro" placeholder="Escriba el seguro de viaje" required> -->
+
+                      
+</div>
+
+<div class="col-xs-6">
+      
+                  <div class="form-group">
+                    <label for="pwd">Se encuentra registrado como exportador de servicios (Rut):</label>
+                    <div class="radio">
+                          <label>
+                            <input type="radio" ng-model="EmpEditTuristica.reg_export_servicios"  value="si" checked ng-disabled="true">
+                            Si
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" ng-model="EmpEditTuristica.reg_export_servicios"   value="no" ng-disabled="true">
+                            No
+                          </label>
+                        </div>
+               </div> 
+            
+          <div class="form-group">
+                    <label for="pwd">Certificados de sostenibilidad: </label>
+                   <!--<select class="form-control" ng-model="sostenibilidad" >
+                      <option value="">--Seleccione-</option>
+                      <option>Si</option>
+                      <option>No</option>
+                      <option>Parcial</option>
+                      <option>General</option>
+                      <option>NTS</option>
+                     
+                   </select>-->
+               </div> 
+
+    
+          <input type="text" class="form-control" ng-model="EmpEditTuristica.certif_sostenib" placeholder="Escriba el certificado de sostenibilidad" required ng-disabled="true">  
+          <br>    
+
+            <div class="form-group">
+                    <label for="pwd">Grupo étnico del empresario: </label>
+                    <input type="text" class="form-control" ng-model="EmpEditTuristica.grupo_etnico_empr" placeholder="Grupo étnico del empresario:" required ng-disabled="true">
+            </div>  
+
+    </div>
+    <div class="col-xs-6">
+   
+       <div class="form-group">
+                    <label for="pwd">Cuenta con libro de migración Colombia: </label>
+                                         <div class="radio">
+                          <label>
+                            <input type="radio" ng-model="EmpEditTuristica.libro_migrac_col"  value="si" checked ng-disabled="true">
+                            Si
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" ng-model="EmpEditTuristica.libro_migrac_col"   value="no" ng-disabled="true">
+                            No
+                          </label>
+                        </div>
+               </div> 
+  
+              <div class="form-group">
+                    <label for="pwd">Paga impuesto al turismo (parafiscal):</label>
+                                         <div class="radio">
+                          <label>
+                            <input type="radio" ng-model="EmpEditTuristica.impto_turismo"  value="si" checked ng-disabled="true">
+                            Si
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" ng-model="EmpEditTuristica.impto_turismo"   value="no" ng-disabled="true">
+                            No
+                          </label>
+                        </div>
+               </div> 
+
+          
+
+
+      </div>
+
+       <div class="col-xs-6">
+                      
+                    <div class="form-group">
+                    <label for="pwd"> Cuenta con Código de ética</label>
+                                         <div class="radio">
+                          <label>
+                            <input type="radio" ng-model="EmpEditTuristica.cod_etica"  value="si" checked ng-disabled="true">
+                            Si
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" ng-model="EmpEditTuristica.cod_etica"   value="no" ng-disabled="true">
+                            No
+                          </label>
+                        </div>
+               </div> 
+            
+                           
+
+      </div>
+
+
+<div class="col-xs-6">
+  
+                 <div class="form-group">
+                    <label for="pwd">Cédula de extranjería(opcional) :</label>
+                    <input type="number" class="form-control" ng-model="EmpEditTuristica.cc_extranj_opc" placeholder="Cédula de extranjería(opcional) :" ng-disabled="true">
+               </div>   
+
+</div>
+<hr > 
+       <hr class="acomodarBarra">
+         <label class="acomodarFr text-center">TIPO DE EMPRESA TURISTICA</label>
+<hr class="acomodarB"> 
+    
+<div class="col-xs-12">
+<div class="col-xs-2">
+   <div class="radio">
+        <label>
+          <input type="radio" name="options_emp_tur" ng-model="EmpEditTuristica.tipo_activ_turistica" ng-disabled="true"  id="tipo_empresa_turistica1" value="Alojamiento">
+          Alojamiento 
+        </label>
+      </div>
+</div>
+  <div class="col-xs-2">    
+      <div class="radio">
+        <label>
+          <input type="radio" name="options_emp_tur" ng-model="EmpEditTuristica.tipo_activ_turistica" ng-disabled="true" id="tipo_empresa_turistica2" value="Transporte">
+          Transporte
+        </label>
+      </div>
+</div>
+      <div class="col-xs-2">
+       <div class="radio">
+        <label>
+          <input type="radio" name="options_emp_tur" ng-model="EmpEditTuristica.tipo_activ_turistica" ng-disabled="true"id="tipo_empresa_turistica3" value="Agencia de Viaje">
+          Agencia de Viaje
+        </label>
+      </div>
+</div>
+      <div class="col-xs-2">
+       <div class="radio">
+        <label>
+          <input type="radio" name="options_emp_tur" ng-model="EmpEditTuristica.tipo_activ_turistica" ng-disabled="true" id="tipo_empresa_turistica4" value="Receptivo">
+          Receptivo 
+        </label>
+      </div>
+
+     </div> 
+<div class="col-xs-2">     
+       <div class="radio">
+        <label>
+          <input type="radio" name="options_emp_tur" ng-model="EmpEditTuristica.tipo_activ_turistica" ng-disabled="true" id="tipo_empresa_turistica5" value="Guía">
+          Guía
+        </label>
+      </div>
+ </div>     
+ <div class="col-xs-2">      
+        <div class="radio">
+        <label>
+          <input type="radio" name="options_emp_tur" ng-model="EmpEditTuristica.tipo_activ_turistica" ng-disabled="true"id="tipo_empresa_turistica6" value="Representación Turística">
+          Representación Turística
+        </label>
+      </div>
+</div>     
+
+<div class="col-xs-2">          
+       <div class="radio">
+        <label>
+          <input type="radio" name="options_emp_tur" ng-model="EmpEditTuristica.tipo_activ_turistica" ng-disabled="true" id="tipo_empresa_turistica7" value="Captadora de ahorro">
+          Captadora de ahorro
+        </label>
+      </div>
+</div>
+<div class="col-xs-2">      
+               
+       <div class="radio">
+        <label>
+          <input type="radio" name="options_emp_tur" ng-model="EmpEditTuristica.tipo_activ_turistica" ng-disabled="true"id="tipo_empresa_turistica8" value="Bar y Restaurante">
+          Bar y Restaurante
+        </label>
+      </div>
+</div>
+<div class="col-xs-2">
+       <div class="radio">
+        <label>
+          <input type="radio" name="options_emp_tur" ng-model="EmpEditTuristica.tipo_activ_turistica" ng-disabled="true"id="tipo_empresa_turistica9" value="Intercambio vacasional">
+          Intercambio vacacional
+        </label>
+      </div>
+</div>
+<div class="col-xs-2">
+       <div class="radio">
+        <label>
+          <input type="radio" name="options_emp_tur" ng-model="EmpEditTuristica.tipo_activ_turistica" ng-disabled="true"id="tipo_empresa_turistica10" value="Promotores tiempo compartido">
+          Promotores Tiempo. compartido
+        </label>
+      </div>
+</div>
+<div class="col-xs-2">
+       <div class="radio">
+        <label>
+          <input type="radio" name="options_emp_tur" ng-model="EmpEditTuristica.tipo_activ_turistica" ng-disabled="true"id="tipo_empresa_turistica11" value="Comercializadora Compartido">
+          Comercializadora Compartido
+        </label>
+      </div>
+</div>
+<div class="col-xs-2">
+      <div class="radio">
+        <label>
+          <input type="radio" name="options_emp_tur" ng-model="EmpEditTuristica.tipo_activ_turistica" ng-disabled="true"id="tipo_empresa_turistica12" value="Operador congreso, ferias, etc.">
+          Operador congreso, ferias, etc.
+        </label>
+      </div>
+</div>      
+
+</div>
+<br>
+ 
+ <hr class="acomodarBarra">
+         <label class="acomodarFr text-center">TIPO DE ALOJAMIENTO</label>
+<hr class="acomodarB"> 
+
+<div class="col-xs-12">
+
+  <div class="col-xs-2">
+      <div class="radio">
+        <label>
+          <input type="radio" name="options_tipo_aloj" ng-model="EmpEditTuristica.tipo_alojamiento" ng-disabled="true" id="tipo_aloja1" value="Albergue, refugio hostal">
+          Albergue, refugio hostal
+        </label>
+      </div>
+</div>
+
+<div class="col-xs-2">
+      <div class="radio">
+        <label>
+          <input type="radio" name="options_tipo_aloj" ng-model="EmpEditTuristica.tipo_alojamiento" ng-disabled="true" id="tipo_aloja2" value="Hotel">
+          Hotel
+        </label>
+      </div>
+</div>
+
+<div class="col-xs-2">
+      <div class="radio">
+        <label>
+          <input type="radio" name="options_tipo_aloj" ng-model="EmpEditTuristica.tipo_alojamiento" ng-disabled="true" id="tipo_aloja3" value="Aparte hotel">
+          Aparta hotel
+        </label>
+      </div>
+</div>
+
+<div class="col-xs-2">
+      <div class="radio">
+        <label>
+          <input type="radio" name="options_tipo_aloj" ng-model="EmpEditTuristica.tipo_alojamiento" ng-disabled="true" id="tipo_aloja4" value="Posada turística">
+          Posada turística
+        </label>
+      </div>
+</div>
+
+<div class="col-xs-2">
+      <div class="radio">
+        <label>
+          <input type="radio" name="options_tipo_aloj" ng-model="EmpEditTuristica.tipo_alojamiento" ng-disabled="true" id="tipo_aloja5" value="Apartamento turístico">
+          Apartamento turístico
+        </label>
+      </div>
+</div>
+
+<div class="col-xs-2">
+      <div class="radio">
+        <label>
+          <input type="radio" name="options_tipo_aloj" ng-model="EmpEditTuristica.tipo_alojamiento" ng-disabled="true" id="tipo_aloja6" value="Posada Nativa">
+          Posada Nativa
+        </label>
+      </div>
+</div>
+      
+<div class="col-xs-2">
+      <div class="radio">
+        <label>
+          <input type="radio" name="options_tipo_aloj" ng-model="EmpEditTuristica.tipo_alojamiento" ng-disabled="true" id="tipo_aloja7" value="Apartamento">
+          Apartamento
+        </label>
+      </div>
+</div>
+
+<div class="col-xs-2">
+      <div class="radio">
+        <label>
+          <input type="radio" name="options_tipo_aloj" ng-model="EmpEditTuristica.tipo_alojamiento" ng-disabled="true" id="tipo_aloja8" value="Alojamiento rural">
+          Alojamiento rural
+        </label>
+      </div>
+</div>
+
+<div class="col-xs-2">
+      <div class="radio">
+        <label>
+          <input type="radio" name="options_tipo_aloj" ng-model="EmpEditTuristica.tipo_alojamiento" ng-disabled="true" id="tipo_aloja9" value="Campamento">
+          Campamento
+        </label>
+      </div>
+</div>
+                  
+
+<hr class="acomodarBarra">
+         <label class="acomodarFr text-center">TIPO DE TURISMO QUE DESARROLLA </label>
+<hr class="acomodarB"> 
+
+
+<div class="col-xs-12">
+
+<div class="col-xs-2">
+      <div class="radio">
+        <label>
+          <input type="radio" name="options_tipo_tur_desarrolla" ng-model="EmpEditTuristica.turismo_desarrolla" ng-disabled="true" id="tipo_aloja1" value="Naturaleza">
+          Naturaleza
+        </label>
+      </div>
+</div>
+
+<div class="col-xs-2">
+      <div class="radio">
+        <label>
+          <input type="radio" name="options_tipo_tur_desarrolla" ng-model="EmpEditTuristica.turismo_desarrolla" ng-disabled="true" id="tipo_aloja2" value="Cultural">
+          Cultural
+        </label>
+      </div>
+</div>
+
+<div class="col-xs-2">
+      <div class="radio">
+        <label>
+          <input type="radio" name="options_tipo_tur_desarrolla" ng-model="EmpEditTuristica.turismo_desarrolla" ng-disabled="true" id="tipo_aloja3" value="Aventura">
+          Aventura
+        </label>
+      </div>
+</div>
+
+<div class="col-xs-2">
+      <div class="radio">
+        <label>
+          <input type="radio" name="options_tipo_tur_desarrolla" ng-model="EmpEditTuristica.turismo_desarrolla" ng-disabled="true" id="tipo_aloja4" value="Náutico">
+          Náutico
+        </label>
+      </div>
+</div>
+<div class="col-xs-2">
+      <div class="radio">
+        <label>
+          <input type="radio" name="options_tipo_tur_desarrolla" ng-model="EmpEditTuristica.turismo_desarrolla" ng-disabled="true" id="tipo_aloja5" value="Sol y playa">
+          Sol y playa
+        </label>
+      </div>
+</div>
+
+<div class="col-xs-2">
+      <div class="radio">
+        <label>
+          <input type="radio" name="options_tipo_tur_desarrolla" ng-model="EmpEditTuristica.turismo_desarrolla" ng-disabled="true" id="tipo_aloja6" value="Salud y Bienestar">
+          Salud y Bienestar
+        </label>
+      </div>
+</div>
+
+<div class="col-xs-2">
+      <div class="radio">
+        <label>
+          <input type="radio" name="options_tipo_tur_desarrolla" ng-model="EmpEditTuristica.turismo_desarrolla" ng-disabled="true" id="tipo_aloja7" value="Congreso y convenciones">
+          Congreso y convenciones
+        </label>
+      </div>
+</div>
+
+<div class="col-xs-2">
+      <div class="radio">
+        <label>
+          <input type="radio" name="options_tipo_tur_desarrolla" ng-model="EmpEditTuristica.turismo_desarrolla" ng-disabled="true" id="tipo_aloja8" value="Otro">
+          Otro
+        </label>
+      </div>
+</div>
+                
+
+<input type="text" class="form-control" ng-model="EmpEditTuristica.turismo_desarrolla" ng-disabled="true" placeholder="Escriba el tipo de turismo que desarrolla" required>    
+
+<br>
+<br>
+</div>
+
+
+      <hr class="acomodarBarra">
+         <label class="acomodarFr text-center"> IV.OBSERVACIONES </label>
+<hr class="acomodarB"> 
+ 
+ 
+<div class="col-xs-12">
+
+                    <div class="form-group">
+                    <label for="pwd">Observaciones</label>
+                    <textarea class="form-control" ng-model="EmpEdit.observaciones" name="observaciones" rows="10" required></textarea>
+                   
+                   </div>  
+
+
+         
+
+      </div> 
+
+ </div>
+    
+</div>
+      </div>
+      <div class="modal-footer">
+       <!-- <div class="form-group">
+                    <label for="pwd" style="float:left;">Actualizar Logo de la empresa (Formato jpg o png menores 100k):</label>
+                      <p id="f1_upload_form" align=""><br/>
+                       
+                              <input  type="file" name="file" uploader-model="file" class="form-control" id="logo" class="btn btn" size="30"ng-disabled="true" />
+                    </p>
+                   </div>  -->
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <!--<button type="button" class="btn btn-primary"  data-dismiss="modal" ng-click="updateEmpresaE()">Guardar cambios</button> -->
+      </div>
+    </div>
+  </div>
+</div>

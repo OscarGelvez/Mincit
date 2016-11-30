@@ -1,0 +1,194 @@
+
+<div class="row prueba" >
+  <div class="jumbotron">
+         
+        <img src="img/banner3.png" class="acomodarBanner img-responsive" alt="Cinque Terre">
+                   
+  </div>
+  
+
+      <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+        <li><a href="#Admin_logros">Inicio</a></li>
+
+        <li class="dropdown active">
+          <a href="#Admin_verEntidad" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Entidades<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#Admin_registrarEntidad">Registrar Entidad</a></li>
+            <li class="active"><a href="#Admin_verEntidad">Ver Entidades</a></li>
+          </ul>
+        </li>
+         <li><a href="#Admin_servicios">Servicios</a></li>
+          <li><a href="#Admin_logros">Logros</a></li>
+          <li><a href="#Admin_configuraciones">Configuraciones</a></li>
+      </ul>
+      
+      <ul class="nav navbar-nav navbar-right">
+        <li ng-click="cerrarSesion()"><a>Cerrar Sesion</a></li>
+       
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<div class="container">
+
+  <!-- Button trigger modal -->
+<legend>ENTIDADES ADSCRITAS AL MINCIT</legend>
+   <table class="table table-responsive">
+  <thead>
+    <t	r>
+      <th>NOMBRE</th>
+      <th>DESCRIPCIÓN</th>
+      <th>NIT</th>
+      <th></th>
+      
+      <th colspan="3">Acciones</th>
+
+    </tr> 
+  </thead>
+  <tbody>
+    <tr>
+        <td>IMPULSA</td>
+        <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non adipisci, odit pariatur sint dignissimos, maiores enim. Quam numquam accusamus dolorum corrupti aperiam voluptatum impedit suscipit dolorem, eum labore tenetur distinctio.</td>
+        <td>336422112366</td>
+        <td><i class="fa fa-info fa-2x btn" data-target="#myModal2" data-toggle="modal"></i></td>
+        <td><i class="fa fa-pencil-square-o fa-2x btn" data-target="#myModal" data-toggle="modal"></i></td>
+        <td><i class="fa fa-trash-o fa-2x btn"ng-click="eliminar()"></i></td>
+
+    </tr>
+     <tr>
+        <td>SUPERCOMERCIO</td>
+       <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non adipisci, odit pariatur sint dignissimos, maiores enim. Quam numquam accusamus dolorum corrupti aperiam voluptatum impedit suscipit dolorem, eum labore tenetur distinctio.</td>
+        <td>123654789321</td>
+        <td><i class="fa fa-info fa-2x btn" data-target="#myModal2" data-toggle="modal"></i></td>
+        <td><i class="fa fa-pencil-square-o fa-2x btn"data-target="#myModal" data-toggle="modal"></i></td>
+        <td><i class="fa fa-trash-o fa-2x btn"ng-click="eliminar()"></i></td>
+    </tr>
+    <tr>
+        <td>FONDO NACIONAL DE GARANTIAS</td>
+       <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non adipisci, odit pariatur sint dignissimos, maiores enim. Quam numquam accusamus dolorum corrupti aperiam voluptatum impedit suscipit dolorem, eum labore tenetur distinctio.</td>
+        <td>478932152896</td>
+        <td><i class="fa fa-info fa-2x btn" data-target="#myModal2" data-toggle="modal"></i></td>
+        <td><i class="fa fa-pencil-square-o fa-2x btn"data-target="#myModal" data-toggle="modal"></i></td>
+        <td><i class="fa fa-trash-o fa-2x btn"ng-click="eliminar()"></i></td>
+    </tr>
+    <tr>
+        <td>PROCOLOMBIA</td>
+       <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non adipisci, odit pariatur sint dignissimos, maiores enim. Quam numquam accusamus dolorum corrupti aperiam voluptatum impedit suscipit dolorem, eum labore tenetur distinctio.</td>
+        <td>214778963221</td>
+        <td><i class="fa fa-info fa-2x btn" data-target="#myModal2" data-toggle="modal"></i></td>
+        <td><i class="fa fa-pencil-square-o fa-2x btn"data-target="#myModal" data-toggle="modal"></i></td>
+        <td><i class="fa fa-trash-o fa-2x btn"ng-click="eliminar()"></i></td>
+    </tr>
+ 
+  </tbody>
+</table>
+
+  <!-- Modal editable-->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+  <div class="modal-dialog" role="document" style="width:70%">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Editar Entidad</h4>
+      </div>
+      <div class="modal-body">
+         <table class="table table-responsive">
+  <thead>
+    <tr>
+      <th>NOMBRE</th>
+      <th>DESCRIPCIÓN</th>
+      <th>NIT</th>
+      <th>Telefono</th>
+      <th>Correo</th>
+      <th>Dirección</th>
+     </tr> 
+  </thead>
+  <tbody>
+    <tr>
+        <td contenteditable='true'>IMPULSA</td>
+        <td contenteditable='true'>Lorem ipsum dolor.</td>
+        <td contenteditable='true'>336422112366</td>
+       	<td contenteditable='true'>(+57)+5763652</td>
+       	<td contenteditable='true'>correoprueba@mail.com</td>
+       	<td contenteditable='true'>calle 123 av 32 Barrio nuevo</td>
+
+    </tr>
+
+ 
+  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary"  data-dismiss="modal" ng-click="guardoModal()">Guardar cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+ <!-- Modal Visualizable-->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+  <div class="modal-dialog" role="document" style="width:70%">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Ver detalles Entidad</h4>
+      </div>
+      <div class="modal-body">
+         <table class="table table-responsive">
+  <thead>
+    <tr>
+      <th>NOMBRE</th>
+      <th>DESCRIPCIÓN</th>
+      <th>NIT</th>
+      <th>Telefono</th>
+      <th>Correo</th>
+      <th>Dirección</th>
+     </tr> 
+  </thead>
+  <tbody>
+    <tr>
+        <td >IMPULSA</td>
+        <td >Lorem ipsum dolor.</td>
+        <td >336422112366</td>
+       	<td >(+57)+5763652</td>
+       	<td >correoprueba@mail.com</td>
+       	<td >calle 123 av 32 Barrio nuevo</td>
+
+    </tr>
+
+ 
+  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+       
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  </div>
+

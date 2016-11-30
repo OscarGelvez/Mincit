@@ -1,0 +1,122 @@
+
+<div class="row" >
+   
+<div class="prueba">
+      <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#Asesor_inicio"><i class="fa fa-home fa-lg"></i> Inicio</a></li>
+
+        <li class="dropdown">
+          <a href="#Asesor_configuraciones" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-industry fa-lg"></i> Registrar Empresa<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#Asesor_registrarEmpresaEmprendedora">Empresa Emprendedora</a></li>
+            <li><a href="#Asesor_registrarEmpresaTuristica">Empresa Turistica</a></li>
+          </ul>
+        </li>
+         <li><a href="#Asesor_registrarContacto"><i class="fa fa-user-plus fa-lg"></i> Registrar Contacto</a></li>
+         <li><a href="#Asesor_consultarEntidades"><i class="fa fa-building fa-lg"></i> Entidades</a></li>
+         <li><a href="#Asesor_consultarLogroServicio"><i class="fa fa-server fa-lg"></i> Logros y Servicios</a></li>
+          <!-- <li><a href="#Asesor_configuraciones"><i class="fa fa-cog fa-lg"></i> Configuraciones</a></li> -->
+      </ul>
+      
+     <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown" >
+          <a href="#Asesor_configuraciones" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa  fa-user-circle fa-lg"></i> Cuenta<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#Asesor_configuraciones"><i class="fa  fa-cog"></i> Configuraciones</a></li>
+            <li ng-click="cerrarSesion()"><a><i class="fa fa-sign-out"></i> Cerrar sesión</a></li>
+          </ul>
+
+        </li>
+       
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div class="col-sm-12 col-xs-12 row2" style="min-height: 500px; border:none">
+   <h4 class="text-center"><b>CAMBIAR LA CONTRASEÑA DE ACCESO </b></h4>
+    <br><br>
+          <form class="form-horizontal">
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label class="acomodarL">CONTRASEÑA ACTUAL</label>
+                    <input type="{{visibilidad1}}" class="form-control" ng-model="claveActual" placeholder="Contraseña actual" tabindex=1 required >
+
+                </div>
+             
+            </div>
+             <div class="col-xs-6">
+               <button type="button" class="btn btn-info form-controlp" aria-label="Left Align" ng-mousedown="ver(1)" ng-mouseup="ocultar(1)">
+                     <span class="glyphicon glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                    </button>
+            </div>
+
+            <div class="clearfix">
+              
+            </div>
+
+            <div class="col-xs-6">
+             
+               <div class="form-group">
+                   <br>
+                    <label>CONTRASEÑA NUEVA</label>
+                    <input type="{{visibilidad2}}" class="form-control" ng-model="claveNueva" placeholder="Contraseña nueva" tabindex=2 required>
+                    <br>
+                    <label>REPITA CONTRASEÑA</label>
+                    <input type="{{visibilidad2}}" class="form-control" ng-model="claveNueva2" placeholder="Repita contraseña" tabindex=3 required>
+               </div>
+               <div class="form-group">
+                    <button class="btn btn-primary" ng-click="cambiarClave()" tabindex=4 >Guardar</button>
+                </div>
+
+            </div>
+
+           
+             <div class="col-xs-6">
+              <br><br>
+               <button type="button" class="btn btn-info form-controlp" aria-label="Left Align" ng-mousedown="ver(2)" ng-mouseup="ocultar(2)" >
+                     <span class="glyphicon glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                    </button>
+            </div>
+          
+        </form>
+      
+    
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Editar Logro</h4>
+      </div>
+      <div class="modal-body" contenteditable='true'>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, amet ipsam corrupti numquam explicabo ad molestias rem soluta reprehenderit facere veniam unde exercitationem itaque autem sed, a illo earum eum.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Guardar cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+    

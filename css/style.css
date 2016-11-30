@@ -1,0 +1,293 @@
+.paginacion {
+   position: relative;
+   vertical-align: top;
+   height: 80px;
+   font-size: 28px;
+   color: white;
+   text-align: center;
+   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+   background: #3498db;
+   border: 0;
+   border-bottom: 2px solid #2a8bcc;
+   cursor: pointer;
+   -webkit-box-shadow: inset 0 -2px #2a8bcc;
+   box-shadow: inset 0 -2px #2a8bcc;
+   margin-bottom: 30px !important;
+}
+.paginacion:active {
+   top: 1px;
+   outline: none;
+   -webkit-box-shadow: none;
+   box-shadow: none;
+}
+.paginacion:disabled {
+   outline: none;
+   -webkit-box-shadow: none;
+   box-shadow: none;
+   opacity: 0.5;
+}
+
+.footer-distributed{
+   background-color: #388E3C;
+   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+   box-sizing: border-box;
+   width: 100%;
+   margin-left: 0%;
+   margin-right: 0%;
+   text-align: left;
+   font: bold 12px sans-serif;
+  
+
+   padding: 10px 50px;
+   margin-top: 80px;
+}
+
+.footer-distributed .footer-left,
+.footer-distributed .footer-center,
+.footer-distributed .footer-right{
+   display: inline-block;
+   vertical-align: top;
+}
+
+/* Footer left */
+
+.footer-distributed .footer-left{
+   width: 40%;
+}
+
+/* The company logo */
+
+.footer-distributed h3{
+   color:  #ffffff;
+   font: normal 32px 'Cookie', cursive;
+   margin: 0;
+}
+
+.footer-distributed h3 span{
+   color:  #5383d3;
+}
+
+/* Footer links */
+
+.footer-distributed .footer-links{
+   color:  #ffffff;
+   margin: 20px 0 12px;
+   padding: 0;
+}
+
+.footer-distributed .footer-links a{
+   display:inline-block;
+   line-height: 1.8;
+   text-decoration: none;
+   color:  inherit;
+}
+
+.footer-distributed .footer-company-name{
+   color:  white;
+   font-size: 14px;
+   font-weight: normal;
+   margin-top: 10px;
+
+}
+
+/* Footer Center */
+
+.footer-distributed .footer-center{
+   width: 35%;
+}
+
+.footer-distributed .footer-center i{
+  /* background-color:  #33383b;  color de fondo circular en los btns*/ 
+   color: #ffffff;
+   font-size: 25px;
+   width: 38px;
+   height: 38px;
+   border-radius: 50%;
+   text-align: center;
+   line-height: 42px;
+   margin: 2px 15px;
+   vertical-align: middle;
+}
+
+.footer-distributed .footer-center i.fa-envelope{
+   font-size: 17px;
+   line-height: 38px;
+  
+
+}
+
+.footer-distributed .footer-center p{
+   display: inline-block;
+   color: #ffffff;
+   vertical-align: middle;
+   margin:0;
+}
+
+.footer-distributed .footer-center p span{
+   display:block;
+   font-weight: normal;
+   font-size:14px;
+   line-height:2;
+}
+
+.footer-distributed .footer-center p a{
+   color:  #5383d3;
+   text-decoration: none;;
+}
+
+
+/* Footer Right */
+
+.footer-distributed .footer-right{
+   width: 20%;
+}
+
+.footer-distributed .footer-company-about{
+   line-height: 20px;
+   color:  #ddd;
+   font-size: 13px;
+   font-weight: normal;
+   margin: 0;
+}
+
+.footer-distributed .footer-company-about span{
+   display: block;
+   color:  #ffffff;
+   font-size: 14px;
+   font-weight: bold;
+   margin-bottom: 20px;
+}
+
+.footer-distributed .footer-icons{
+   margin-top: 5px;
+}
+
+.footer-distributed .footer-icons a{
+   display: inline-block;
+   width: 35px;
+   height: 35px;
+   cursor: pointer;
+  /* background-color:  #33383b;*/
+   border-radius: 2px;
+
+   font-size: 20px;
+   color: #ffffff;
+   text-align: center;
+   line-height: 35px;
+
+   margin-right: 3px;
+   margin-bottom: 5px;
+}
+
+/* If you don't want the footer to be responsive, remove these media queries */
+
+@media (max-width: 880px) {
+
+   .footer-distributed{
+      font: bold 14px sans-serif;
+   }
+
+   .footer-distributed .footer-left,
+   .footer-distributed .footer-center,
+   .footer-distributed .footer-right{
+      display: block;
+      width: 100%;
+      margin-bottom: 40px;
+      text-align: center;
+   }
+
+   .footer-distributed .footer-center i{
+      margin-left: 0;
+   }
+
+}
+
+
+.navbar-collapse{
+   background-color: #388E3C !important;
+}
+
+
+  .even{ background-color:#ddd; }
+  
+  .odd{ background-color:#eee; }
+
+.inputNoBorder{
+   background-color: transparent;
+    border: 0px solid;
+    height: 30px;
+    width: 160px;
+    color: #555;
+}
+
+.botonF1{
+  width:60px;
+  height:60px;
+  border-radius:100%;
+  background:#388E3C;
+  margin-bottom: 15px;
+  
+  
+  border:none;
+  outline:none;
+  color:#FFF;
+  font-size:36px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  transition:.3s;  
+}
+span{
+  transition:.5s;  
+}
+.botonF1:hover span{
+  transform:rotate(360deg);
+}
+.botonF1:active{
+  transform:scale(1.1);
+}
+
+.badge {
+ 
+  font-size: 12.025px;
+  font-weight: bold;
+  white-space: nowrap;
+  color: #ffffff;
+  background-color: #999999;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  border-radius: 9px;
+}
+.badge:hover {
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+}
+.badge-error {
+  background-color: #b94a48;
+}
+.badge-error:hover {
+  background-color: #953b39;
+}
+.badge-warning {
+  background-color: #f89406;
+}
+.badge-warning:hover {
+  background-color: #c67605;
+}
+.badge-success {
+  background-color: #468847;
+}
+.badge-success:hover {
+  background-color: #356635;
+}
+.badge-info {
+  background-color: #3a87ad;
+}
+.badge-info:hover {
+  background-color: #2d6987;
+}
+.badge-inverse {
+  background-color: #333333;
+}
+.badge-inverse:hover {
+  background-color: #1a1a1a;
+}

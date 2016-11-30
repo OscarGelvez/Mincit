@@ -1,0 +1,170 @@
+<div class="row" >
+  
+<div class="prueba">	    
+
+      <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#Asesor_inicio"><i class="fa fa-home fa-lg"></i> Inicio</a></li>
+
+        <li class="dropdown">
+          <a href="#Asesor_registrarContacto" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-industry fa-lg"></i> Registrar Empresa<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#Asesor_registrarEmpresaEmprendedora">Empresa Emprendedora</a></li>
+            <li><a href="#Asesor_registrarEmpresaTuristica">Empresa Turistica</a></li>
+          </ul>
+        </li>
+         <li class="active"><a href="#Asesor_registrarContacto"><i class="fa fa-user-plus fa-lg"></i> Registrar Contacto</a></li>
+         <li><a href="#Asesor_consultarEntidades"><i class="fa fa-building fa-lg"></i> Entidades</a></li>
+         <li><a href="#Asesor_consultarLogroServicio"><i class="fa fa-server fa-lg"></i> Logros y Servicios</a></li>
+          <!-- <li><a href="#Asesor_configuraciones"><i class="fa fa-cog fa-lg"></i> Configuraciones</a></li> -->
+      </ul>
+      
+     <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown" >
+          <a href="#Asesor_registrarContacto" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa  fa-user-circle fa-lg"></i> Cuenta<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+          <li><a href="#Asesor_configuraciones"><i class="fa  fa-cog"></i> Configuraciones</a></li>
+            <li ng-click="cerrarSesion()"><a><i class="fa fa-sign-out"></i> Cerrar sesión</a></li>
+          </ul>
+
+        </li>
+       
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div class="col-sm-12 col-xs-12 row2 ">
+    <h4 class="text-center"><b>FORMATO DE CREACIÓN DE CONTACTO </b></h4>
+    <br>
+    <br>
+    
+        <form class="form-horizontal" ng-submit="registrarContacto();">
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label> Nombres</label>
+                    <input type="text" class="form-control" ng-model="nombres" placeholder="Nombres" required>
+                </div>
+                <div class="form-group">
+                <label>Cedula</label>
+                    <input type="text" class="form-control" ng-model="cedula" placeholder="Cedula" required>
+                    
+                </div>
+              
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label>Apellidos</label>
+                    <input type="text" class="form-control" ng-model="apellidos" placeholder="Apellidos" required>
+                </div>
+                <div class="form-group">
+                    <label >Correo</label>
+                    <input type="email" class="form-control" ng-model="correo" placeholder="ejemplo@mail.com" required>
+                </div>
+            </div>
+
+             <div class="col-xs-6">
+                <div class="form-group">
+                    <label>Genero</label>
+                   <select class="form-control" ng-model="genero" required>
+                      <option value="">--Seleccione--</option>
+                      <option >Masculino</option>
+                      <option>Femenino</option>
+                      <option>LGTBI</option>
+           
+                  </select>
+                </div>
+                <div class="form-group">
+                    <label >Cargo:</label>
+                    <input type="text" class="form-control" ng-model="cargo" placeholder="Cargo" required>
+                </div>
+            </div>
+
+             <div class="col-xs-6">
+                <div class="form-group">
+                    <label>¿Interesado en recibir correos electrónicos masivos? :</label>
+                     <select class="form-control" ng-model="recibirC">
+                      <option value="">--Seleccione--</option>
+                      <option >No</option>
+                      <option>Si</option>
+           
+                  </select>
+
+
+
+                </div>
+                <div class="form-group">
+                    <label>Número de telefono fijo:</label>
+                    <input type="number" class="form-control" ng-model="numTelefono" placeholder="Numeros de telefono:" required>
+                </div>
+            </div>
+
+             <div class="col-xs-6">
+                <div class="form-group">
+                    <label>Número Celular</label>
+                    <input type="number" class="form-control" ng-model="numCelular" placeholder="No Celular" required>
+                </div>
+                <div class="form-group">
+                    <label>CDE</label>
+                    <input type="text" class="form-control" ng-model="cde" placeholder="CDE" required>
+                </div>
+            </div>
+
+             <div class="col-xs-6">
+                <div class="form-group">
+                    <label>Dirección</label>
+                    <input type="text" class="form-control" ng-model="direccion" placeholder="Direccion" required>
+                </div>
+
+                 <div class="form-group">
+                    <label>Departamento</label>
+                   <select class="form-control" ng-model="departamento" id="dpto_Contacto" required>
+                      <option value="">--Seleccione--</option>
+                      <option ng-repeat="d in dptosCombo">{{d.nombre}}</option>
+                                
+                  </select>  
+                </div>
+               
+            </div>
+
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label>Ciudad</label>
+                     <select class="form-control" ng-model="ciudad"  required>
+                      <option value="">--Seleccione--</option>
+                      <option ng-repeat="c in ciudadesCombo">{{c.nombre}}</option>
+                     
+           
+                  </select>
+                </div>
+                
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label>Notas</label>
+                    <textarea class="form-control" ng-model="notas" placeholder="Notas"></textarea>
+                   
+                </div>
+            </div>
+            <div class="col-xs-12 acomodarBT margenBotton">
+               <CENTER> <input type="submit" class="btn btn-success" value="Registrar" ></CENTER>
+                         
+            </div>
+        </form>
+   
+</div>
+</div>
+</div>
