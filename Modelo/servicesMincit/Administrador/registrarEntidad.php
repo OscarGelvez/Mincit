@@ -13,7 +13,7 @@ $direccionEntidad=$data->direccion;
 $nitEntidad=$data->nit;
 $urlLogo=$data->url_logo;
 $correoUsuario=$data->correoUser;
-$claveUsuario=$data->claveUser;
+$claveUsuario=sha1($data->claveUser);
 
 
 $queryExisteEntidad="SELECT * FROM entidad WHERE nit_entidad=".$nitEntidad;

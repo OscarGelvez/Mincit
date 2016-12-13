@@ -3,7 +3,7 @@ var app=angular.module('mincit.controllersAdmin',['angularSpinner']);
 
 //Controller inicio
 
-app.run([ "CONFIG", "$http", function(CONFIG, $http)
+app.run([ "CONFIG", "$http", "$rootScope", function(CONFIG, $http, $rootScope)
 {
 
   var sesion;
@@ -15,7 +15,7 @@ function verificar(){
                     sesion=data;
                     if(data=="ad"){
                        CONFIG.ROL_CURRENT_USER= 1;
-                       
+                        $rootScope.rolInicio="Administrador";
                         }
                                    
                 })
@@ -30,17 +30,47 @@ verificar();
 
 }])
 
-app.controller('controllerInicio_Admin', ['$scope', 'usSpinnerService', '$http', 'cerrarSesion', 'pendientes', 'localStorageService', '$timeout', function($scope, usSpinnerService, $http, cerrarSesion, pendientes, localStorageService, $timeout){
+app.controller('controllerInicio_Admin', ['$scope', 'usSpinnerService', '$http', 'cerrarSesion', 'pendientes', 'localStorageService', '$timeout', 'cargar3CombosFiltros', 'tam', function($scope, usSpinnerService, $http, cerrarSesion, pendientes, localStorageService, $timeout, cargar3CombosFiltros, tam){
 
 $scope.currentPage = 0;
 $scope.pageSize = 3; // Esta la cantidad de registros que deseamos mostrar por página
 $scope.pages = [];
 
+cargar3CombosFiltros.cargarCombos();
 
 $timeout(function() {
           $scope.cant_pendientes=localStorageService.get("notificaciones");
-    }, 1000);
+          $scope.combosLeidos=tam.tam;
+    if($scope.combosLeidos==0){
+      swal({
+      title: 'Error al cargar los filtros de busqueda...',
+      text: 'Error al cargar datos de los combos... Vuelva a recargar la pagina y verifique su velocidad de internet',
+      type: 'warning',
+      timer: 2000
+    });
+          }
+          console.log($scope.combosLeidos);
+          $scope.llenar3Combos();
 
+    }, 3000);
+
+$scope.llenar3Combos=function(){
+   $scope.combo1= new Array();
+  $scope.combo2= new Array();
+  $scope.combo3= new Array();
+  for (var i = 0; i < $scope.combosLeidos.length; i++) {
+    if($scope.combosLeidos[i].combo_padre=="1"){
+      $scope.combo1.push($scope.combosLeidos[i]);
+    }
+    else if($scope.combosLeidos[i].combo_padre=="2"){
+      $scope.combo2.push($scope.combosLeidos[i]);
+    }
+    else if($scope.combosLeidos[i].combo_padre=="3"){
+      $scope.combo3.push($scope.combosLeidos[i]);
+    }
+  };
+ 
+}
 
  	$scope.mostrarEmpre=function(){
     usSpinnerService.spin('spinner-1');
@@ -366,7 +396,7 @@ console.log($scope.EmpEdit);
 })
 
 
-app.controller('controllerRegistrarEntidad_Admin', ['$scope','$http', 'usSpinnerService', 'cerrarSesion', 'localStorageService', 'upload', 'tam', function($scope, $http, usSpinnerService, cerrarSesion, localStorageService,  upload, tam){
+app.controller('controllerRegistrarEntidad_Admin', ['$scope','$http', 'usSpinnerService', 'cerrarSesion', 'localStorageService', 'upload', 'tam', 'uploadExcel', '$location', function($scope, $http, usSpinnerService, cerrarSesion, localStorageService,  upload, tam, uploadExcel, $location){
 var datos_usuarios=localStorageService.get("usuarioActual");
 
 $scope.cant_pendientes=localStorageService.get("notificaciones");
@@ -522,6 +552,130 @@ $http.post("Modelo/servicesMincit/ArchivosSubidos/borrarArchivo.php",{
 
 }
 
+////////////////////////// REGISTRO DE ENTIDADES POR SUBIDA DE EXCEL /////////////////////////////////
+$scope.registrarEntidadPorExcel=function(){
+usSpinnerService.spin('spinner-1');
+    $scope.subirExcel();
+}
+
+
+$('#excel').bind('change', function() {
+
+ $scope.tamExcel=(this.files[0].size)/1000;
+
+});
+
+
+
+    $scope.subirExcel=function(){
+       if($scope.tamExcel>500){
+      swal({
+          title: 'Error Peso Exedido',
+          text: 'El peso del archivo Excel seleccionado supera los 500 KB',
+          type: 'warning',
+         timer: 2000
+        })  
+        return false;     
+    }else{
+      var idUsuarioRegistro= datos_usuarios.id_usuario;
+        var name = "archivoExcel";
+        var file = $scope.file;
+        
+        uploadExcel.uploadFile(file, name, idUsuarioRegistro).then(function(res)
+        {
+          usSpinnerService.stop('spinner-1');
+          console.log(res);
+        
+          
+            var r=res.data.split(",");
+            console.log(r);
+
+            if(r[1]=="11" && r[2]=="10"){ // si es 11 el archivo se subio correctamente
+                console.log("es 1. salio bien");
+          swal({
+          title: 'Exito',
+          text: "El archivo se subio exitosamente al sistema. y todas las entidades fueron registradas...",
+          type: 'success',         
+          confirmButtonColor: '#388E3C'          
+          }).then(function() {
+          //location.reload();
+          $location.path("/Admin_verEntidad");
+        })
+      }else{
+       
+
+        if(r[2]=="20"){
+        swal(
+            'Error',
+           'Una o varias entidades no fueron registradas, Pero el archivo fue subido exitosamente',
+            'error'
+           );
+          }
+      
+        else if(r[1]=="40"){
+          swal(
+            'Error',
+           'No se registro un usuario asociado a una entidad correctamente...Consulte a su Administrador del Sistema ',
+            'error'
+           );
+        }
+        else if(r[1]=="4005"){
+          swal(
+            'Error',
+           'El formato de archivo que intenta subir no es corrrecto. Recuerde que debe ser Excel .xlsx o .xls',
+            'error'
+           );
+        }
+         else if(r[1]=="303"){
+          swal(
+            'Error',
+           'El archivo excel que esta intentando subir ya existe en el sistema. Si su contenido es diferente cambie el nombre e intentelo de nuevo',
+            'error'
+           );
+          
+        }
+         else if(r[1]=="4040"){
+          swal(
+            'Error',
+           'No se logro subir el archivo al sistema... Revisa tu conexión a internet e intentalo nuevamente',
+            'error'
+           );
+        }  
+     }
+        console.log(res.data);
+
+       
+      })
+     return true;
+   }
+}
+
+
+
+
+$scope.registrarEntidadPorExcel2=function(){
+usSpinnerService.spin('spinner-1');
+$http.post('Modelo/servicesMincit/Administrador/subirExcelEntidad.php', {
+            idUsuarioRegistro: datos_usuarios.id_usuario,
+                    
+               
+        }
+    ).success(function (data) {
+      usSpinnerService.stop('spinner-1');
+      
+    
+
+    }).error(function(err){
+      usSpinnerService.stop('spinner-1');
+        console.log(err);
+
+    }); 
+
+
+}
+
+
+
 
  $scope.cerrarSesion=function(){
     
@@ -546,12 +700,36 @@ $scope.cant_pendientes=localStorageService.get("notificaciones");
     .success(function(data){
    usSpinnerService.stop('spinner-1');
       console.log(data)
-      $scope.entidades=data
-      $scope.configPages();
+      $scope.entidades=new Array();
+      $scope.entidadesCompletas=data
+      for (var i = 0; i < $scope.entidadesCompletas.length; i++) {
+        if($scope.entidadesCompletas[i].estado_actual=="1"){
+          $scope.entidades.push($scope.entidadesCompletas[i]);
+        
+        }
+      };
+
+            $scope.configPages();
     })
   }
    
   $scope.mostrarEntidades();
+
+  $scope.mostrarServiciosLogrosEntidad=function(){
+    usSpinnerService.spin('spinner-1');
+
+    $http.get("Modelo/servicesMincit/Administrador/listarServicioLogroEntidad.php")
+    .success(function(data){
+   usSpinnerService.stop('spinner-1');
+      console.log(data)
+      $scope.SLE=data;
+
+    })
+
+  }
+
+$scope.mostrarServiciosLogrosEntidad();
+
 
 $scope.configPages = function() {
         $scope.pages.length = 0;
@@ -584,13 +762,28 @@ $scope.configPages = function() {
     };
 
 
-$scope.editarEntidad=function(id){
+$scope.editarEntidad=function(nit){
   $scope.hayCambioLogo=false;
+  $scope.SLEmostrar = new Array();
   
-  $scope.entidadEdit=clone($scope.entidades[id]);
+  for (var i = 0; i < $scope.entidades.length; i++) {
+    if($scope.entidades[i].nit_entidad==nit){
+         $scope.entidadEdit=clone($scope.entidades[i]);
+         $scope.entidadOriginal = new Array();
+      $scope.entidadOriginal=clone($scope.entidades[i]);
+        }
+  };
+
+  for (var i = 0; i < $scope.SLE.length; i++) {
+    if($scope.SLE[i].nit==nit){
+      
+      $scope.SLEmostrar.push($scope.SLE[i]);
+      console.log($scope.SLEmostrar); 
+    }
+  };
+ 
   console.log( $scope.entidadEdit);
- $scope.entidadOriginal = new Array();
-$scope.entidadOriginal=clone($scope.entidades[id]);
+ 
 
 }
 
@@ -600,6 +793,10 @@ console.log("llego update1")
 }
 
 $scope.updateEntidad2=function(hayLogo){
+  if(!hayLogo && $scope.entidadEdit.url_logo!="nologo.jpg"){
+    $scope.urlLogo=$scope.entidadEdit.url_logo;
+    console.log("sii");
+  }
 usSpinnerService.spin('spinner-1');
 $http.post('Modelo/servicesMincit/Administrador/actualizarEntidad.php', {
             
@@ -609,7 +806,8 @@ $http.post('Modelo/servicesMincit/Administrador/actualizarEntidad.php', {
             telefono: $scope.entidadEdit.tel_entidad,
             direccion: $scope.entidadEdit.direccion,
             nit: $scope.entidadEdit.nit_entidad,
-            url_logo: $scope.urlLogo                 
+            url_logo: $scope.urlLogo,
+            operacion: 1,                 
                
         }
     ).success(function (data) {
@@ -705,7 +903,7 @@ console.log("entidad original "+$scope.entidadOriginal.url_logo+" entidad edit "
 }
 
 
-$scope.eliminar=function(id){
+$scope.eliminar=function(nitRecibo){
 
 swal({
   title: '¿Eliminar Entidad?',
@@ -720,7 +918,7 @@ swal({
 usSpinnerService.spin('spinner-1');
 $http.post('Modelo/servicesMincit/Administrador/eliminarEntidad.php', {         
           
-            nit:$scope.entidades[id].nit_entidad                        
+            nit:nitRecibo                      
                
         }
     ).success(function (data) {
@@ -808,6 +1006,7 @@ $scope.subirLogo=function(){
             $scope.urlLogo=name+"."+$scope.tipo[1];
             $scope.updateEntidad2(true);
           }else{
+
             $scope.urlLogo="nologo.jpg";
             $scope.updateEntidad2(false);
 
@@ -852,6 +1051,64 @@ $http.post("Modelo/servicesMincit/ArchivosSubidos/borrarArchivo.php",{
     
    cerrarSesion.cerrar();
   }
+
+  ////////////////////////////////////////////////////Entidades desabilitadas///////////////////////////
+
+$scope.verDesabilitadas=function(){
+    $scope.entidadesDesabilitadas=new Array();
+      
+      for (var i = 0; i < $scope.entidadesCompletas.length; i++) {
+        if($scope.entidadesCompletas[i].estado_actual=="0"){
+          $scope.entidadesDesabilitadas.push($scope.entidadesCompletas[i]);
+       
+        }
+      };
+}
+
+$scope.habilitarEntidad=function(index){
+  var idEntid=$scope.entidadesDesabilitadas[index].nit_entidad;
+  usSpinnerService.spin('spinner-1');
+$http.post('Modelo/servicesMincit/Administrador/actualizarEntidad.php', {
+            
+            operacion: 2,
+            nit: idEntid                             
+               
+        }
+    ).success(function (data) {
+      usSpinnerService.stop('spinner-1');
+      if(data==1){
+          swal({
+          title: 'Exito',
+          text: "La entidad se habilitó exitosamente",
+          type: 'success',         
+          confirmButtonColor: '#388E3C'          
+          }).then(function() {
+           
+          location.reload();
+        })
+      
+      }else{
+        
+
+        if(data==2){
+        swal(
+            'Error',
+           'La entidad no fue habilitada, Vuelva a intentarlo',
+            'error'
+           );
+          }
+       
+     }
+        console.log(data);    
+
+    }).error(function(err){
+      usSpinnerService.stop('spinner-1');
+        console.log(err);
+
+    }); 
+}
+
+
 
 }]).filter('startFromGrid', function() {
 
@@ -1063,12 +1320,19 @@ $scope.registrarLogro=function(){
 
 }
 
-$scope.editarLogro=function(id){
+$scope.editarLogro=function(id_logro){
    
-$scope.logroEdit=clone($scope.logros[id]);
+for (var i = 0; i < $scope.logros.length; i++) {
+     if($scope.logros[i].id_logro==id_logro){
+
+        $scope.logroEdit=clone($scope.logros[i]);
+        $scope.logroOriginal = new Array();
+        $scope.logroOriginal=clone($scope.logros[i]);
+        }
+   };   
+
 console.log( $scope.logroEdit);
-$scope.logroOriginal = new Array();
-$scope.logroOriginal=clone($scope.logros[id]);
+
 
 }
 
@@ -1219,21 +1483,21 @@ var datos_usuarios=localStorageService.get("usuarioActual");
 $scope.visibilidad1="password";
 $scope.visibilidad2="password";
 $scope.cant_pendientes=localStorageService.get("notificaciones");
-$scope.ver=function(v){
-  if(v==1){
+
+
+$scope.cambio=function(v){
+if(v==1 && $scope.visibilidad1=="password" ){
     $scope.visibilidad1="text";
-  }else if(v==2){
+
+  }else if(v==1 && $scope.visibilidad1=="text"){
+    $scope.visibilidad1="password"; 
+
+  }
+  else if(v==2 && $scope.visibilidad2=="password"){
     $scope.visibilidad2="text";
+  }else if(v==2 && $scope.visibilidad2=="text"){
+     $scope.visibilidad2="password";
   }
-  
-}
-$scope.ocultar=function(v){
-  if(v==1){
-  $scope.visibilidad1="password"; 
-  }else if(v==2){
-    $scope.visibilidad2="password";
-  }
-  
 }
 
 $scope.cambiarClave=function(){
@@ -1244,6 +1508,130 @@ $scope.cambiarClave=function(){
     
    cerrarSesion.cerrar();
   }
+
+ $scope.combosActuales=function(){
+   
+    usSpinnerService.spin('spinner-1');
+  $http.get('Modelo/servicesMincit/ServiciosCompartidos/cargar3CombosFiltros.php')
+
+    .success(function(data) {
+      usSpinnerService.stop('spinner-1');
+              console.log(data);
+
+              if(data!=0){
+                $scope.combos=data;
+                for (var i = 0; i < $scope.combos.length; i++) {
+                  if($scope.combos[i].combo_padre=="1"){
+                      $scope.combos[i].combo_padre="Constitución Legal"
+                  }
+                  else if($scope.combos[i].combo_padre=="2"){
+                      $scope.combos[i].combo_padre="Tipo Empresa"
+                  }
+                  else if($scope.combos[i].combo_padre=="3"){
+                    $scope.combos[i].combo_padre="Tipo Cliente"
+                  }
+
+                };
+                
+              }       
+                   
+             })
+            .error(function(data) {
+                    console.log('Error: ' + data);
+            });
+}
+
+  $scope.combosActuales();
+
+  $scope.registrarCombo=function(){
+  
+    usSpinnerService.spin('spinner-1');
+  $http.post("Modelo/servicesMincit/Administrador/registrarCombo.php", {
+    nombre:$scope.nombreCombo,
+    padre:$scope.comboPadre,
+    
+
+  }).success(function(data){
+      usSpinnerService.stop('spinner-1');
+    console.log(data)
+    if(data==1){
+      swal({
+          title: 'Exito',
+          text: "La opción de combo se registro exitosamente",
+          type: 'success',         
+          confirmButtonColor: '#388E3C'          
+          }).then(function() {
+          location.reload();
+        })
+        
+
+    }else if(data==2){
+        swal(
+            'Error',
+           'La opción del combo no fue registrada, Vuelva a intentarlo',
+            'error'
+           );
+    } 
+
+  }).error(function(data){
+    usSpinnerService.stop('spinner-1');
+
+  })
+}
+
+$scope.eliminar=function(id){
+
+swal({
+  title: '¿Eliminar Opción del Combo?',
+  text: "¿Está seguro de eliminar esta opción del combo?",
+  type: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#388E3C',
+  cancelButtonColor: '#a09f9f',
+  confirmButtonText: 'Si, eliminar',
+  cancelButtonText:'Cancelar'
+}).then(function() {
+usSpinnerService.spin('spinner-1');
+$http.post('Modelo/servicesMincit/Administrador/eliminarCombo.php', {         
+          
+            id:$scope.combos[id].id                        
+               
+        }
+    ).success(function (data) {
+      usSpinnerService.stop('spinner-1');
+      if(data==1){
+          swal({
+          title: 'Exito',
+          text: "La opción de combo se eliminó exitosamente",
+          type: 'success',         
+          confirmButtonColor: '#388E3C'          
+          }).then(function() {
+           
+          location.reload();
+        }).done();
+      
+      }else{
+        
+
+        if(data==2){
+        swal(
+            'Error',
+           'La opción del combo no fue eliminada, Vuelva a intentarlo',
+            'error'
+           );
+          }
+       
+     }
+        console.log(data);    
+
+    }).error(function(err){
+      usSpinnerService.stop('spinner-1');
+        console.log(err);
+
+    }); 
+
+}).done();
+}
   }])
 
 

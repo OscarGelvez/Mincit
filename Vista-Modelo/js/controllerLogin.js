@@ -108,4 +108,18 @@ $scope.iniciar=function(){
 		$scope.irInicio=function(){
 			window.location.href='#inicio';
 		}
+
+    ////////////////////////////////////////////VISTA RECUPERAR CLAVE /////////////////////////////////
+
+$scope.recuperarContrasena=function(){
+  console.log("lleo");
+  $http.post("Modelo/servicesMincit/Sesiones/recuperarClave.php",{
+              usuario: $scope.emailRecuperar
+  }).success(function(data){
+    console.log(data);
+  }).error(function(err){
+
+  })
+}
+    $scope.emailRecuperar="o@mail.com";
 }])

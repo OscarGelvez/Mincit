@@ -28,8 +28,8 @@
         </li>
          <li><a href="#Asesor_registrarContacto"><i class="fa fa-user-plus fa-lg"></i> Registrar Contacto</a></li>
          <li class="active"><a href="#Asesor_consultarEntidades"><i class="fa fa-building fa-lg"></i> Entidades</a></li>
-         <li><a href="#Asesor_consultarLogroServicio"><i class="fa fa-server fa-lg"></i> Logros y Servicios</a></li>
-          <!-- <li><a href="#Asesor_configuraciones"><i class="fa fa-cog fa-lg"></i> Configuraciones</a></li> -->
+        <!-- <li><a href="#Asesor_consultarLogroServicio"><i class="fa fa-server fa-lg"></i> Logros y Servicios</a></li>
+           <li><a href="#Asesor_configuraciones"><i class="fa fa-cog fa-lg"></i> Configuraciones</a></li> -->
       </ul>
       
      <ul class="nav navbar-nav navbar-right">
@@ -69,7 +69,7 @@
       <td>{{entidad.nombre_entidad}}</td>
       <td>{{entidad.correo_entidad}}</td>
          
-      <td><i class="fa fa-info fa-2x btn" data-target="#myModal" data-toggle="modal" ng-click="verMas($index)"></i></td>
+      <td><i class="fa fa-info fa-2x btn" data-target="#myModal" data-toggle="modal" ng-click="verMas(entidad.nit_entidad)"></i></td>
     </tr>
     <!--
     <tr>
@@ -150,6 +150,33 @@
       <td>{{entidadVerMas.direccion}}</td>
       <td>{{entidadVerMas.descrip_entidad}}</td>
       <td>{{entidadVerMas.correo_usuario_asociado}}</td>
+
+
+    </tr>
+
+ 
+  </tbody>
+</table>
+<table class="table table-responsive">
+  <thead>
+  <tr >
+     
+      <th>Nombre Logro</th>
+      <th>Descripción Logro</th>
+      <th>Nombre Servicio</th>
+      <th>Descripción Servicio</th>
+           
+ 
+
+    </tr> 
+  </thead>
+  <tbody>
+    <tr ng-repeat="SLE in SLEmostrar" ng-class="$even?'odd':'even'">
+
+      <td>{{SLE.nombreLogro}}</td>      
+      <td>{{SLE.DescripLogro}}</td>
+      <td>{{SLE.nombreServicio}}</td>
+      <td>{{SLE.DescripServicio}}</td>
 
 
     </tr>

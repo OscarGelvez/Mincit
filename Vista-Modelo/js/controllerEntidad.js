@@ -1,7 +1,7 @@
 var app=angular.module('mincit.controllersEntidad',['angularSpinner']);
 
 
-app.run([ "CONFIG", "$http", function(CONFIG, $http)
+app.run([ "CONFIG", "$http", "$rootScope", function(CONFIG, $http, $rootScope)
 {
 
   var sesion;
@@ -13,6 +13,7 @@ function verificar(){
                     sesion=data;
                     if(data=="en"){
                        CONFIG.ROL_CURRENT_USER= 3;
+                       $rootScope.rolInicio="Entidad";
                        
                         }
                                    
@@ -28,7 +29,7 @@ verificar();
 
 }])
 
-app.controller('controllerInicio_Entidad', ['$scope', 'usSpinnerService', '$http', 'cerrarSesion', 'upload', function($scope, usSpinnerService, $http, cerrarSesion, upload){
+app.controller('controllerInicio_Entidad', ['$scope', 'usSpinnerService', '$http', 'cerrarSesion', 'upload', '$timeout', 'tam', 'cargar3CombosFiltros', function($scope, usSpinnerService, $http, cerrarSesion, upload, $timeout, tam, cargar3CombosFiltros){
 $scope.tipo_busqueda_inicio="Empresas";
 $scope.tipo_filter=true; //Si es true por defecto carga los filtros para empresa
 $scope.currentPage = 0;
@@ -36,6 +37,52 @@ $scope.pageSize = 3; // Esta la cantidad de registros que deseamos mostrar por p
 $scope.pages = [];
 $scope.filtro= new Object();
 $scope.paginacionDinamica="empresas";
+
+
+
+
+
+
+cargar3CombosFiltros.cargarCombos();
+
+$timeout(function() {
+          
+          $scope.combosLeidos=tam.tam;
+    if($scope.combosLeidos==0){
+      swal({
+      title: 'Error al cargar los filtros de busqueda...',
+      text: 'Error al cargar datos de los combos... Vuelva a recargar la pagina y verifique su velocidad de internet',
+      type: 'warning',
+      timer: 2000
+    });
+          }
+          console.log($scope.combosLeidos);
+          $scope.llenar3Combos();
+
+    }, 3000);
+
+$scope.llenar3Combos=function(){
+   $scope.combo1= new Array();
+  $scope.combo2= new Array();
+  $scope.combo3= new Array();
+  for (var i = 0; i < $scope.combosLeidos.length; i++) {
+    if($scope.combosLeidos[i].combo_padre=="1"){
+      $scope.combo1.push($scope.combosLeidos[i]);
+    }
+    else if($scope.combosLeidos[i].combo_padre=="2"){
+      $scope.combo2.push($scope.combosLeidos[i]);
+    }
+    else if($scope.combosLeidos[i].combo_padre=="3"){
+      $scope.combo3.push($scope.combosLeidos[i]);
+    }
+  };
+ 
+}
+
+
+
+
+
 
 $scope.mostrarEmpre=function(){
   usSpinnerService.spin('spinner-1');
@@ -1215,21 +1262,19 @@ var datos_usuarios=localStorageService.get("usuarioActual");
 $scope.visibilidad1="password";
 $scope.visibilidad2="password";
 
-$scope.ver=function(v){
-  if(v==1){
+$scope.cambio=function(v){
+if(v==1 && $scope.visibilidad1=="password" ){
     $scope.visibilidad1="text";
-  }else if(v==2){
+
+  }else if(v==1 && $scope.visibilidad1=="text"){
+    $scope.visibilidad1="password"; 
+
+  }
+  else if(v==2 && $scope.visibilidad2=="password"){
     $scope.visibilidad2="text";
+  }else if(v==2 && $scope.visibilidad2=="text"){
+     $scope.visibilidad2="password";
   }
-  
-}
-$scope.ocultar=function(v){
-  if(v==1){
-  $scope.visibilidad1="password"; 
-  }else if(v==2){
-    $scope.visibilidad2="password";
-  }
-  
 }
 
 $scope.cambiarClave=function(){

@@ -448,6 +448,36 @@ $rootScope.$on('$routeChangeStart', function (event, next)
 }])
 
 
+
+.service('uploadExcel', ["$http", "$q", function ($http, $q) 
+{
+  this.uploadFile = function(file, name, idUsuario)
+  {
+    var deferred = $q.defer();
+    var formData = new FormData();
+    formData.append("name", name);
+    formData.append("file", file);
+    formData.append("idUsuarioRegistro", idUsuario);
+    return $http.post("Modelo/servicesMincit/Administrador/subirExcelEntidad.php", formData, {
+      headers: {
+        "Content-type": undefined
+      },
+      transformRequest: angular.identity
+    })
+    .success(function(res)
+    {
+      deferred.resolve(res);
+    })
+    .error(function(msg, code)
+    {
+      deferred.reject(msg);
+    })
+    return deferred.promise;
+  } 
+}])
+
+
+
 .service('cambiarClaveService', ['$http', 'usSpinnerService', '$location', function($http, usSpinnerService, $location){
 
 this.cambiar=function(claveActual, claveNueva, claveNueva2, id_usuario){
@@ -515,11 +545,16 @@ function obtenerClaveActual(id_usuario, claveActual, claveNueva){
     usSpinnerService.stop('spinner-1');
     if(data[0].clave!=2){
       var claveActualConsultada=data[0].clave;
-      if(claveActualConsultada==claveActual){
-        console.log("clave digitada "+claveActual+" clave consultada "+claveActualConsultada);
 
-          if(claveActual!=claveNueva){
-            cambiarClave2(claveNueva, id_usuario);
+      var claveActualSha1 = hex_sha1(claveActual); /* SHA-1 */
+console.log(claveActualSha1);
+      if(claveActualConsultada==claveActualSha1){
+        console.log("clave digitada "+claveActualSha1+" clave consultada "+claveActualConsultada);
+
+        var claveNuevaSha1=hex_sha1(claveNueva);
+
+          if(claveActualSha1!=claveNuevaSha1){
+            cambiarClave2(claveNuevaSha1, id_usuario);
           }else{
             swal(
                   'Error',
@@ -591,4 +626,37 @@ $http.get('Modelo/servicesMincit/Administrador/serviciosPendientes.php')
 
 }])
 
+.factory('tam', function(){
+return{
+   tam:0
+};
 
+})
+
+
+
+.service('cargar3CombosFiltros', ['$http', 'usSpinnerService', 'tam', function($http, usSpinnerService, tam){
+
+//cargarCombos();
+
+  this.cargarCombos=function(){
+    usSpinnerService.spin('spinner-1');
+  $http.get('Modelo/servicesMincit/ServiciosCompartidos/cargar3CombosFiltros.php')
+
+    .success(function(data) {
+      usSpinnerService.stop('spinner-1');
+              console.log(data);
+
+              if(data!=0){
+                 var combos=data;
+                 tam.tam=combos;
+              }       
+                   
+             })
+            .error(function(data) {
+                    console.log('Error: ' + data);
+            });
+
+}
+
+}])

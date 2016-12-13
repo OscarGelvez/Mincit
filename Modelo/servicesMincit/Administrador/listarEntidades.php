@@ -1,6 +1,6 @@
 <?php
 include("../Conexion_BD/conexion_mysql.php");
-$qry="SELECT* FROM entidad WHERE estado_actual=1";
+$qry="SELECT* FROM entidad ";
 $res=mysql_query($qry) or die("Query: $qry ".mysql_error());
 $datos=array();
 while ($obj=mysql_fetch_object($res)) 

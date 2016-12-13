@@ -54,6 +54,8 @@
 </nav>
 
 <div class="col-sm-12 col-xs-12 row2" ng-cloak style="min-height: 600px; border:none">
+  <legend style="font-size:15px; font-weight:400"><i>Bienvenido, Usted ha iniciado sesión como {{rolInicio}}</i></legend>
+ 
     <h3><b>Buscar Empresas</b></h3>
 
     <div class="col-sm-3">
@@ -70,20 +72,16 @@
                     <label for="pwd">Constitucion legal:</label>
                    <select class="form-control" ng-model="constitucionFilter"  id="constitucion_legal" >
                       <option value="">--Seleccione--</option>
-                      <option>SAS</option>
-                      <option>Limitada</option>
-                      <option>Anonima</option>
-                      <option>Persona natural</option>
-                      <option>Otra</option>
+                      <option ng-repeat="c in combo1">{{c.nombre_opc}}</option>
+                      
                                         
                    </select>
                    <br>
                   <label for="pwd">Tipo de empresa</label>
                    <select class="form-control"  ng-model="tipoEmpFilter" name="tipoEm" >
                     <option value="">--Seleccione-.</option>
-                    <option>Emprendedora</option>
-                    <option>Turística</option>
-                                            
+                    <option ng-repeat="c in combo2">{{c.nombre_opc}}</option>
+                                                                
                    </select> 
     </div>
     </div>
@@ -93,11 +91,8 @@
                     <label for="pwd">Tipo de cliente:</label>
                    <select class="form-control" ng-model="clasificFilter"  id="constitucion_legal" >
                       <option value="">--Seleccione--</option>
-                      <option>Emprendedor</option>
-                      <option>Empresa formal</option>
-                      <option>Empresa informal</option>
-                      <option>Empresa Gacela</option>
-                      <option>Otra</option>
+                      <option ng-repeat="c in combo3">{{c.nombre_opc}}</option>
+                     
                                         
                    </select>
     <br>
@@ -125,6 +120,7 @@
 
          <button class="btn btn-info" ng-click="borrarFiltros()">Borrar filtros</button>                   
     </div>
+    <legend style="font-size:15px; font-weight:400"><i>Se encontraron {{empresas.length}} empresas registradas en el sistema</i></legend>
    <table   class="table table-responsive" id="table_emp"  style="border-top-style: groove !important; border-width: 3px; border-color: #e8e8e8;">
   <thead >
     <tr>

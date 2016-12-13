@@ -148,12 +148,10 @@ console.log($scope.EmpEditTuristica);
 };
 }
 
-
-
-
 //$scope.EmpOriginal=clone($scope.empresas[index]);
 console.log($scope.EmpEdit);
 }
+
   $scope.textoBtn="Editar"
   $scope.esEditable=false;
 $scope.hacerEditable=function(){
@@ -317,7 +315,7 @@ if($scope.EmpEditEmprend.como_se_entero!=$scope.EmpOriginalEmprend.como_se_enter
 
 
    $scope.subirLogo(); 
-
+ 
 }
 
 

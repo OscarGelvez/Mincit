@@ -51,6 +51,8 @@
 
   <!-- Button trigger modal -->
 <legend>ENTIDADES ADSCRITAS AL MINCIT</legend>
+<div class="col-sm-offset-10"><button class="btn btn-info " ng-click="verDesabilitadas()" data-target="#myModalDesabilitadas" data-toggle="modal"><i class=" fa fa-building fa-lg"></i> Desabilidatas</button></div>
+<br>  
    <table class="table table-responsive" >
   <thead>
     <tr>
@@ -71,7 +73,7 @@
       <td>{{entidad.correo_entidad}}</td>
       <td>{{entidad.tel_entidad}}</td>
       
-      <td><i class="fa fa-trash-o fa-2x btn"ng-click="eliminar($index)"></i><i class="fa fa-pencil-square-o fa-2x btn" data-target="#myModal" data-toggle="modal" ng-click="editarEntidad($index)"></i></td>
+      <td><i class="fa fa-trash-o fa-2x btn"ng-click="eliminar(entidad.nit_entidad)"></i><i class="fa fa-pencil-square-o fa-2x btn" data-target="#myModal" data-toggle="modal" ng-click="editarEntidad(entidad.nit_entidad)"></i></td>
     </tr>
     <!--
     <tr>
@@ -160,6 +162,34 @@
  
   </tbody>
 </table>
+
+<table class="table table-responsive">
+  <thead>
+  <tr >
+     
+      <th>Nombre Logro</th>
+      <th>Descripción Logro</th>
+      <th>Nombre Servicio</th>
+      <th>Descripción Servicio</th>
+           
+ 
+
+    </tr> 
+  </thead>
+  <tbody>
+    <tr ng-repeat="SLE in SLEmostrar" ng-class="$even?'odd':'even'">
+
+      <td>{{SLE.nombreLogro}}</td>      
+      <td>{{SLE.DescripLogro}}</td>
+      <td>{{SLE.nombreServicio}}</td>
+      <td>{{SLE.DescripServicio}}</td>
+
+
+    </tr>
+
+ 
+  </tbody>
+</table>
       </div>
       <div class="modal-footer">
         <div class="form-group">
@@ -179,7 +209,7 @@
 
 
  <!-- Modal Visualizable-->
-<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+<div class="modal fade" id="myModalDesabilitadas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
   <div class="modal-dialog" role="document" style="width:70%">
     <div class="modal-content">
       <div class="modal-header">
@@ -190,23 +220,23 @@
          <table class="table table-responsive">
   <thead>
     <tr>
-      <th>NOMBRE</th>
-      <th>DESCRIPCIÓN</th>
+     <th>LOGO</th>
       <th>NIT</th>
-      <th>Telefono</th>
-      <th>Correo</th>
-      <th>Dirección</th>
+      <th>NOMBRE</th>
+      <th>CORREO</th>
+      <th>TELEFONO</th>
+      <th>HABILITAR</th>
      </tr> 
   </thead>
   <tbody>
-    <tr>
-        <td >IMPULSA</td>
-        <td >Lorem ipsum dolor.</td>
-        <td >336422112366</td>
-       	<td >(+57)+5763652</td>
-       	<td >correoprueba@mail.com</td>
-       	<td >calle 123 av 32 Barrio nuevo</td>
-
+   <tr ng-repeat="e in entidadesDesabilitadas | startFromGrid: currentPage * pageSize | limitTo: pageSize" ng-class="$even?'odd':'even'">
+      <td><img ng-src="Vista/LogosEmpresas/{{e.url_logo}}" width="100" height="100" class="img-responsive" alt="logo entidad"></td>
+      <td>{{e.nit_entidad}}</td>
+      <td>{{e.nombre_entidad}}</td>
+      <td>{{e.correo_entidad}}</td>
+      <td>{{e.tel_entidad}}</td>
+      
+      <td><i class="fa fa-undo fa-2x btn"ng-click="habilitarEntidad($index)"></td>
     </tr>
 
  

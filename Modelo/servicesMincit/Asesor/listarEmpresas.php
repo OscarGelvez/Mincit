@@ -21,7 +21,7 @@ while ($obj=mysql_fetch_object($res))
       "tipo_emp" =>$obj->tipo_empresa
       
      );
-	    $datos[]=$arch;	
+	    $datos[]=$obj;	
 	 
 }
 echo json_encode($datos);

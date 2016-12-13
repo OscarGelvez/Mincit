@@ -10,7 +10,8 @@ include_once '../Conexion_BD/conexion_mysql.php';
 $data = json_decode(file_get_contents("php://input")); 
  
 $usuario=$data->usuario;
-$clave=$data->clave; // -> encriptar con sha1
+$clave=sha1($data->clave); 
+
  
 //Realizo la consulta SQL
 $query = "SELECT * FROM usuario WHERE correo='".$usuario."' AND clave= '".$clave."'";

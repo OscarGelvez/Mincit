@@ -3,8 +3,8 @@ include "../Conexion_BD/conexion_mysql.php";
 $data=json_decode(file_get_contents("php://input"));
 
 
-$nombreLogro=$data->nombre;
-$descripLogro=$data->descrip;
+$nombreLogro=utf8_decode($data->nombre);
+$descripLogro=utf8_decode($data->descrip);
 
 
 
