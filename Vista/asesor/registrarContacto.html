@@ -55,11 +55,11 @@
         <form class="form-horizontal" ng-submit="registrarContacto();">
             <div class="col-xs-6">
                 <div class="form-group">
-                    <label> Nombres</label>
+                    <label> Nombres <font color="red" size="3"><b>*</b></font></label>
                     <input type="text" class="form-control" ng-model="nombres" placeholder="Nombres" required>
                 </div>
                 <div class="form-group">
-                <label>Cedula</label>
+                <label>Cedula <font color="red" size="3"><b>*</b></font></label>
                     <input type="text" class="form-control" ng-model="cedula" placeholder="Cedula" required>
                     
                 </div>
@@ -67,18 +67,18 @@
             </div>
             <div class="col-xs-6">
                 <div class="form-group">
-                    <label>Apellidos</label>
+                    <label>Apellidos <font color="red" size="3"><b>*</b></font></label>
                     <input type="text" class="form-control" ng-model="apellidos" placeholder="Apellidos" required>
                 </div>
                 <div class="form-group">
-                    <label >Correo</label>
+                    <label >Correo <font color="red" size="3"><b>*</b></font></label>
                     <input type="email" class="form-control" ng-model="correo" placeholder="ejemplo@mail.com" required>
                 </div>
             </div>
 
              <div class="col-xs-6">
                 <div class="form-group">
-                    <label>Genero</label>
+                    <label>Genero <font color="red" size="3"><b>*</b></font></label>
                    <select class="form-control" ng-model="genero" required>
                       <option value="">--Seleccione--</option>
                       <option >Masculino</option>
@@ -88,14 +88,14 @@
                   </select>
                 </div>
                 <div class="form-group">
-                    <label >Cargo:</label>
+                    <label >Cargo <font color="red" size="3"><b>*</b></font></label>
                     <input type="text" class="form-control" ng-model="cargo" placeholder="Cargo" required>
                 </div>
             </div>
 
              <div class="col-xs-6">
                 <div class="form-group">
-                    <label>¿Interesado en recibir correos electrónicos masivos? :</label>
+                    <label>¿Interesado en recibir correos electrónicos masivos?  <font color="red" size="3"><b>*</b></font></label>
                      <select class="form-control" ng-model="recibirC">
                       <option value="">--Seleccione--</option>
                       <option >No</option>
@@ -107,30 +107,30 @@
 
                 </div>
                 <div class="form-group">
-                    <label>Número de telefono fijo:</label>
+                    <label>Número de telefono fijo <font color="red" size="3"><b>*</b></font></label>
                     <input type="number" class="form-control" ng-model="numTelefono" placeholder="Numeros de telefono:" required>
                 </div>
             </div>
 
              <div class="col-xs-6">
                 <div class="form-group">
-                    <label>Número Celular</label>
+                    <label>Número Celular <font color="red" size="3"><b>*</b></font></label>
                     <input type="number" class="form-control" ng-model="numCelular" placeholder="No Celular" required>
                 </div>
                 <div class="form-group">
-                    <label>CDE</label>
+                    <label>CDE <font color="red" size="3"><b>*</b></font></label>
                     <input type="text" class="form-control" ng-model="cde" placeholder="CDE" required>
                 </div>
             </div>
 
              <div class="col-xs-6">
                 <div class="form-group">
-                    <label>Dirección</label>
+                    <label>Dirección <font color="red" size="3"><b>*</b></font></label>
                     <input type="text" class="form-control" ng-model="direccion" placeholder="Direccion" required>
                 </div>
 
                  <div class="form-group">
-                    <label>Departamento</label>
+                    <label>Departamento <font color="red" size="3"><b>*</b></font></label>
                    <select class="form-control" ng-model="departamento" id="dpto_Contacto" required>
                       <option value="">--Seleccione--</option>
                       <option ng-repeat="d in dptosCombo">{{d.nombre}}</option>
@@ -142,7 +142,7 @@
 
             <div class="col-xs-6">
                 <div class="form-group">
-                    <label>Ciudad</label>
+                    <label>Ciudad <font color="red" size="3"><b>*</b></font></label>
                      <select class="form-control" ng-model="ciudad"  required>
                       <option value="">--Seleccione--</option>
                       <option ng-repeat="c in ciudadesCombo">{{c.nombre}}</option>

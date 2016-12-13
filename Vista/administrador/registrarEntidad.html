@@ -51,11 +51,14 @@
     
     <h4 class="text-center"><b>REGISTRO DE ENTIDADES </b></h4><br>
       <label class="acomodarFr text-center"> Registrar entidades desde archivo excel</label>
-    <input  type="file" name="fileEntidadExcel" uploader-model="file" class="form-control" id="excel"  class="btn btn" size="30"/>
-    <div class="col-sm-4  col-sm-offset-10 col-xs-offset-10">
+    <form ng-submit="registrarEntidadPorExcel()">
+    <input  type="file" name="fileEntidadExcel" uploader-model="file" class="form-control" id="excel"  class="btn btn" size="30"/ required>
+    <div class="col-sm-4  col-sm-offset-5 col-xs-offset-5">
       <br>
-    <button class="btn btn-success " ng-click="registrarEntidadPorExcel()">Subir Excel</button>
+    <input type="submit" class="btn btn-success " value="Subir Excel"></input>
+    </form>
     <br><br>
+    
     </div>
 
     <form   ng-submit="registrarEntidad()">
@@ -68,21 +71,21 @@
           <div class="col-xs-6">
                 <div class="form form-inline">
                    
-                    <label class="acomodarL">NOMBRE ENTIDAD</label>
+                    <label class="acomodarL">NOMBRE ENTIDAD <font color="red" size="3"><b>*</b></font></label>
                     <input type="text" class="form-controlP" ng-model="nombreEntidad" placeholder="Nombre entidad" required>
             
                 </div>
                 
                 <div class="form-group margenT">
                    
-                    <label class="acomodarL">NIT</label>
+                    <label class="acomodarL">NIT <font color="red" size="3"><b>*</b></font></label>
                     <input type="number" class="form-controlP" ng-model="nitEntidad" placeholder="Nit" required>
               </div>
               
             </div>
              <div class="col-xs-6  col-sm-6 col-md-6">
                 <div class="form-group">
-                     <label class="acomodarL">DESCRIPCIÓN</label>
+                     <label class="acomodarL">DESCRIPCIÓN <font color="red" size="3"><b>*</b></font></label>
                     <textarea class="form-control" ng-model="descripEntidad" name="observaciones" rows="5" required></textarea>
                    
                    </div>  
@@ -92,12 +95,12 @@
 
             <div class="col-xs-6">
                 <div class="form-group margenT">
-                    <label class="acomodarL">TELEFONO</label>
+                    <label class="acomodarL">TELEFONO <font color="red" size="3"><b>*</b></font></label>
                     <input type="tel" class="form-controlP" ng-model="telefonoEntidad" placeholder="Teléfono" required>
                 </div>
                 <br>
                 <div class="form-group margenT">
-                    <label class="acomodarL" >DIRECCIÓN</label>
+                    <label class="acomodarL" >DIRECCIÓN <font color="red" size="3"><b>*</b></font></label>
                     <input type="text" class="form-controlP" ng-model="direccionEntidad" placeholder="Dirección" required>
                 </div>
               
@@ -105,14 +108,14 @@
 
             <div class="col-xs-6">
               <div class="form-group margenT">
-                    <label class="acomodarL">CORREO ELECTRONICO</label>
+                    <label class="acomodarL">CORREO ELECTRONICO <font color="red" size="3"><b>*</b></font></label>
                     <input type="email" class="form-controlP" ng-model="correoEntidad" placeholder="Correo electronico" required>
                 </div>
 
             </div>
             <div class="col-xs-6">
                     <div class="form-group">
-                    <label for="pwd">Cargar Logo de la empresa (Formato jpg o png menores 100k):</label>
+                    <label for="pwd">Cargar Logo de la empresa (Formato jpg o png menores 100k) <font color="red" size="3"><b>*</b></font></label>
                       <p id="f1_upload_form" align=""><br/>
                        
                               <input  type="file" name="file" uploader-model="file" class="form-control" id="logo" class="btn btn" size="30"/>
@@ -129,12 +132,12 @@
   <div class="col-xs-6">
                 
                 <div class="form-group margenT">
-                    <label >CORREO ELECTRONICO</label>
+                    <label >CORREO ELECTRONICO <font color="red" size="3"><b>*</b></font></label>
                     <input type="mail" class="form-control"  ng-model="correoUsuario" placeholder="Correo electronico" required>
                 </div>
 
                 <div class="form-group ">
-                <label >CONTRASEÑA</label>
+                <label >CONTRASEÑA <font color="red" size="3"><b>*</b></font></label>
                     <input type="password" class="form-control"  ng-model="claveUsuario" placeholder="Contraseña" required>
                     
                 </div>
@@ -143,7 +146,7 @@
             </div>
             <div class="col-xs-6">
               <div class="form-group margenT">
-                    <label >REPITA CONTRASEÑA</label>
+                    <label >REPITA CONTRASEÑA <font color="red" size="3"><b>*</b></font></label>
                     <input type="password" class="form-control" ng-model="claveUsuario2"  placeholder="Contraseña" required>
                 </div>
               <br>

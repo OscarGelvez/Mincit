@@ -136,7 +136,7 @@
     </tr> 
   </thead>
   <tbody>
-    <tr ng-repeat='empresa in empresas | filter:{nombre_empresa:filtro.nombreEmpFilter} | filter:{nit:filtro.NitEmpFilter} | filter:{tipo_constitucion:filtro.constitucionFilter} | filter:{tipo_empresa:filtro.tipoEmpFilter} | filter:{clasif_cliente:filtro.clasificFilter} | filter:{departamento:dptoFilter} | filter:{ciudad:ciudadFilter} | startFromGrid: currentPage * pageSize | limitTo: pageSize' ng-class="$even?'odd':'even'">
+    <tr ng-repeat='empresa in empresas | filter:{nombre_empresa:nombreEmpFilter} | filter:{nit:NitEmpFilter} | filter:{tipo_constitucion:constitucionFilter} | filter:{tipo_empresa:tipoEmpFilter} | filter:{clasif_cliente:clasificFilter} | filter:{departamento:dptoFilter} | filter:{ciudad:ciudadFilter} | startFromGrid: currentPage * pageSize | limitTo: pageSize' ng-class="$even?'odd':'even'">
         <td><img ng-src="Vista/LogosEmpresas/{{empresa.url_logo}}" width="100" height="100" class="img-responsive" alt="Cinque Terre"></td>
         <td>{{empresa.nombre_empresa}}</td>
         <td>{{empresa.nit}}</td>

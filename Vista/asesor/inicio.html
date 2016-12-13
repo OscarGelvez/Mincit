@@ -290,39 +290,13 @@
          <label class="acomodarFr text-center"> I. CLASIFICACIÓN DE CLIENTES </label>
          <hr class="acomodarB"> 
     <div class="form-group">
-      <div class="col-xs-3">
-        <div class="radio">
-    <label>
-
-      <input type="radio" name="optionsRadios" id="optionsRadios1" value="Emprendedor" ng-model="EmpEdit.clasif_cliente" ng-disabled="!esEditable">
-      1.EMPRENDEDOR
-    </label>
-  </div>
-  </div>
- <div class="col-xs-3">
-  <div class="radio">
-    <label>
-      <input type="radio" name="optionsRadios" id="optionsRadios2" value="Empresa Formal" ng-model="EmpEdit.clasif_cliente" ng-disabled="!esEditable">
-      2.EMPRESA FORMAL
-    </label>
-  </div>
-</div>
- <div class="col-xs-3">
-   <div class="radio">
-    <label>
-      <input type="radio" name="optionsRadios" id="optionsRadios2" value="Empresa Informal" ng-model="EmpEdit.clasif_cliente"  ng-disabled="!esEditable">
-      2.EMPRESA INFORMAL
-    </label>
-  </div>
-</div>
- <div class="col-xs-3">
-  <div class="radio">
-    <label>
-      <input type="radio" name="optionsRadios" id="optionsRadios2" value="Empresa Gacela" ng-model="EmpEdit.clasif_cliente"  ng-disabled="!esEditable">
-      2.EMPRESA GACELA
-    </label>
-  </div>
-</div>
+      <select class="form-control" ng-model="EmpEdit.clasif_cliente" ng-disabled="!esEditable" >
+                      <option value="">--Seleccione--</option>
+                      <option ng-repeat="c in combo3">{{c.nombre_opc}}</option>
+                     
+                                        
+                   </select>
+    
 
     </div>
 </CENTER>
@@ -537,13 +511,11 @@
             
             <div class="form-group">
                   <label for="pwd">Constitucion legal:</label>
-                   <select class="form-control" ng-model="EmpEdit.tipo_constitucion"  id="constitucion_legal"  ng-disabled="!esEditable">
-                      <option value="">--Seleccione-</option>
-                      <option >SAS</option>
-                      <option>Limitada</option>
-                      <option>Anonima</option>
-                      <option>Persona natural</option>
-                      <option>Otra</option>
+                   
+                   <select class="form-control" ng-model="EmpEdit.tipo_constitucion"  id="constitucion_legal" ng-disabled="!esEditable">
+                      <option value="">--Seleccione--</option>
+                      <option ng-repeat="c in combo1">{{c.nombre_opc}}</option>
+                        
                                         
                    </select>
                  
