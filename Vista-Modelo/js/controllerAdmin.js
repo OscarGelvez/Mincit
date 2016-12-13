@@ -1261,7 +1261,7 @@ $scope.cerrarSesion=function(){
 app.controller('controllerLogros_Admin', ['$scope', 'cerrarSesion', 'usSpinnerService', '$http', 'localStorageService',  function($scope, cerrarSesion, usSpinnerService, $http, localStorageService){
 
 $scope.currentPage = 0;
-$scope.pageSize = 5; // Esta la cantidad de registros que deseamos mostrar por página
+$scope.pageSize = 10; // Esta la cantidad de registros que deseamos mostrar por página
 $scope.pages = [];
 $scope.cant_pendientes=localStorageService.get("notificaciones");
 
