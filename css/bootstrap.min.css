@@ -119,8 +119,8 @@ dddd
 
    margin-top: -30px !important; /*con el banner tenia 48px*/
    margin-bottom: -80px !important;
-  margin-right: 10%;
-  margin-left: 10%;
+  margin-right: 7%;
+  margin-left: 7%;
   height: 100% !important;
   border-color:#388E3C !important;
   border:solid 0px;
@@ -230,6 +230,9 @@ color:black !important;
 
 }
 h1{
+  color:black !important;
+}
+.darleColor{
   color:black !important;
 }
 

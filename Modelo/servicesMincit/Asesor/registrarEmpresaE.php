@@ -66,10 +66,16 @@ $data=json_decode(file_get_contents("php://input"));
             
 
 
-
+if($nit!=""){
 $queryExisteEmpresa="SELECT * FROM empresa WHERE nit=".$nit;
 $existe2=mysql_query($queryExisteEmpresa);
 $numero_filas2 = mysql_num_rows($existe2);
+
+}else{
+	$numero_filas2=0; // esto en caso de q nit venga vacio y ps debe permitir continuar y regstrar
+}
+
+
 
 if($numero_filas2==1){
 	echo(5); // nit de Empresa ya existe.

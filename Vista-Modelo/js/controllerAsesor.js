@@ -1543,7 +1543,7 @@ $http.post('Modelo/servicesMincit/Asesor/eliminarEmpresaYContacto.php', {
 });
 
 
-app.controller('controllerEmpresaE_Asesor', ['$scope', '$http', 'cerrarSesion', 'localStorageService', 'usSpinnerService', '$location', 'upload', function($scope, $http, cerrarSesion, localStorageService, usSpinnerService, $location, upload){
+app.controller('controllerEmpresaE_Asesor', ['$scope', '$http', 'cerrarSesion', 'localStorageService', 'usSpinnerService', '$location', 'upload', 'cargar3CombosFiltros', '$timeout', 'tam', function($scope, $http, cerrarSesion, localStorageService, usSpinnerService, $location, upload, cargar3CombosFiltros, $timeout, tam){
 var tama=0;
 $scope.auxiliar= new Object();
 $scope.CurrentDate = new Date();
@@ -1566,6 +1566,43 @@ if(localStorageService.get("miEmpresa")!=undefined){
 }else{
 	tama=0;
 }
+
+
+cargar3CombosFiltros.cargarCombos();
+
+$timeout(function() {
+          
+          $scope.combosLeidos=tam.tam;
+          if($scope.combosLeidos==0){
+      swal({
+      title: 'Error al cargar los filtros de busqueda...',
+      text: 'Error al cargar datos de los combos... Vuelva a recargar la pagina y verifique su velocidad de internet',
+      type: 'warning',
+      timer: 2000
+    });
+          }
+          console.log($scope.combosLeidos);
+          $scope.llenar2Combos();
+
+    }, 4000);
+
+$scope.llenar2Combos=function(){
+  
+   $scope.combo1= new Array();
+
+  $scope.combo3= new Array();
+  for (var i = 0; i < $scope.combosLeidos.length; i++) {
+    if($scope.combosLeidos[i].combo_padre=="1"){
+      $scope.combo1.push($scope.combosLeidos[i]);
+    }
+   
+    else if($scope.combosLeidos[i].combo_padre=="3"){
+      $scope.combo3.push($scope.combosLeidos[i]);
+    }
+  };
+ 
+}
+
 
 console.log(tama);
 if(localStorageService.get("miEmpresa")!="vacio" && tama!=0){
@@ -2029,136 +2066,465 @@ $scope.registrarEmpresa=function(){
 
 // hay 47 datos enviandose
 // hay 48 datos q se estan guardando
-$scope.registrarEmpresa2=function(hayLogo){  
-
+$scope.registrarEmpresa2=function(hayLogo){ 
 //Validaciones campos con opcion "Otro" o "Cual"
 //alert("$scope.constitucion "+$scope.constitucion);
      if($scope.constitucion=="Otra"){
-     	$scope.constitucion=$scope.auxiliar.constitucion2;
+      if($scope.auxiliar.constitucion2==""){
+         $scope.auxiliar.constitucion2=undefined;
+      }
+      $scope.constitucion=$scope.auxiliar.constitucion2;
 //alert("$scope.constitucion "+$scope.constitucion);
 
      }
      
      if($scope.tipoEm=="Otra"){
-     	//alert("tipoEm "+$scope.tipoEm);
-     	$scope.tipoEm=$scope.auxiliar.tipoEm2;
-     	//alert("tipoEm "+$scope.tipoEm);
+      //alert("tipoEm "+$scope.tipoEm);
+      if($scope.auxiliar.tipoEm2==""){
+         $scope.auxiliar.tipoEm2=undefined;
+      }
+      $scope.tipoEm=$scope.auxiliar.tipoEm2;
+      //alert("tipoEm "+$scope.tipoEm);
      }
      if($scope.tipoEm=="Comercial"){
-     	//alert("tipoEm "+$scope.tipoEm);
-     	$scope.tipoEm=$scope.auxiliar.tipoEm3;
-     	//alert("tipoEm "+$scope.tipoEm);
+      //alert("tipoEm "+$scope.tipoEm);
+      if($scope.auxiliar.tipoEm3==""){
+         $scope.auxiliar.tipoEm3=undefined;
+      }
+      $scope.tipoEm=$scope.auxiliar.tipoEm3;
+      //alert("tipoEm "+$scope.tipoEm);
      } 
      if($scope.medioCde=="Otro"){
-     	//alert("medio cde "+$scope.medioCde);
-     	$scope.medioCde=$scope.auxiliar.medioCde2;
-     	//alert("medio cde "+$scope.medioCde);
-     }
+      //alert("medio cde "+$scope.medioCde);
+
+      if($scope.auxiliar.medioCde2==""){
+      //alert("es vacio el cde2") 
+      $scope.auxiliar.medioCde2=undefined;
+
+      }
+      $scope.medioCde=$scope.auxiliar.medioCde2;
      
-	usSpinnerService.spin('spinner-1');
+     }
+
+$scope.hayCamposVacios=false;
+
+if($scope.clasificacion==undefined){
+  swal(
+            'Campos Vacios',
+           'El campo Clasificación Cliente Se encuentra vacio y es obligatorio',
+            'warning'
+           );
+  $scope.hayCamposVacios=true;
+}
+else if($scope.cedula==undefined){
+  swal(
+            'Campos Vacios',
+           'El campo Cédula de Datos Contacto Se encuentra vacio y es obligatorio',
+            'warning'
+           );
+  $scope.hayCamposVacios=true;
+}
+else if($scope.nombres==undefined){
+  swal(
+            'Campos Vacios',
+           'El campo Nombres de Datos Contacto Se encuentra vacio y es obligatorio',
+            'warning'
+           );
+  $scope.hayCamposVacios=true;
+}else if($scope.apellidos==undefined){
+  swal(
+            'Campos Vacios',
+           'El campo Apellidos de Datos Contacto Se encuentra vacio y es obligatorio',
+            'warning'
+           );
+  $scope.hayCamposVacios=true;
+}else if($scope.cargo==undefined){
+  swal(
+            'Campos Vacios',
+           'El campo Cargo de Datos Contacto Se encuentra vacio y es obligatorio',
+            'warning'
+           );
+  $scope.hayCamposVacios=true;
+}else if($scope.antiguedad==undefined){
+  swal(
+            'Campos Vacios',
+           'El campo Fecha en que obtuvo el cargo de Datos Contacto Se encuentra vacio y es obligatorio',
+            'warning'
+           );
+  $scope.hayCamposVacios=true;
+}else if($scope.fechaN==undefined){
+  swal(
+            'Campos Vacios',
+           'El campo Fecha de Nacimiento de Datos Contacto Se encuentra vacio y es obligatorio',
+            'warning'
+           );
+  $scope.hayCamposVacios=true;
+}else if($scope.lugarN==undefined){
+  swal(
+            'Campos Vacios',
+           'El campo Lugar de Nacimiento de Datos Contacto Se encuentra vacio y es obligatorio',
+            'warning'
+           );
+  $scope.hayCamposVacios=true;
+}else if($scope.nivelEstudio==undefined){
+  swal(
+            'Campos Vacios',
+           'El campo Nivel de Estudio de Datos Contacto Se encuentra vacio y es obligatorio',
+            'warning'
+           );
+  $scope.hayCamposVacios=true;
+}else if($scope.direccion==undefined){
+  swal(
+            'Campos Vacios',
+           'El campo Dirección de Datos Contacto Se encuentra vacio y es obligatorio',
+            'warning'
+           );
+  $scope.hayCamposVacios=true;
+}else if($scope.telefonoF==undefined){
+  swal(
+            'Campos Vacios',
+           'El campo Teléfono Fijo de Datos Contacto Se encuentra vacio y es obligatorio',
+            'warning'
+           );
+  $scope.hayCamposVacios=true;
+}else if($scope.telefonoC==undefined){
+  swal(
+            'Campos Vacios',
+           'El campo Teléfono Celular de Datos Contacto Se encuentra vacio y es obligatorio',
+            'warning'
+           );
+  $scope.hayCamposVacios=true;
+}else if($scope.departamento==undefined){
+  swal(
+            'Campos Vacios',
+           'El campo Departamento de Datos Contacto Se encuentra vacio y es obligatorio',
+            'warning'
+           );
+  $scope.hayCamposVacios=true;
+}else if($scope.ciudad==undefined){
+  swal(
+            'Campos Vacios',
+           'El campo Ciudad de Datos Contacto Se encuentra vacio y es obligatorio',
+            'warning'
+           );
+  $scope.hayCamposVacios=true;
+}else if($scope.genero==undefined){
+  swal(
+            'Campos Vacios',
+           'El campo Género de Datos Contacto Se encuentra vacio y es obligatorio',
+            'warning'
+           );
+  $scope.hayCamposVacios=true;
+}else if($scope.correo==undefined){
+  swal(
+            'Campos Vacios',
+           'El campo Correo Eléctronico de Datos Contacto Se encuentra vacio y es obligatorio',
+            'warning'
+           );
+  $scope.hayCamposVacios=true;
+}else if($scope.grupoE==undefined){
+  swal(
+            'Campos Vacios',
+           'El campo Grupo Étnico de Datos Contacto Se encuentra vacio y es obligatorio',
+            'warning'
+           );
+  $scope.hayCamposVacios=true;
+}else if($scope.condicionD==undefined){
+  swal(
+            'Campos Vacios',
+           'El campo Condición de Desplazamiento de Datos Contacto Se encuentra vacio y es obligatorio',
+            'warning'
+           );
+  $scope.hayCamposVacios=true;
+}else if($scope.discapacidad==undefined){
+  swal(
+            'Campos Vacios',
+           'El campo Tipo de Discapacidad de Datos Contacto Se encuentra vacio y es obligatorio',
+            'warning'
+           );
+  $scope.hayCamposVacios=true;
+}else if($scope.nombreE==undefined){
+  swal(
+            'Campos Vacios',
+           'El campo Nombre Empresa de Información de Empresa Se encuentra vacio y es obligatorio',
+            'warning'
+           );
+  $scope.hayCamposVacios=true;
+}else if($scope.constitucion==undefined){
+  swal(
+            'Campos Vacios',
+           'El campo Constitución Legal de Información de Empresa Se encuentra vacio y es obligatorio',
+            'warning'
+           );
+  $scope.hayCamposVacios=true;
+}else if($scope.fechaC==undefined){
+  swal(
+            'Campos Vacios',
+           'El campo Fecha Inicio Labores de Información de Empresa Se encuentra vacio y es obligatorio',
+            'warning'
+           );
+  $scope.hayCamposVacios=true;
+}else if($scope.direccionEm==undefined){
+  swal(
+            'Campos Vacios',
+           'El campo Dirección Empresa de Información de Empresa Se encuentra vacio y es obligatorio',
+            'warning'
+           );
+  $scope.hayCamposVacios=true;
+}else if($scope.ciudadEm==undefined){
+  swal(
+            'Campos Vacios',
+           'El campo Ciudad de Información de Empresa Se encuentra vacio y es obligatorio',
+            'warning'
+           );
+  $scope.hayCamposVacios=true;
+}else if($scope.dptoEm==undefined){
+  swal(
+            'Campos Vacios',
+           'El campo Departamento de Información de Empresa Se encuentra vacio y es obligatorio',
+            'warning'
+           );
+  $scope.hayCamposVacios=true;
+}else if($scope.telefonoFijo==undefined){
+  swal(
+            'Campos Vacios',
+           'El campo Teléfono Fijo de Información de Empresa Se encuentra vacio y es obligatorio',
+            'warning'
+           );
+  $scope.hayCamposVacios=true;
+}else if($scope.telefonoCelular==undefined){
+  swal(
+            'Campos Vacios',
+           'El campo Teléfono Celular de Información de Empresa Se encuentra vacio y es obligatorio',
+            'warning'
+           );
+  $scope.hayCamposVacios=true;
+}else if($scope.correoEm==undefined){
+  swal(
+            'Campos Vacios',
+           'El campo Correo Empresa de Información de Empresa Se encuentra vacio y es obligatorio',
+            'warning'
+           );
+  $scope.hayCamposVacios=true;
+}else if($scope.sitioWeb==undefined){
+  swal(
+            'Campos Vacios',
+           'El campo Sitio Web de Información de Empresa Se encuentra vacio y es obligatorio',
+            'warning'
+           );
+  $scope.hayCamposVacios=true;
+}else if($scope.tipoEm==undefined){
+  swal(
+            'Campos Vacios',
+           'El campo Tipo de Empresa de Información de Empresa Se encuentra vacio y es obligatorio',
+            'warning'
+           );
+  $scope.hayCamposVacios=true;
+}else if($scope.registroM==undefined){
+  swal(
+            'Campos Vacios',
+           'El campo Registro Mercantil Se encuentra vacio y es obligatorio',
+            'warning'
+           );
+  $scope.hayCamposVacios=true;
+}else if($scope.auxiliar.numRegistro==undefined){
+  swal(
+            'Campos Vacios',
+           'El campo Número de Registro Mercantil de Información de Empresa Se encuentra vacio y es obligatorio',
+            'warning'
+           );
+  $scope.hayCamposVacios=true;
+}else if($scope.auxiliar.anoRenova==undefined){
+  swal(
+            'Campos Vacios',
+           'El campo Año de Renovación de Información de Empresa Se encuentra vacio y es obligatorio',
+            'warning'
+           );
+  $scope.hayCamposVacios=true;
+}else if($scope.serviciosEmpre==undefined){
+  swal(
+            'Campos Vacios',
+           'El campo Productos y Servicios que ofrece la empresa de Información de Empresa Emprendedora Se encuentra vacio y es obligatorio',
+            'warning'
+           );
+  $scope.hayCamposVacios=true;
+}else if($scope.medioCde==undefined){
+  swal(
+            'Campos Vacios',
+           'El campo Medio por el cual se entero del CDE de Información de Empresa Emprendedora Se encuentra vacio y es obligatorio',
+            'warning'
+           );
+  $scope.hayCamposVacios=true;
+}else if($scope.urlLogo==undefined){
+  swal(
+            'Campos Vacios',
+           'El campo Logo de Empresa de Información de Empresa Emprendedora Se encuentra vacio y es obligatorio',
+            'warning'
+           );
+  $scope.hayCamposVacios=true;
+}else if($scope.auxiliar.medioCde2==undefined){
+  swal(
+            'Campos Vacios',
+           'El campo Medio por el cual se entero del CDE 2 de Información de Empresa Emprendedora Se encuentra vacio y es obligatorio',
+            'warning'
+           );
+  $scope.hayCamposVacios=true;
+}
+
+
+
+
+
+if($scope.nit==undefined){
+  
+              $scope.nit="";
+  console.log("entro ppor $scope.nit")
+} if($scope.nombreR==undefined){
+  
+              $scope.nombreR="";
+  console.log("entro ppor $scope.nombreR")
+} if($scope.tc==undefined){
+  
+              $scope.tc="";
+  console.log("entro ppor $scope.tc")
+} if($scope.mt==undefined){
+  
+              $scope.mt="";
+  console.log("entro ppor $scope.mt")
+} if($scope.directos==undefined){
+  
+              $scope.directos="";
+  console.log("entro ppor $scope.directos")
+} if($scope.indirectos==undefined){
+  
+              $scope.indirectos="";
+  console.log("entro ppor $scope.indirectos")
+} if($scope.ciiu==undefined){
+  
+              $scope.ciiu="";
+  console.log("entro ppor $scope.ciiu")
+} if($scope.actividadI==undefined){
+  
+              $scope.actividadI="";
+  console.log("entro ppor $scope.actividadI")
+} if($scope.paisesCome==undefined){
+  
+              $scope.paisesCome="";
+  console.log("entro ppor $scope.paisesCome")
+} if($scope.neg_internet==undefined){
+  
+              $scope.neg_internet="";
+  console.log("entro ppor $scope.neg_internet")
+} if($scope.observaciones==undefined){
+  
+              $scope.observaciones="";
+  console.log("entro ppor $scope.observaciones")
+}
+
+
+
+if(!$scope.hayCamposVacios){
+
+  usSpinnerService.spin('spinner-1');
      $http.post("Modelo/servicesMincit/Asesor/registrarEmpresaE.php",
-     	{
-     		//Clasificacion de clientes
-     		'clasificacion':$scope.clasificacion,
-        //Datos de contacto
-     		
-			'id_usuario_registro':datos_usuarios.id_usuario,
-
-			'cedula':$scope.cedula,
-			'nombres':$scope.nombres,
-			'apellidos':$scope.apellidos,
-			'cargo':$scope.cargo,
-			'antiguedadCargo':$scope.antiguedad,
-			'fechaNacimiento':$scope.fechaN,
-			'lugarNacimiento':$scope.lugarN,
-			'nivelEstudios':$scope.nivelEstudio,
-			'direccion':$scope.direccion,
-			'telefonoF':$scope.telefonoF,
-			'telefonoC':$scope.telefonoC,			
-			'departamento':$scope.departamento,
-			'ciudad':$scope.ciudad,
-			'genero':$scope.genero,
-			'correo':$scope.correo,
-			'grupoEtnico':$scope.grupoE,
-			'condicionDesplazamiento':$scope.condicionD,
-			'discapacidad':$scope.discapacidad,
-			
-			//Datos de la empresa
-			//'fecha':$scope.fecha,
-		    'nombreE':$scope.nombreE,
-		    'nit':$scope.nit,
-		    'nombreR':$scope.nombreR,
-		    'constitucion':$scope.constitucion,
-		    'fechaC':$scope.fechaC,
-		    'tc':$scope.tc,
-		    'mt':$scope.mt,
-		    'directos':$scope.directos,
-		    'indirectos':$scope.indirectos,
-		    'direccionEm':$scope.direccionEm,
-		    'ciudadEm':$scope.ciudadEm,
-		    'dptoEm':$scope.dptoEm,
-		    'telefonoFijo':$scope.telefonoFijo,
-		    'telefonoCelular':$scope.telefonoCelular,
-		    'correoEm':$scope.correoEm,
-		    'sitioWeb':$scope.sitioWeb,
-		    'tipoEm':$scope.tipoEm,
+      {
+        //Clasificacion de clientes
+      'clasificacion':$scope.clasificacion,   
+      'id_usuario_registro':datos_usuarios.id_usuario,
+      'cedula':$scope.cedula,
+      'nombres':$scope.nombres,
+      'apellidos':$scope.apellidos,
+      'cargo':$scope.cargo,
+      'antiguedadCargo':$scope.antiguedad,
+      'fechaNacimiento':$scope.fechaN,
+      'lugarNacimiento':$scope.lugarN,
+      'nivelEstudios':$scope.nivelEstudio,
+      'direccion':$scope.direccion,
+      'telefonoF':$scope.telefonoF,
+      'telefonoC':$scope.telefonoC,     
+      'departamento':$scope.departamento,
+      'ciudad':$scope.ciudad,
+      'genero':$scope.genero,
+      'correo':$scope.correo,
+      'grupoEtnico':$scope.grupoE,
+      'condicionDesplazamiento':$scope.condicionD,
+      'discapacidad':$scope.discapacidad,
+        'nombreE':$scope.nombreE,
+        'nit':$scope.nit,
+        'nombreR':$scope.nombreR,
+        'constitucion':$scope.constitucion,
+        'fechaC':$scope.fechaC,
+        'tc':$scope.tc,
+        'mt':$scope.mt,
+        'directos':$scope.directos,
+        'indirectos':$scope.indirectos,
+        'direccionEm':$scope.direccionEm,
+        'ciudadEm':$scope.ciudadEm,
+        'dptoEm':$scope.dptoEm,
+        'telefonoFijo':$scope.telefonoFijo,
+        'telefonoCelular':$scope.telefonoCelular,
+        'correoEm':$scope.correoEm,
+        'sitioWeb':$scope.sitioWeb,
+        'tipoEm':$scope.tipoEm,
             'registroM':$scope.registroM,
-		    'numRegistro':$scope.auxiliar.numRegistro,		    
-		    'anoRenova':$scope.auxiliar.anoRenova,
-		    'ciiu':$scope.ciiu,
-		    'actividadI':$scope.actividadI,
-		    'paisesCome':$scope.paisesCome,
-		    'negocio_internet':$scope.neg_internet,		    
-		    'serviciosEmpre':$scope.serviciosEmpre,
-		    'medioCde':$scope.medioCde,
-		    'observaciones':$scope.observaciones,
-		    'url_logo':$scope.urlLogo
-		    
-		    }).success(function(data){
-		    	console.log(data);
-			usSpinnerService.stop('spinner-1');
-			if(data==1){
-				localStorageService.set("miEmpresa","vacio");
-							
-			swal(
-      			'Exito',
-     			 'La empresa fue registrada exitosamente',
-    			  'success'
-   				 );
-				$location.path("/Asesor_inicio");
-			}else{
-				if(hayLogo){
-					$scope.borrarLogo();
-				}
+        'numRegistro':$scope.auxiliar.numRegistro,        
+        'anoRenova':$scope.auxiliar.anoRenova,
+        'ciiu':$scope.ciiu,
+        'actividadI':$scope.actividadI,
+        'paisesCome':$scope.paisesCome,
+        'negocio_internet':$scope.neg_internet,       
+        'serviciosEmpre':$scope.serviciosEmpre,
+        'medioCde':$scope.medioCde,
+        'observaciones':$scope.observaciones,
+        'url_logo':$scope.urlLogo
+        
+        }).success(function(data){
+          console.log(data);
+      usSpinnerService.stop('spinner-1');
+      if(data==1){
+        //localStorageService.set("miEmpresa","vacio");
+              
+      swal(
+            'Exito',
+           'La empresa fue registrada exitosamente',
+            'success'
+           );
+        //$location.path("/Asesor_inicio");
+      }else{
+        if(hayLogo){
+          $scope.borrarLogo();
+        }
 
-			
-				
-				if(data==5){
-				swal('Error',
-     			 'La empresa no fue registrada, puesto que su Nit ya existe en el sistema. Verifique e intente nuevamente',
-    			  'error'
-   				 );
-			}
-			else if(data==4){
-				swal('Error',
-     			 'Se presento un error en la inserción o actualización del contacto',
-    			  'error'
-   				 );
-			}
-			else if(data==2 || data==3){
-				swal('Error',
-     			 'La empresa no fue registrada, Inténtelo nuevamente',
-    			  'error'
-   				 );
-			}
+      
+        
+        if(data==5){
+        swal('Error',
+           'La empresa no fue registrada, puesto que su Nit ya existe en el sistema. Verifique e intente nuevamente',
+            'error'
+           );
+      }
+      else if(data==4){
+        swal('Error',
+           'Se presento un error en la inserción o actualización del contacto',
+            'error'
+           );
+      }
+      else if(data==2 || data==3){
+        swal('Error',
+           'La empresa no fue registrada, Inténtelo nuevamente',
+            'error'
+           );
+      }
 
-		} 
+    } 
 
-		}).error(function(err){
-			usSpinnerService.stop('spinner-1');
+    }).error(function(err){
+      usSpinnerService.stop('spinner-1');
            console.log(err);
 
     });
+}
+   
 
 		
 	

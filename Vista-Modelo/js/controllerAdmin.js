@@ -930,14 +930,14 @@ $http.post('Modelo/servicesMincit/Administrador/eliminarEntidad.php', {
           type: 'success',         
           confirmButtonColor: '#388E3C'          
           }).then(function() {
-           
-          location.reload();
+           $scope.mostrarEntidades();
+          //location.reload();
         }).done();
       
       }else{
-        if(hayLogo){
+        /*if(hayLogo){
           $scope.borrarLogo();
-        }
+        }*/ 
 
         if(data==2){
         swal(
@@ -1083,8 +1083,8 @@ $http.post('Modelo/servicesMincit/Administrador/actualizarEntidad.php', {
           type: 'success',         
           confirmButtonColor: '#388E3C'          
           }).then(function() {
-           
-          location.reload();
+           $scope.mostrarEntidades();
+          //location.reload();
         })
       
       }else{

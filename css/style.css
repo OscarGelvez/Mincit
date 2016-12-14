@@ -309,3 +309,15 @@ span{
   box-shadow: 0 0 5px #bbb;
   color:white !important;
 }
+.parallax-quote {
+    background: url(../Vista/img/fondo.png) no-repeat fixed;
+    background-size: 100%;
+}
+
+.parallax-quote:before {
+    background: none !important;
+}
+
+.parallax-quote:after {
+    background: none !important;
+}

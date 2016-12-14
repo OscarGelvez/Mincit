@@ -1,8 +1,28 @@
 <div class="row" >
   
 <div class="prueba">   
+<br>
+  <div class="parallax-quote parallaxBg" style="padding: 40px 30px;">
+      <div class="parallax-quote-in" style="padding: 0px;">
+          <div class="row">
+               <div class="col-md-3 col-sm-4 col-xs-5">
+                            <a >
+                                <img id="logo-header" class="img-responsive"
+                                     src="Vista/img/banner2.png" alt="Logo Alcaldía">
+                            </a>
+                        </div>
 
-      
+               <div class="col-md-3 col-sm-4 col-xs-5 pull-right">
+                                          <a ><img class="header-banner img-responsive"
+                                                                                 src="Vista/img/banner1.png"
+                                                                                 alt="Escudo de Colombia"></a>
+                </div>
+         </div>
+  </div>
+
+</div>
+
+ <br> 
       <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -44,7 +64,7 @@
           <a href="#Entidad_modificarServicios" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa  fa-user-circle fa-lg"></i> Cuenta<span class="caret"></span></a>
           <ul class="dropdown-menu">
            <li><a href="#Entidad_configuraciones"><i class="fa  fa-cog"></i> Configuraciones</a></li>
-            <li ng-click="cerrarSesion()"><a><i class="fa fa-sign-out"></i> Cerrar sesión</a></li>
+            <li ng-click="cerrarSesion()"><a href="#"><i class="fa fa-sign-out"></i> Cerrar sesión</a></li>
           </ul>
 
         </li>
@@ -71,19 +91,19 @@
 
 </div>
 <div >
-    <div class="col-xs-6 col-md-6" id="area1">
+    <div class="col-xs-6 col-md-6 col-xs-offset-3" id="area1" >
                 <div class="form-group">
                    
-                    <label class="acomodarL">NOMBRE SERVICIO</label>
-                    <input type="text" class="form-controlP" ng-model="nombre" placeholder="Nombre entidad" required>
+                    <label class="">NOMBRE SERVICIO</label>
+                    <input type="text" class="form-control" ng-model="nombre" placeholder="Nombre entidad" required>
               
                 </div>
-               <br><br><br><br>
+               
               
           </div>
-        <div class="col-xs-6 col-md-6" id="area2">
+        <div class="col-xs-6 col-md-6 col-xs-offset-3" id="area2">
            <div class="form-group">
-                     <label class="acomodarL">DESCRIPCIÓN</label>
+                     <label class="">DESCRIPCIÓN</label>
                   <textarea class="form-control" ng-model="descripcion" rows="3" required ></textarea>
                    
               </div>        
