@@ -103,7 +103,7 @@
 
 
 
-            <div class="col-xs-6">
+            <div class="col-xs-6 col-md-6">
                 <div class="form form-inline">
                    
                     <label class="acomodarL">Cedula <font color="red" size="3"><b>*</b></font></label>
@@ -120,7 +120,7 @@
                 </div>
               
             </div>
-            <div class="col-xs-6 ">
+            <div class="col-xs-6 col-md-6">
              <div class="form-group ">
                 <label for="lastname">Nombres <font color="red" size="3"><b>*</b></font></label>
                     <input type="text" class="form-control" ng-model="nombres" placeholder="Nombres" >
@@ -133,8 +133,10 @@
                     <input type="text" class="form-control" ng-model="cargo" placeholder="Cargo" >
                 </div>
             </div>
-
-             <div class="col-xs-6">
+<div class="clearfix">
+  
+</div>
+             <div class="col-xs-6 col-md-6">
              <div class="form-group">
                     <label for="apellidos">Fecha en que obtuvo el cargo <font color="red" size="3"><b>*</b></font></label>
                     <input type="date" class="form-control" ng-model="antiguedad" date-format max="{{CurrentDate | date:'yyyy-MM-dd'}}" min="1916-01-01">
@@ -146,7 +148,7 @@
                 
             </div>
 
-             <div class="col-xs-6">
+             <div class="col-xs-6 col-md-6">
                 <div class="form-group">
                     <label for="lastname">Lugar de nacimiento <font color="red" size="3"><b>*</b></font></label>
                     <input type="text" class="form-control" ng-model="lugarN" placeholder="Lugar de nacimiento" >
@@ -165,8 +167,10 @@
                   </select>
                 </div>
             </div>
-
-             <div class="col-xs-6">
+<div class="clearfix">
+  
+</div>
+             <div class="col-xs-6 col-md-6">
                 <div class="form-group">
                     <label for="lastname">Direccion <font color="red" size="3"><b>*</b></font></label>
                     <input type="text" class="form-control" ng-model="direccion" placeholder="Direccion" >
@@ -180,7 +184,7 @@
               
             </div>
 
-             <div class="col-xs-6">
+             <div class="col-xs-6 col-md-6">
                <div class="form-group">
                     <label for="password">Telefono Celular <font color="red" size="3"><b>*</b></font></label>
                     <input type="number" min="0" class="form-control" ng-model="telefonoC" placeholder="Telefono Celular" >
@@ -198,7 +202,7 @@
               
             </div>
 
-            <div class="col-xs-6">
+            <div class="col-xs-6 col-md-6">
                 <div class="form-group">
                      <label >Ciudad <font color="red" size="3"><b>*</b></font></label>
                   <select class="form-control" ng-model="ciudad"  >
@@ -219,7 +223,17 @@
                   </select>
                 </div>
 
-                <div class="form-group">
+               
+               
+            </div>
+
+            <div class="col-xs-6 col-md-6">
+               <div class="form-group">
+                    <label for="password">Correo Electronico <font color="red" size="3"><b>*</b></font></label>
+                    <input type="email" class="form-control" ng-model="correo" placeholder="correo@mail.com" >
+                </div> 
+
+               <div class="form-group">
                      <label for="Nombres">¿Está en Condición de Desplazamiento?  <font color="red" size="3"><b>*</b></font></label>
                    <select class="form-control" ng-model="condicionD" >
                       <option value="">--Seleccione--</option>
@@ -227,13 +241,9 @@
                       <option>No</option>
                   </select>
                 </div>
-               
             </div>
-            <div class="col-xs-6">
-             <div class="form-group">
-                    <label for="password">Correo Electronico <font color="red" size="3"><b>*</b></font></label>
-                    <input type="email" class="form-control" ng-model="correo" placeholder="correo@mail.com" >
-                </div>
+            <div class="col-xs-6 col-md-6">
+            
                  <div class="form-group">
                     <label for="password">Grupo Etnico <font color="red" size="3"><b>*</b></font></label>
                      <select class="form-control" ng-model="grupoE" >
@@ -246,6 +256,13 @@
            
                   </select>
                 </div>
+
+                
+      
+            </div>
+             <div class="col-xs-6 col-md-6">
+            
+              
 
                  <div class="form-group">
                       <label for="Nombres">¿Presenta algún tipo de discapacidad? <font color="red" size="3"><b>*</b></font></label>
@@ -278,7 +295,7 @@
         </fieldset>
     <fieldset>
             <legend>II. INFORMACIÓN DE LA EMPRESA </legend>
-          <div class="col-xs-6">
+          <div class="col-xs-6 col-md-6">
                 <div class="form-group">
                     <label for="pwd">Nombre de la empresa <font color="red" size="3"><b>*</b></font></label>
                     <input type="text" class="form-control" ng-model="nombreE" placeholder="Nombre de la empresa" >
@@ -292,7 +309,7 @@
                 </div>
               
             </div>
-            <div class="col-xs-6">
+            <div class="col-xs-6 col-md-6">
              <div class="form-group">
             <label for="pwd">Nombre del representante legal</label>
             <input type="text" class="form-control" ng-model="nombreR"  placeholder="Nombre del representante">
@@ -314,7 +331,7 @@
             </div>
           </div>
 
-           <div class="col-xs-6">
+           <div class="col-xs-6 col-md-6">
                <div class="form-group">
             <label for="pwd">Fecha de constitucion o inicio de labores <font color="red" size="3"><b>*</b></font></label>
             <input type="date" size="50" class="form-control" ng-model="fechaC"  placeholder=""  date-format max="{{CurrentDate | date:'yyyy-MM-dd'}}" min="1916-01-01">
@@ -341,7 +358,7 @@
 
        </div>
 
-        <div class="col-xs-6">
+        <div class="col-xs-6 col-md-6">
                <div class="form-group">
                <label for="pwd">Direccion <font color="red" size="3"><b>*</b></font></label>
                <input type="text" class="form-control" ng-model="direccionEm" placeholder="Direccion" >
@@ -352,7 +369,7 @@
               
             </div>
 
-         <div class="col-xs-6">
+         <div class="col-xs-6 col-md-6">
                 <div class="form-group">
                 <label for="pwd">Telefono fijo <font color="red" size="3"><b>*</b></font></label>
                 <input type="number" min="0" class="form-control" ng-model="telefonoFijo" placeholder="Telefono fijo" >
@@ -367,7 +384,7 @@
             </div>
 
 
-            <div class="col-xs-6">
+            <div class="col-xs-6 col-md-6">
                 <div class="form-group">
                      <label >Ciudad <font color="red" size="3"><b>*</b></font></label>
                   <select class="form-control" ng-model="ciudadEm"  >
@@ -389,7 +406,7 @@
             </div>
       
 
-           <div class="col-xs-6">
+           <div class="col-xs-6 col-md-6">
              <div class="form-group">
                 <div class="form-group">
                     <label for="pwd">Correo <font color="red" size="3"><b>*</b></font></label>
@@ -424,7 +441,7 @@
               
             </div>
 
-    <div class="col-xs-6">
+    <div class="col-xs-6 col-md-6">
                                
                 <div class="form-group">
       <label for="pwd">Tiene registro mercantil <font color="red" size="3"><b>*</b></font></label>
@@ -449,7 +466,7 @@
  
     </div>
 
-       <div class="col-xs-6">
+       <div class="col-xs-6 col-md-6">
                     <div class="form-group">
                     <label for="pwd" ng-if="tiene_rm">¿Último año de renovación? <font color="red" size="3"><b>*</b></font> </label>
                     <input type="number" min="0" class="form-control" ng-model="auxiliar.anoRenova" ng-if="tiene_rm" name="anoRenova" placeholder="ultimo año de renovacion" >
@@ -467,7 +484,7 @@
         <fieldset>
         <legend>III. INFORMACIÓN DE LA EMPRESA EMPRENDEDORA</legend>
         
-            <div class="col-xs-6">
+            <div class="col-xs-6 col-md-6">
               <div class="form-group">
                     <label for="pwd">Codigo principal CIIU</label>
                     <input type="number" min="0" class="form-control" ng-model="ciiu" name="cii" placeholder="Codigo principal CIIU" >
@@ -487,7 +504,7 @@
 
         </div>
 
-    <div class="col-xs-6">
+    <div class="col-xs-6 col-md-6">
        <div class="form-group">
                     <label for="pwd">Mencione lo paises con los cuales comercializa</label>
                     <input type="text" class="form-control" ng-model="paisesCome" name="paisescomer" placeholder="Paises con los cuales comercializa" >
@@ -512,7 +529,7 @@
                
 
     </div>
-    <div class="col-xs-6">
+    <div class="col-xs-6 col-md-6">
                      
                     <div class="form-group">
                     <label for="pwd">¿Por qué medio se enteró del Centro de Desarrollo Empresarial- CDE? <font color="red" size="3"><b>*</b></font></label>
@@ -545,7 +562,7 @@
 
       </div>
 
-       <div class="col-xs-6">
+       <div class="col-xs-6 col-md-6">
 
                     <div class="form-group">
                     <label for="pwd">Productos y servicios que ofrece la empresa </label>
