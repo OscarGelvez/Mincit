@@ -78,46 +78,21 @@
 <div class="col-sm-12 col-xs-12 row2"  >
     <h4 class="text-center"><b>REGISTRO CLIENTES/ EMPRESAS TURISTICAS</b></h4>
     <form id="SignupForm"  name="myform"  ng-submit="registrarEmpresa()">
-        <fieldset>
-        <legend>I. DATOS DEL CONTACTO </legend> 
+       <fieldset>
+         <legend>I. DATOS DEL CONTACTO </legend> 
+         <i>Campos marcados con <font color="red" size="3"><b>*</b></font> son obligatorios</i>
             <CENTER>
     <hr class="acomodarBarra">
-         <label class="acomodarFr text-center"> I. CLASIFICACIÓN DE CLIENTES </label>
+         <label class="acomodarFr text-center"> I. CLASIFICACIÓN DE CLIENTES <font color="red" size="3"><b>*</b></font> </label>
          <hr class="acomodarB"> 
     <div class="form-group">
-      <div class="col-xs-3">
-        <div class="radio">
-    <label>
-      <input type="radio" name="optionsRadios" id="optionsRadios1" value="Emprendedor" ng-model="clasificacion" >
-      1.EMPRENDEDOR
-    </label>
-  </div>
-  </div>
- <div class="col-xs-3">
-  <div class="radio">
-    <label>
-      <input type="radio" name="optionsRadios" id="optionsRadios2" value="Empresa Formal" ng-model="clasificacion">
-      2.EMPRESA FORMAL
-    </label>
-  </div>
-</div>
- <div class="col-xs-3">
-   <div class="radio">
-    <label>
-      <input type="radio" name="optionsRadios" id="optionsRadios2" value="Empresa Informal" ng-model="clasificacion">
-      2.EMPRESA INFORMAL
-    </label>
-  </div>
-</div>
- <div class="col-xs-3">
-  <div class="radio">
-    <label>
-      <input type="radio" name="optionsRadios" id="optionsRadios2" value="Empresa Gacela" ng-model="clasificacion">
-      2.EMPRESA GACELA
-    </label>
-  </div>
-</div>
-
+      <label for="pwd">Tipo de cliente:</label>
+                   <select class="form-control" ng-model="clasificacion"  id="constitucion_legal" >
+                      <option value="">--Seleccione--</option>
+                      <option ng-repeat="c in combo3">{{c.nombre_opc}}</option>
+                     
+                                        
+                   </select>
     </div>
 </CENTER>
 <hr class="acomodarBarra">
@@ -129,8 +104,8 @@
             <div class="col-xs-6">
                 <div class="form form-inline">
                    
-                    <label class="acomodarL">Cedula</label>
-                    <input type="text" class="form-controlP" ng-model="cedula" placeholder="Cedula" required>
+                    <label class="acomodarL">Cedula <font color="red" size="3"><b>*</b></font></label>
+                    <input type="number"  min="0" class="form-controlP" ng-model="cedula" placeholder="Cedula" >
 
                     <button type="button" class="btn btn-info form-control" aria-label="Left Align" ng-click="buscarContacto();">
                      <span class="glyphicon glyphicon glyphicon-search" aria-hidden="true"></span>
@@ -138,65 +113,66 @@
 
                 </div>
                 <div class="form-group margenT">
-                    <label for="email">Apellidos</label>
-                    <input type="text" class="form-control" ng-model="apellidos" placeholder="Apellidos" required>
+                    <label for="email">Apellidos <font color="red" size="3"><b>*</b></font></label>
+                    <input type="text" class="form-control" ng-model="apellidos" placeholder="Apellidos" >
                 </div>
               
             </div>
             <div class="col-xs-6 ">
              <div class="form-group ">
-                <label for="lastname">Nombres</label>
-                    <input type="text" class="form-control" ng-model="nombres" placeholder="Nombres" required>
+                <label for="lastname">Nombres <font color="red" size="3"><b>*</b></font></label>
+                    <input type="text" class="form-control" ng-model="nombres" placeholder="Nombres" >
                     
                 </div>
               
                 
                 <div class="form-group">
-                    <label for="password">Cargo</label>
-                    <input type="text" class="form-control" ng-model="cargo" placeholder="Cargo" required>
+                    <label for="password">Cargo <font color="red" size="3"><b>*</b></font></label>
+                    <input type="text" class="form-control" ng-model="cargo" placeholder="Cargo" >
                 </div>
             </div>
-
+  
+  <div class="clearfix"></div>
              <div class="col-xs-6">
              <div class="form-group">
-                    <label for="apellidos">Fecha en que obtuvo el cargo:</label>
-                    <input type="date" class="form-control" ng-model="antiguedad"required date-format max="{{CurrentDate | date:'yyyy-MM-dd'}}" min="1916-01-01">
+                    <label for="apellidos">Fecha en que obtuvo el cargo <font color="red" size="3"><b>*</b></font></label>
+                    <input type="date" class="form-control" ng-model="antiguedad" date-format max="{{CurrentDate | date:'yyyy-MM-dd'}}" min="1916-01-01">
                 </div>
                 <div class="form-group">
-                    <label>Fecha de nacimiento</label>
-                  <input type="date" class="form-control" ng-model="fechaN" placeholder="Fecha de nacimiento" required date-format max="1998-01-01" min="1916-01-01">
+                    <label>Fecha de nacimiento <font color="red" size="3"><b>*</b></font></label>
+                  <input type="date" class="form-control" ng-model="fechaN" placeholder="Fecha de nacimiento"  date-format max="1998-01-01" min="1916-01-01">
                 </div>
                 
             </div>
 
              <div class="col-xs-6">
                 <div class="form-group">
-                    <label for="lastname">Lugar de nacimiento:</label>
-                    <input type="text" class="form-control" ng-model="lugarN" placeholder="Lugar de nacimiento" required>
+                    <label for="lastname">Lugar de nacimiento <font color="red" size="3"><b>*</b></font></label>
+                    <input type="text" class="form-control" ng-model="lugarN" placeholder="Lugar de nacimiento" >
 
                 </div>
                 <div class="form-group">
-                    <label for="password">Nivel de estudios</label>
-                    <select class="form-control" ng-model="nivelEstudio" required>
+                    <label for="password">Nivel de estudios <font color="red" size="3"><b>*</b></font></label>
+                    <select class="form-control" ng-model="nivelEstudio" >
                       <option value="">--Seleccione--</option>
                       <option >Primaria</option>
                       <option>Bachiller</option>
                       <option>Tecnica</option>
                       <option>Profesional</option>
                       <option>Postgrado</option>
-                      <option>number</option>
+                     
                   </select>
                 </div>
             </div>
 
              <div class="col-xs-6">
                 <div class="form-group">
-                    <label for="lastname">Direccion</label>
-                    <input type="text" class="form-control" ng-model="direccion" placeholder="Direccion" required>
+                    <label for="lastname">Direccion <font color="red" size="3"><b>*</b></font></label>
+                    <input type="text" class="form-control" ng-model="direccion" placeholder="Direccion" >
                 </div>
                  <div class="form-group">
-                     <label for="password">Telefono Fijo</label>
-                    <input type="number" class="form-control" ng-model="telefonoF" placeholder="Telefono Fijo" required>
+                     <label for="password">Telefono Fijo <font color="red" size="3"><b>*</b></font></label>
+                    <input type="number" min="0" class="form-control" ng-model="telefonoF" placeholder="Telefono Fijo" >
                 </div>
                
 
@@ -205,13 +181,13 @@
 
              <div class="col-xs-6">
                <div class="form-group">
-                    <label for="password">Telefono Celular</label>
-                    <input type="number" class="form-control" ng-model="telefonoC" placeholder="Telefono Celular" required>
+                    <label for="password">Telefono Celular <font color="red" size="3"><b>*</b></font></label>
+                    <input type="number" min="0" class="form-control" ng-model="telefonoC" placeholder="Telefono Celular" >
                 </div>
                  <div class="form-group">
-                  <label >Departamento</label>
+                  <label >Departamento <font color="red" size="3"><b>*</b></font></label>
 
-                    <select class="form-control" ng-model="departamento" id="dptoContacto" required>
+                    <select class="form-control" ng-model="departamento" id="dptoContacto" >
                       <option value="">--Seleccione--</option>
                       <option ng-repeat="d in dptosCombo">{{d.nombre}}</option>
                                 
@@ -223,8 +199,8 @@
 
             <div class="col-xs-6">
                 <div class="form-group">
-                     <label >Ciudad</label>
-                  <select class="form-control" ng-model="ciudad"  required>
+                     <label >Ciudad <font color="red" size="3"><b>*</b></font></label>
+                  <select class="form-control" ng-model="ciudad"  >
                       <option value="">--Seleccione--</option>
                       <option ng-repeat="c in ciudadesCombo">{{c.nombre}}</option>
                      
@@ -232,8 +208,8 @@
                   </select>
                 </div>
               <div class="form-group">
-                     <label for="Nombres">Genero</label>
-                   <select class="form-control" ng-model="genero" required>
+                     <label for="Nombres">Genero <font color="red" size="3"><b>*</b></font></label>
+                   <select class="form-control" ng-model="genero" >
                       <option value="">--Seleccione--</option>
                       <option >Masculino</option>
                       <option>Femenino</option>
@@ -243,8 +219,8 @@
                 </div>
 
                 <div class="form-group">
-                     <label for="Nombres">¿Está en Condición de Desplazamiento? </label>
-                   <select class="form-control" ng-model="condicionD" required>
+                     <label for="Nombres">¿Está en Condición de Desplazamiento?  <font color="red" size="3"><b>*</b></font></label>
+                   <select class="form-control" ng-model="condicionD" >
                       <option value="">--Seleccione--</option>
                       <option >Si</option>
                       <option>No</option>
@@ -254,12 +230,12 @@
             </div>
             <div class="col-xs-6">
              <div class="form-group">
-                    <label for="password">Correo Electronico</label>
-                    <input type="email" class="form-control" ng-model="correo" placeholder="correo@mail.com" required>
+                    <label for="password">Correo Electronico <font color="red" size="3"><b>*</b></font></label>
+                    <input type="email" class="form-control" ng-model="correo" placeholder="correo@mail.com" >
                 </div>
                  <div class="form-group">
-                    <label for="password">Grupo Etnico</label>
-                     <select class="form-control" ng-model="grupoE" required>
+                    <label for="password">Grupo Etnico <font color="red" size="3"><b>*</b></font></label>
+                     <select class="form-control" ng-model="grupoE" >
                       <option value="">--Seleccione--</option>
                       <option >Rrom(Gitanos)</option>
                       <option>Indigenas</option>
@@ -271,8 +247,8 @@
                 </div>
 
                  <div class="form-group">
-                      <label for="Nombres">¿Presenta algún tipo de discapacidad? </label>
-                   <select class="form-control" ng-model="discapacidad" required>
+                      <label for="Nombres">¿Presenta algún tipo de discapacidad? <font color="red" size="3"><b>*</b></font></label>
+                   <select class="form-control" ng-model="discapacidad" >
                       <option value="">--Seleccione--</option>
                       <option >Si</option>
                       <option>No</option>
@@ -298,65 +274,64 @@
              
              </div>
              <br>
-
         </fieldset>
     <fieldset>
-             <legend>II. INFORMACIÓN DE LA EMPRESA </legend>
+            <legend>II. INFORMACIÓN DE LA EMPRESA </legend>
           <div class="col-xs-6">
                 <div class="form-group">
-                    <label for="pwd">Nombre de la empresa</label>
-                    <input type="text" class="form-control" ng-model="nombreE" placeholder="Nombre de la empresa" required>
+                    <label for="pwd">Nombre de la empresa <font color="red" size="3"><b>*</b></font></label>
+                    <input type="text" class="form-control" ng-model="nombreE" placeholder="Nombre de la empresa" >
                   
                 </div>
               
                 <div class="form-group">
-                  <label for="pwd">Nit:</label>
-                  <input type="number" class="form-control" ng-model="nit"  placeholder="NIT" required>
+                  <label for="pwd">Nit</label>
+                  
+                  <input type="number" min="0" class="form-control" ng-model="nit"  placeholder="NIT" >
                 </div>
               
             </div>
             <div class="col-xs-6">
              <div class="form-group">
-            <label for="pwd">Nombre del representante legal:</label>
-            <input type="text" class="form-control" ng-model="nombreR"  placeholder="Nombre del representante" required>
+            <label for="pwd">Nombre del representante legal</label>
+            <input type="text" class="form-control" ng-model="nombreR"  placeholder="Nombre del representante">
           </div>
             
             <div class="form-group">
-                  <label for="pwd">Constitucion legal:</label>
+                  <label for="pwd">Constitucion legal  <font color="red" size="3"><b>*</b></font></label>
+                   
+
                    <select class="form-control" ng-model="constitucion"  id="constitucion_legal" >
-                      <option value="">--Seleccione-</option>
-                      <option >SAS</option>
-                      <option>Limitada</option>
-                      <option>Anonima</option>
-                      <option>Persona natural</option>
-                      <option>Otra</option>
+                      <option value="">--Seleccione--</option>
+                      <option ng-repeat="c in combo1">{{c.nombre_opc}}</option>
+                        
                                         
                    </select>
                  
                    <br>
-                  <input type="text" class="form-control" ng-model="auxiliar.constitucion2" ng-if="otra_activa" placeholder="Escriba la constitución legal de la empresa" required>
+                  <input type="text" class="form-control" ng-model="auxiliar.constitucion2" ng-if="otra_activa" placeholder="Escriba la constitución legal de la empresa" >
             </div>
           </div>
 
            <div class="col-xs-6">
                <div class="form-group">
-            <label for="pwd">Fecha de constitucion o inicio de labores:</label>
-            <input type="date" size="50" class="form-control" ng-model="fechaC"  placeholder="" required date-format max="{{CurrentDate | date:'yyyy-MM-dd'}}" min="1916-01-01">
+            <label for="pwd">Fecha de constitucion o inicio de labores <font color="red" size="3"><b>*</b></font></label>
+            <input type="date" size="50" class="form-control" ng-model="fechaC"  placeholder=""  date-format max="{{CurrentDate | date:'yyyy-MM-dd'}}" min="1916-01-01">
           </div>
               
                 
            <div class="form-group form-inline">
             <label for="pwd">No empleados</label>
-            <label for="pwd">T.C</label> <input type="number" ng-model="tc"  class="form-control campo" >
-            <label for="pwd">M.T</label> <input type="number" ng-model="mt"  class="form-control campo">
-            <label for="pwd">Directos</label> <input type="number" ng-model="directos"  class="form-control campo">
-            <label for="pwd">Indirectos</label> <input type="number" ng-model="indirectos"  class="form-control campo">
+            <label for="pwd">T.C</label> <input type="number" min="0" ng-model="tc"  class="form-control campo" >
+            <label for="pwd">M.T</label> <input type="number" min="0" ng-model="mt"  class="form-control campo">
+            <label for="pwd">Directos</label> <input type="number" min="0" ng-model="directos"  class="form-control campo">
+            <label for="pwd">Indirectos</label> <input type="number" min="0" ng-model="indirectos"  class="form-control campo">
           </div>
 
            <div class="form-group">
-                  <label >Departamento</label>
+                  <label >Departamento <font color="red" size="3"><b>*</b></font></label>
 
-                    <select class="form-control" ng-model="dptoEm" id="dptoEmpresa" required>
+                    <select class="form-control" ng-model="dptoEm" id="dptoEmpresa" >
                       <option value="">--Seleccione--</option>
                       <option ng-repeat="d in dptosCombo">{{d.nombre}}</option>
                                 
@@ -367,23 +342,31 @@
 
         <div class="col-xs-6">
                <div class="form-group">
-               <label for="pwd">Direccion:</label>
-               <input type="text" class="form-control" ng-model="direccionEm" placeholder="Direccion" required>
+               <label for="pwd">Direccion <font color="red" size="3"><b>*</b></font></label>
+               <input type="text" class="form-control" ng-model="direccionEm" placeholder="Direccion" >
               </div>
               
-                 <div class="form-group">
-                    <label for="pwd">Correo:</label>
-                    <input type="email" class="form-control" ng-model="correoEm" name="correoEm" placeholder="ejemplo@correo.com" required>
-                  </div>
-                         
+                <div class="form-group">
+                <label for="pwd">Telefono fijo <font color="red" size="3"><b>*</b></font></label>
+                <input type="number" min="0" class="form-control" ng-model="telefonoFijo" placeholder="Telefono fijo" >
+              </div>
+              
+                            
+               <div class="form-group">
+                <label for="pwd">Telefono Celular <font color="red" size="3"><b>*</b></font></label>
+                <input type="number" min="0"  class="form-control" ng-model="telefonoCelular" placeholder="Telefono Celular" >
+              </div>
+                            
               
               
             </div>
 
-         <div class="col-xs-6">
+
+
+            <div class="col-xs-6">
                 <div class="form-group">
-                     <label >Ciudad</label>
-                  <select class="form-control" ng-model="ciudadEm"  required>
+                     <label >Ciudad <font color="red" size="3"><b>*</b></font></label>
+                  <select class="form-control" ng-model="ciudadEm"  >
                       <option value="">--Seleccione--</option>
                       <option ng-repeat="c in ciudadesCombo2">{{c.nombre}}</option>
                      
@@ -391,40 +374,37 @@
                   </select>
                 </div>
                   
-            </div>
-
-
-            <div class="col-xs-6">
-                <div class="form-group">
-                <label for="pwd">Telefono fijo:</label>
-                <input type="text" class="form-control" ng-model="telefonoFijo" placeholder="Telefono fijo" required>
-              </div>
-              
-                            
-               <div class="form-group">
-                <label for="pwd">Telefono Celular</label>
-                <input type="text"  class="form-control" ng-model="telefonoCelular" placeholder="Telefono Celular" required>
-              </div>
-              
-              
                    <div class="form-group">
-                    <label for="pwd">Sitio Web</label>
-                    <input type="text" class="form-control" ng-model="sitioWeb" name="sitioWeb" placeholder="Sitio Web" required>
+                    <label for="pwd">Sitio Web <font color="red" size="3"><b>*</b></font></label>
+                    <input type="text" class="form-control" ng-model="sitioWeb" name="sitioWeb" placeholder="Sitio Web" >
                   </div>
               
-                            
+                           <div class="form-group">
+                    <label for="pwd" ng-if="tiene_rm" >Numero Registro Mercantil <font color="red" size="3"><b>*</b></font></label>
+                    <input type="number" min="0" class="form-control" ng-model="auxiliar.numRegistro" ng-if="tiene_rm" name="numeroRegis" placeholder="Numero registro mercantil" >
+                  </div>    
               
               
             </div>
       
 
-       <div class="col-xs-6">
+           <div class="col-xs-6">
+             <div class="form-group">
+                <div class="form-group">
+                    <label for="pwd">Correo <font color="red" size="3"><b>*</b></font></label>
+                    <input type="email" class="form-control" ng-model="correoEm" name="correoEm" placeholder="ejemplo@correo.com" >
+                  </div>
+              
+            </div>               
+            </div>
+
+    <div class="col-xs-6">
                                
                 <div class="form-group">
-      <label for="pwd">Tiene registro mercantil?</label>
+      <label for="pwd">Tiene registro mercantil <font color="red" size="3"><b>*</b></font></label>
         <div class="radio">
     <label>
-      <input type="radio" ng-model="registroM" name="registroM" value="si" checked>
+      <input type="radio" ng-model="registroM" name="registroM" value="si" checked >
       Si
     </label>
   </div>
@@ -436,36 +416,18 @@
   </div>
  
     </div>
-     <div class="form-group">
-                    <label for="pwd" ng-if="tiene_rm" >Numero Registro Mercantil</label>
-                    <input type="number" class="form-control" ng-model="auxiliar.numRegistro" ng-if="tiene_rm" name="numeroRegis" placeholder="Numero registro mercantil" required>
-                  </div>
- 
+  
+  <div class="form-group">
+                    <label for="pwd" ng-if="tiene_rm">¿Último año de renovación? <font color="red" size="3"><b>*</b></font> </label>
+                    <input type="number" min="0" class="form-control" ng-model="auxiliar.anoRenova" ng-if="tiene_rm" name="anoRenova" placeholder="ultimo año de renovacion" >
+                    </div> 
     </div>
 
-       <div class="col-xs-6">
-                    <div class="form-group">
-                    <label for="pwd" ng-show="tiene_rm">¿Último año de renovación?: </label>
-                    <input type="number" class="form-control" ng-model="auxiliar.anoRenova" ng-if="tiene_rm" name="anoRenova" placeholder="ultimo año de renovacion" required>
-                    </div>           
-         
-                
-
-      </div>
-
-    
-
-      <div class="col-xs-6 acomodarBT">
-        
-      </div>
-
-      <div class="col-xs-6 acomodarBT" ng-if="tiene_rm">
-        
-      </div>
+       
 
     
   
-          <br><br>
+ 
         </fieldset>
 
         <fieldset>
@@ -475,7 +437,7 @@
               <div class="col-xs-6">
               
                        <div class="form-group">
-                    <label for="pwd">Registro nacional de turismo</label>
+                    <label for="pwd">Registro nacional de turismo <font color="red" size="3"><b>*</b></font></label>
                                          <div class="radio">
                           <label>
                             <input type="radio" ng-model="registroN"  value="si" checked>
@@ -491,7 +453,7 @@
                </div>           
          
              <div class="form-group">
-                    <label for="pwd">Maneja algun tipo de poliza</label>
+                    <label for="pwd">Maneja algun tipo de poliza <font color="red" size="3"><b>*</b></font></label>
                                          <div class="radio">
                           <label>
                             <input type="radio" ng-model="poliza"  value="si" checked>
@@ -511,8 +473,8 @@
   <div class="col-xs-6">
 
                     <div class="form-group">
-                    <label for="pwd">Productos y servicios que ofrece la empresa</label>
-                    <textarea class="form-control" ng-model="serviciosEmpre" rows="5" name="servicios" required></textarea>
+                    <label for="pwd">Productos y servicios que ofrece la empresa <font color="red" size="3"><b>*</b></font></label>
+                    <textarea class="form-control" ng-model="serviciosEmpre" rows="5" name="servicios" ></textarea>
                    
                    </div>  
                   
@@ -522,7 +484,7 @@
       </div>
  <div class="col-xs-6">
       <div class="form-group">
-                    <label for="pwd">Seguro de viaje</label>
+                    <label for="pwd">Seguro de viaje <font color="red" size="3"><b>*</b></font></label>
                                          <div class="radio">
                           <label>
                             <input type="radio" ng-model="seguro"  value="si" checked>
@@ -537,7 +499,7 @@
                         </div>
                </div>  
 
-<input type="text" class="form-control" ng-model="auxiliar.seguro2" ng-if="seguro_cual" placeholder="Escriba el seguro de viaje" required> 
+<input type="text" class="form-control" ng-model="auxiliar.seguro2" ng-if="seguro_cual" placeholder="Escriba el seguro de viaje" > 
 
                       
 </div>
@@ -545,7 +507,7 @@
 <div class="col-xs-6">
       
                   <div class="form-group">
-                    <label for="pwd">Se encuentra registrado como exportador de servicios (Rut):</label>
+                    <label for="pwd">Se encuentra registrado como exportador de servicios (Rut) <font color="red" size="3"><b>*</b></font></label>
                     <div class="radio">
                           <label>
                             <input type="radio" ng-model="registroExp"  value="si" checked>
@@ -561,7 +523,7 @@
                </div> 
             
           <div class="form-group">
-                    <label for="pwd">Certificados de sostenibilidad: </label>
+                    <label for="pwd">Certificados de Sostenibilidad <font color="red" size="3"><b>*</b></font> </label>
                    <select class="form-control" ng-model="sostenibilidad" >
                       <option value="">--Seleccione-</option>
                       <option>Si</option>
@@ -574,19 +536,19 @@
                </div> 
 
     
-          <input type="text" class="form-control" ng-model="auxiliar.sostenibilidad2" ng-if="sostenibilidad_cual" placeholder="Escriba el certificado de sostenibilidad" required>  
+          <input type="text" class="form-control" ng-model="auxiliar.sostenibilidad2" ng-if="sostenibilidad_cual" placeholder="Escriba el certificado de sostenibilidad" >  
           <br>    
 
             <div class="form-group">
-                    <label for="pwd">Grupo étnico del empresario: </label>
-                    <input type="text" class="form-control" ng-model="grupoEt" placeholder="Grupo étnico del empresario:" required>
+                    <label for="pwd">Grupo étnico del empresario <font color="red" size="3"><b>*</b></font></label>
+                    <input type="text" class="form-control" ng-model="grupoEt" placeholder="Grupo étnico del empresario:" >
             </div>  
 
     </div>
     <div class="col-xs-6">
    
        <div class="form-group">
-                    <label for="pwd">Cuenta con libro de migración Colombia: </label>
+                    <label for="pwd">Cuenta con libro de migración Colombia <font color="red" size="3"><b>*</b></font></label>
                                          <div class="radio">
                           <label>
                             <input type="radio" ng-model="libro_mig_col"  value="si" checked>
@@ -602,7 +564,7 @@
                </div> 
   
               <div class="form-group">
-                    <label for="pwd">Paga impuesto al turismo (parafiscal):</label>
+                    <label for="pwd">Paga impuesto al turismo (parafiscal) <font color="red" size="3"><b>*</b></font></label>
                                          <div class="radio">
                           <label>
                             <input type="radio" ng-model="impuesto"  value="si" checked>
@@ -625,7 +587,7 @@
        <div class="col-xs-6">
                       
                     <div class="form-group">
-                    <label for="pwd"> Cuenta con Código de ética</label>
+                    <label for="pwd"> Cuenta con Código de ética <font color="red" size="3"><b>*</b></font></label>
                                          <div class="radio">
                           <label>
                             <input type="radio" ng-model="codigoE"  value="si" checked>
@@ -648,10 +610,10 @@
 <div class="col-xs-6">
       
        <div class="form-group">
-                    <label for="pwd">Cargar Logo de la empresa (Formato jpg o png menores 100k):</label>
+                    <label for="pwd">Cargar Logo de la empresa (Formato jpg o png menores 100k) </label>
                       <p id="f1_upload_form" align=""><br/>
                        
-                              <input  type="file" name="file" uploader-model="file" class="form-control" id="logo" required/>
+                              <input  type="file" name="file" uploader-model="file" class="form-control" id="logo" />
                        
                          
                      </p>
@@ -665,17 +627,17 @@
   
                  <div class="form-group">
                     <label for="pwd">Cédula de extranjería(opcional) :</label>
-                    <input type="text" class="form-control" ng-model="cedulaEx" placeholder="Cédula de extranjería(opcional) :">
+                    <input type="number" min="1" class="form-control" ng-model="cedulaEx" placeholder="Cédula de extranjería(opcional) :">
                </div>   
 
 </div>
 <hr > 
        <hr class="acomodarBarra">
-         <label class="acomodarFr text-center">TIPO DE EMPRESA TURISTICA</label>
+         <label class="acomodarFr text-center">TIPO DE EMPRESA TURISTICA <font color="red" size="3"><b>*</b></font></label>
 <hr class="acomodarB"> 
     
-<div class="col-xs-12">
-<div class="col-xs-2">
+<div class="col-md-12 col-xs-12">
+<div class="col-xs-6 col-md-2">
    <div class="radio">
         <label>
           <input type="radio" name="options_emp_tur" ng-model="tipo_empresa_turistica"  id="tipo_empresa_turistica1" value="Alojamiento">
@@ -683,7 +645,7 @@
         </label>
       </div>
 </div>
-  <div class="col-xs-2">    
+  <div class="col-xs-6 col-md-2">    
       <div class="radio">
         <label>
           <input type="radio" name="options_emp_tur" ng-model="tipo_empresa_turistica" id="tipo_empresa_turistica2" value="Transporte">
@@ -691,7 +653,7 @@
         </label>
       </div>
 </div>
-      <div class="col-xs-2">
+      <div class="col-xs-6 col-md-2">
        <div class="radio">
         <label>
           <input type="radio" name="options_emp_tur" ng-model="tipo_empresa_turistica"id="tipo_empresa_turistica3" value="Agencia de Viaje">
@@ -699,7 +661,7 @@
         </label>
       </div>
 </div>
-      <div class="col-xs-2">
+      <div class="col-xs-6 col-md-2">
        <div class="radio">
         <label>
           <input type="radio" name="options_emp_tur" ng-model="tipo_empresa_turistica" id="tipo_empresa_turistica4" value="Receptivo">
@@ -708,7 +670,7 @@
       </div>
 
      </div> 
-<div class="col-xs-2">     
+<div class="col-xs-6 col-md-2">     
        <div class="radio">
         <label>
           <input type="radio" name="options_emp_tur" ng-model="tipo_empresa_turistica" id="tipo_empresa_turistica5" value="Guía">
@@ -716,7 +678,7 @@
         </label>
       </div>
  </div>     
- <div class="col-xs-2">      
+ <div class="col-xs-6 col-md-2">      
         <div class="radio">
         <label>
           <input type="radio" name="options_emp_tur" ng-model="tipo_empresa_turistica"id="tipo_empresa_turistica6" value="Representación Turística">
@@ -725,7 +687,7 @@
       </div>
 </div>     
 
-<div class="col-xs-2">          
+<div class="col-xs-6 col-md-2">          
        <div class="radio">
         <label>
           <input type="radio" name="options_emp_tur" ng-model="tipo_empresa_turistica" id="tipo_empresa_turistica7" value="Captadora de ahorro">
@@ -733,7 +695,7 @@
         </label>
       </div>
 </div>
-<div class="col-xs-2">      
+<div class="col-xs-6 col-md-2">      
                
        <div class="radio">
         <label>
@@ -742,7 +704,7 @@
         </label>
       </div>
 </div>
-<div class="col-xs-2">
+<div class="col-xs-6 col-md-2">
        <div class="radio">
         <label>
           <input type="radio" name="options_emp_tur" ng-model="tipo_empresa_turistica"id="tipo_empresa_turistica9" value="Intercambio vacasional">
@@ -750,7 +712,7 @@
         </label>
       </div>
 </div>
-<div class="col-xs-2">
+<div class="col-xs-6 col-md-2">
        <div class="radio">
         <label>
           <input type="radio" name="options_emp_tur" ng-model="tipo_empresa_turistica"id="tipo_empresa_turistica10" value="Promotores tiempo compartido">
@@ -758,7 +720,7 @@
         </label>
       </div>
 </div>
-<div class="col-xs-2">
+<div class="col-xs-6 col-md-2">
        <div class="radio">
         <label>
           <input type="radio" name="options_emp_tur" ng-model="tipo_empresa_turistica"id="tipo_empresa_turistica11" value="Comercializadora Compartido">
@@ -766,7 +728,7 @@
         </label>
       </div>
 </div>
-<div class="col-xs-2">
+<div class="col-xs-6 col-md-2">
       <div class="radio">
         <label>
           <input type="radio" name="options_emp_tur" ng-model="tipo_empresa_turistica"id="tipo_empresa_turistica12" value="Operador congreso, ferias, etc.">
@@ -779,12 +741,12 @@
 <br>
  
  <hr class="acomodarBarra">
-         <label class="acomodarFr text-center">TIPO DE ALOJAMIENTO</label>
+         <label class="acomodarFr text-center">TIPO DE ALOJAMIENTO <font color="red" size="3"><b>*</b></font></label>
 <hr class="acomodarB"> 
 
-<div class="col-xs-12">
+<div class="col-xs-12 col-md-12">
 
-  <div class="col-xs-2">
+  <div class="col-xs-6 col-md-2">
       <div class="radio">
         <label>
           <input type="radio" name="options_tipo_aloj" ng-model="tipo_alojamiento"id="tipo_aloja1" value="Albergue, refugio hostal">
@@ -793,7 +755,7 @@
       </div>
 </div>
 
-<div class="col-xs-2">
+<div class="col-xs-6 col-md-2">
       <div class="radio">
         <label>
           <input type="radio" name="options_tipo_aloj" ng-model="tipo_alojamiento"id="tipo_aloja2" value="Hotel">
@@ -802,7 +764,7 @@
       </div>
 </div>
 
-<div class="col-xs-2">
+<div class="col-xs-6 col-md-2">
       <div class="radio">
         <label>
           <input type="radio" name="options_tipo_aloj" ng-model="tipo_alojamiento"id="tipo_aloja3" value="Aparte hotel">
@@ -811,7 +773,7 @@
       </div>
 </div>
 
-<div class="col-xs-2">
+<div class="col-xs-6 col-md-2">
       <div class="radio">
         <label>
           <input type="radio" name="options_tipo_aloj" ng-model="tipo_alojamiento"id="tipo_aloja4" value="Posada turística">
@@ -820,7 +782,7 @@
       </div>
 </div>
 
-<div class="col-xs-2">
+<div class="col-xs-6 col-md-2">
       <div class="radio">
         <label>
           <input type="radio" name="options_tipo_aloj" ng-model="tipo_alojamiento"id="tipo_aloja5" value="Apartamento turístico">
@@ -829,7 +791,7 @@
       </div>
 </div>
 
-<div class="col-xs-2">
+<div class="col-xs-6 col-md-2">
       <div class="radio">
         <label>
           <input type="radio" name="options_tipo_aloj" ng-model="tipo_alojamiento"id="tipo_aloja6" value="Posada Nativa">
@@ -838,7 +800,7 @@
       </div>
 </div>
       
-<div class="col-xs-2">
+<div class="col-xs-6 col-md-2">
       <div class="radio">
         <label>
           <input type="radio" name="options_tipo_aloj" ng-model="tipo_alojamiento"id="tipo_aloja7" value="Apartamento">
@@ -847,7 +809,7 @@
       </div>
 </div>
 
-<div class="col-xs-2">
+<div class="col-xs-6 col-md-2">
       <div class="radio">
         <label>
           <input type="radio" name="options_tipo_aloj" ng-model="tipo_alojamiento"id="tipo_aloja8" value="Alojamiento rural">
@@ -856,7 +818,7 @@
       </div>
 </div>
 
-<div class="col-xs-2">
+<div class="col-xs-6 col-md-2">
       <div class="radio">
         <label>
           <input type="radio" name="options_tipo_aloj" ng-model="tipo_alojamiento"id="tipo_aloja9" value="Campamento">
@@ -867,13 +829,13 @@
                   
 
 <hr class="acomodarBarra">
-         <label class="acomodarFr text-center">TIPO DE TURISMO QUE DESARROLLA </label>
+         <label class="acomodarFr text-center">TIPO DE TURISMO QUE DESARROLLA <font color="red" size="3"><b>*</b></font></label>
 <hr class="acomodarB"> 
 
 
-<div class="col-xs-12">
+<div class="col-xs-12 col-md-12">
 
-<div class="col-xs-2">
+<div class="col-xs-6 col-md-2">
       <div class="radio">
         <label>
           <input type="radio" name="options_tipo_tur_desarrolla" ng-model="tipo_tur_desarrolla"id="tipo_aloja1" value="Naturaleza">
@@ -882,7 +844,7 @@
       </div>
 </div>
 
-<div class="col-xs-2">
+<div class="col-xs-6 col-md-2">
       <div class="radio">
         <label>
           <input type="radio" name="options_tipo_tur_desarrolla" ng-model="tipo_tur_desarrolla"id="tipo_aloja2" value="Cultural">
@@ -891,7 +853,7 @@
       </div>
 </div>
 
-<div class="col-xs-2">
+<div class="col-xs-6 col-md-2">
       <div class="radio">
         <label>
           <input type="radio" name="options_tipo_tur_desarrolla" ng-model="tipo_tur_desarrolla"id="tipo_aloja3" value="Aventura">
@@ -900,7 +862,7 @@
       </div>
 </div>
 
-<div class="col-xs-2">
+<div class="col-xs-6 col-md-2">
       <div class="radio">
         <label>
           <input type="radio" name="options_tipo_tur_desarrolla" ng-model="tipo_tur_desarrolla"id="tipo_aloja4" value="Náutico">
@@ -908,7 +870,7 @@
         </label>
       </div>
 </div>
-<div class="col-xs-2">
+<div class="col-xs-6 col-md-2">
       <div class="radio">
         <label>
           <input type="radio" name="options_tipo_tur_desarrolla" ng-model="tipo_tur_desarrolla"id="tipo_aloja5" value="Sol y playa">
@@ -917,7 +879,7 @@
       </div>
 </div>
 
-<div class="col-xs-2">
+<div class="col-xs-6 col-md-2">
       <div class="radio">
         <label>
           <input type="radio" name="options_tipo_tur_desarrolla" ng-model="tipo_tur_desarrolla"id="tipo_aloja6" value="Salud y Bienestar">
@@ -926,7 +888,7 @@
       </div>
 </div>
 
-<div class="col-xs-2">
+<div class="col-xs-6 col-md-2">
       <div class="radio">
         <label>
           <input type="radio" name="options_tipo_tur_desarrolla" ng-model="tipo_tur_desarrolla"id="tipo_aloja7" value="Congreso y convenciones">
@@ -935,17 +897,18 @@
       </div>
 </div>
 
-<div class="col-xs-2">
+<div class="col-xs-6 col-md-2">
       <div class="radio">
         <label>
           <input type="radio" name="options_tipo_tur_desarrolla" ng-model="tipo_tur_desarrolla"id="tipo_aloja8" value="Otro">
           Otro
         </label>
       </div>
+      <input type="text" class="form-control" ng-model="auxiliar.tipo_tur_desarrolla2" ng-if="tipo_tur_cual" placeholder="Escriba el tipo de turismo que desarrolla" > 
 </div>
                 
 
-<input type="text" class="form-control" ng-model="auxiliar.tipo_tur_desarrolla2" ng-if="tipo_tur_cual" placeholder="Escriba el tipo de turismo que desarrolla" required>    
+   
 
 <br>
 <br>
@@ -961,7 +924,7 @@
 
                     <div class="form-group">
                     <label for="pwd">Observaciones</label>
-                    <textarea class="form-control" ng-model="observaciones" name="observaciones" rows="10" required></textarea>
+                    <textarea class="form-control" ng-model="observaciones" name="observaciones" rows="10" ></textarea>
                    
                    </div>  
 

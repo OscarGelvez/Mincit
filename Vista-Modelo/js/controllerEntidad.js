@@ -970,8 +970,8 @@ $http.post('Modelo/servicesMincit/Administrador/actualizarEntidad.php', {
           type: 'success',         
           confirmButtonColor: '#388E3C'          
           }).then(function() {
-           
-          location.reload();
+           $scope.cargarMiInformacion();
+          //location.reload();
         })
       
       }else{
@@ -1229,6 +1229,7 @@ $http.post('Modelo/servicesMincit/Entidad/registrarServicios.php', {
           }).then(function() {
            
           location.reload();
+          $scope.mostrarServicios();
         })
       
       }else{

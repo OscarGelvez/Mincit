@@ -820,7 +820,9 @@ $http.post('Modelo/servicesMincit/Administrador/actualizarEntidad.php', {
           confirmButtonColor: '#388E3C'          
           }).then(function() {
            
-          location.reload();
+          //location.reload();
+          $scope.mostrarEntidades();
+          
         })
       
       }else{
@@ -1224,7 +1226,8 @@ $scope.guardar=function(index){
           type: 'success',         
           confirmButtonColor: '#388E3C'          
           }).then(function() {
-          location.reload();
+          //location.reload();
+          $scope.mostrarServiciosPendientes();
         })
          $scope.serviciosPendientes.splice(index, 1);
       }else{
@@ -1301,7 +1304,9 @@ $scope.registrarLogro=function(){
           type: 'success',         
           confirmButtonColor: '#388E3C'          
           }).then(function() {
-          location.reload();
+          //location.reload();
+          $scope.cargarLogros();
+
         })
         
 
@@ -1355,8 +1360,9 @@ $http.post('Modelo/servicesMincit/Administrador/actualizarLogro.php', {
           type: 'success',         
           confirmButtonColor: '#388E3C'          
           }).then(function() {
-           
-          location.reload();
+           $scope.cargarLogros();
+
+          //location.reload();
         })
       
       }else{
@@ -1561,7 +1567,9 @@ $scope.cambiarClave=function(){
           type: 'success',         
           confirmButtonColor: '#388E3C'          
           }).then(function() {
-          location.reload();
+          //location.reload();
+          $scope.combosActuales();
+
         })
         
 
@@ -1606,8 +1614,8 @@ $http.post('Modelo/servicesMincit/Administrador/eliminarCombo.php', {
           type: 'success',         
           confirmButtonColor: '#388E3C'          
           }).then(function() {
-           
-          location.reload();
+           $scope.combosActuales();
+          //location.reload();
         }).done();
       
       }else{

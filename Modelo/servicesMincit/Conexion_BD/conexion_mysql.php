@@ -1,16 +1,16 @@
 <?php
     // Atributos para realizar la conexión a la base de datos
-	$server="sandbox2.ufps.edu.co";
+	/*$server="sandbox2.ufps.edu.co";
 	$username="ufps_13";
 	$password="ufps_82";  
 	$db="ufps_13"; 	
-	
-/*
+	*/
+
 	$server="localhost";
 	$username="root";
 	$password="";  
-	$db="mincit_bd_3"; 	
-*/
+	$db="bd_mincit_respaldo"; 	
+
 	conectar($server, $username, $password, $db);
 	//Realizando conexión a la base de datos
 	function conectar($server, $username, $password, $db){
