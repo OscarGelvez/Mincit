@@ -101,7 +101,7 @@
 
 
 
-            <div class="col-xs-6">
+            <div class="col-xs-6 col-md-6">
                 <div class="form form-inline">
                    
                     <label class="acomodarL">Cedula <font color="red" size="3"><b>*</b></font></label>
@@ -118,7 +118,7 @@
                 </div>
               
             </div>
-            <div class="col-xs-6 ">
+            <div class="col-xs-6 col-xs-6">
              <div class="form-group ">
                 <label for="lastname">Nombres <font color="red" size="3"><b>*</b></font></label>
                     <input type="text" class="form-control" ng-model="nombres" placeholder="Nombres" >
@@ -133,7 +133,7 @@
             </div>
   
   <div class="clearfix"></div>
-             <div class="col-xs-6">
+             <div class="col-xs-6 col-xs-6">
              <div class="form-group">
                     <label for="apellidos">Fecha en que obtuvo el cargo <font color="red" size="3"><b>*</b></font></label>
                     <input type="date" class="form-control" ng-model="antiguedad" date-format max="{{CurrentDate | date:'yyyy-MM-dd'}}" min="1916-01-01">
@@ -145,7 +145,8 @@
                 
             </div>
 
-             <div class="col-xs-6">
+
+             <div class="col-xs-6 col-xs-6">
                 <div class="form-group">
                     <label for="lastname">Lugar de nacimiento <font color="red" size="3"><b>*</b></font></label>
                     <input type="text" class="form-control" ng-model="lugarN" placeholder="Lugar de nacimiento" >
@@ -165,7 +166,9 @@
                 </div>
             </div>
 
-             <div class="col-xs-6">
+            <div class="clearfix"></div>
+
+             <div class="col-xs-6 col-xs-6">
                 <div class="form-group">
                     <label for="lastname">Direccion <font color="red" size="3"><b>*</b></font></label>
                     <input type="text" class="form-control" ng-model="direccion" placeholder="Direccion" >
@@ -179,7 +182,7 @@
               
             </div>
 
-             <div class="col-xs-6">
+             <div class="col-xs-6 col-xs-6">
                <div class="form-group">
                     <label for="password">Telefono Celular <font color="red" size="3"><b>*</b></font></label>
                     <input type="number" min="0" class="form-control" ng-model="telefonoC" placeholder="Telefono Celular" >
@@ -197,7 +200,7 @@
               
             </div>
 
-            <div class="col-xs-6">
+            <div class="col-xs-6 col-xs-6">
                 <div class="form-group">
                      <label >Ciudad <font color="red" size="3"><b>*</b></font></label>
                   <select class="form-control" ng-model="ciudad"  >
@@ -218,7 +221,11 @@
                   </select>
                 </div>
 
-                <div class="form-group">
+               
+               
+            </div >
+            <div class="col-xs-6 col-xs-6">
+               <div class="form-group">
                      <label for="Nombres">¿Está en Condición de Desplazamiento?  <font color="red" size="3"><b>*</b></font></label>
                    <select class="form-control" ng-model="condicionD" >
                       <option value="">--Seleccione--</option>
@@ -226,13 +233,13 @@
                       <option>No</option>
                   </select>
                 </div>
-               
-            </div>
-            <div class="col-xs-6">
-             <div class="form-group">
+                <div class="form-group">
                     <label for="password">Correo Electronico <font color="red" size="3"><b>*</b></font></label>
                     <input type="email" class="form-control" ng-model="correo" placeholder="correo@mail.com" >
                 </div>
+            </div>
+            <div class="col-xs-6 col-md-6">
+             
                  <div class="form-group">
                     <label for="password">Grupo Etnico <font color="red" size="3"><b>*</b></font></label>
                      <select class="form-control" ng-model="grupoE" >
@@ -246,6 +253,11 @@
                   </select>
                 </div>
 
+      
+            </div>
+
+            <div class="col-xs-6 col-md-6">
+              
                  <div class="form-group">
                       <label for="Nombres">¿Presenta algún tipo de discapacidad? <font color="red" size="3"><b>*</b></font></label>
                    <select class="form-control" ng-model="discapacidad" >
@@ -254,7 +266,6 @@
                       <option>No</option>
                   </select>
                 </div>
-      
             </div>
             <div class="col-xs-6">
                 
@@ -313,38 +324,41 @@
             </div>
           </div>
 
-           <div class="col-xs-6">
-               <div class="form-group">
-            <label for="pwd">Fecha de constitucion o inicio de labores <font color="red" size="3"><b>*</b></font></label>
-            <input type="date" size="50" class="form-control" ng-model="fechaC"  placeholder=""  date-format max="{{CurrentDate | date:'yyyy-MM-dd'}}" min="1916-01-01">
-          </div>
+           <div class="col-xs-6 col-md-6">
+               
               
                 
            <div class="form-group form-inline">
-            <label for="pwd">No empleados</label>
-            <label for="pwd">T.C</label> <input type="number" min="0" ng-model="tc"  class="form-control campo" >
-            <label for="pwd">M.T</label> <input type="number" min="0" ng-model="mt"  class="form-control campo">
-            <label for="pwd">Directos</label> <input type="number" min="0" ng-model="directos"  class="form-control campo">
-            <label for="pwd">Indirectos</label> <input type="number" min="0" ng-model="indirectos"  class="form-control campo">
+            <label >No empleados</label>
+            <label >T.C</label> <input type="number" min="0" ng-model="tc"  class="form-control campo" >
+            <label >M.T</label> <input type="number" min="0" ng-model="mt"  class="form-control campo">
+            
+            <label >Directos</label> <input type="number" min="0" ng-model="directos"  class="form-control campo">
+            <label >Indirectos</label> <input type="number" min="0" ng-model="indirectos"  class="form-control campo">
           </div>
 
-           <div class="form-group">
-                  <label >Departamento <font color="red" size="3"><b>*</b></font></label>
-
-                    <select class="form-control" ng-model="dptoEm" id="dptoEmpresa" >
-                      <option value="">--Seleccione--</option>
-                      <option ng-repeat="d in dptosCombo">{{d.nombre}}</option>
-                                
-                  </select>                   
-                </div>
 
        </div>
 
-        <div class="col-xs-6">
-               <div class="form-group">
+       <div class="clearfix"></div> 
+
+       <div class="col-xs-6 col-md-6">
+         
+          
+
+          <div class="form-group">
+            <label for="pwd">Fecha de constitucion o inicio de labores <font color="red" size="3"><b>*</b></font></label>
+            <input type="date" size="50" class="form-control" ng-model="fechaC"  placeholder=""  date-format max="{{CurrentDate | date:'yyyy-MM-dd'}}" min="1916-01-01">
+          </div>
+
+                 <div class="form-group">
                <label for="pwd">Direccion <font color="red" size="3"><b>*</b></font></label>
                <input type="text" class="form-control" ng-model="direccionEm" placeholder="Direccion" >
               </div>
+              
+       </div>
+
+        <div class="col-xs-6 col-md-6">
               
                 <div class="form-group">
                 <label for="pwd">Telefono fijo <font color="red" size="3"><b>*</b></font></label>
@@ -361,9 +375,19 @@
               
             </div>
 
+<div class="clearfix"></div>
 
+            <div class="col-xs-6 col-md-6">
+               <div class="form-group">
+                  <label >Departamento <font color="red" size="3"><b>*</b></font></label>
 
-            <div class="col-xs-6">
+                    <select class="form-control" ng-model="dptoEm" id="dptoEmpresa" >
+                      <option value="">--Seleccione--</option>
+                      <option ng-repeat="d in dptosCombo">{{d.nombre}}</option>
+                                
+                  </select>                   
+                </div>
+
                 <div class="form-group">
                      <label >Ciudad <font color="red" size="3"><b>*</b></font></label>
                   <select class="form-control" ng-model="ciudadEm"  >
@@ -374,31 +398,27 @@
                   </select>
                 </div>
                   
-                   <div class="form-group">
+                      
+            </div>
+      
+      <div class="col-xs-6 col-md-6">
+
+        <div class="form-group">
                     <label for="pwd">Sitio Web <font color="red" size="3"><b>*</b></font></label>
                     <input type="text" class="form-control" ng-model="sitioWeb" name="sitioWeb" placeholder="Sitio Web" >
                   </div>
-              
-                           <div class="form-group">
+        
+                <div class="form-group">
                     <label for="pwd" ng-if="tiene_rm" >Numero Registro Mercantil <font color="red" size="3"><b>*</b></font></label>
                     <input type="number" min="0" class="form-control" ng-model="auxiliar.numRegistro" ng-if="tiene_rm" name="numeroRegis" placeholder="Numero registro mercantil" >
-                  </div>    
+                  </div> 
+             
               
-              
-            </div>
-      
+      </div>
 
-           <div class="col-xs-6">
-             <div class="form-group">
-                <div class="form-group">
-                    <label for="pwd">Correo <font color="red" size="3"><b>*</b></font></label>
-                    <input type="email" class="form-control" ng-model="correoEm" name="correoEm" placeholder="ejemplo@correo.com" >
-                  </div>
-              
-            </div>               
-            </div>
+           
 
-    <div class="col-xs-6">
+    <div class="col-xs-6 col-md-6">
                                
                 <div class="form-group">
       <label for="pwd">Tiene registro mercantil <font color="red" size="3"><b>*</b></font></label>
@@ -416,17 +436,26 @@
   </div>
  
     </div>
+   <div class="form-group">
+                    <label for="pwd">Correo <font color="red" size="3"><b>*</b></font></label>
+                    <input type="email" class="form-control" ng-model="correoEm" name="correoEm" placeholder="ejemplo@correo.com" >
+                  </div>
   
+    </div>
+
+<div class="col-xs-6 col-md-6">
   <div class="form-group">
                     <label for="pwd" ng-if="tiene_rm">¿Último año de renovación? <font color="red" size="3"><b>*</b></font> </label>
                     <input type="number" min="0" class="form-control" ng-model="auxiliar.anoRenova" ng-if="tiene_rm" name="anoRenova" placeholder="ultimo año de renovacion" >
                     </div> 
-    </div>
-
-       
-
+ <br><br><br><br>
+</div>
     
+    <div class="col-xs-6 col-md-6 acomodarBT">
   
+ 
+</div>  
+
  
         </fieldset>
 

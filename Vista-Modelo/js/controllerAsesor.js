@@ -1542,7 +1542,7 @@ $http.post('Modelo/servicesMincit/Asesor/eliminarEmpresaYContacto.php', {
 });
 
 
-app.controller('controllerEmpresaE_Asesor', ['$scope', '$http', 'cerrarSesion', 'localStorageService', 'usSpinnerService', '$location', 'upload',   function($scope, $http, cerrarSesion, localStorageService, usSpinnerService, $location, upload, cargar3CombosFiltros, $timeout, tam){
+app.controller('controllerEmpresaE_Asesor', ['$scope', '$http', 'cerrarSesion', 'localStorageService', 'usSpinnerService', '$location', 'upload', 'cargar3CombosFiltros', '$timeout', 'tam',  function($scope, $http, cerrarSesion, localStorageService, usSpinnerService, $location, upload, cargar3CombosFiltros, $timeout, tam){
 var tama=0;
 $scope.auxiliar= new Object();
 $scope.CurrentDate = new Date();
