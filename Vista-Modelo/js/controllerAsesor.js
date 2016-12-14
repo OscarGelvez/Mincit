@@ -9,7 +9,7 @@ function verificar(){
 
   $http.get('Modelo/servicesMincit/Sesiones/verificaSession.php')
             .success(function(data) {
-              console.log(data);
+              // console.log(data);
                     sesion=data;
                     if(data=="as"){
                        CONFIG.ROL_CURRENT_USER= 2;
@@ -18,7 +18,7 @@ function verificar(){
                                    
                 })
             .error(function(data) {
-                    console.log('Error: ' + data);
+                    // console.log('Error: ' + data);
             });
 
 
@@ -68,7 +68,7 @@ $timeout(function() {
       timer: 2000
     });
           }
-          console.log($scope.combosLeidos);
+          // console.log($scope.combosLeidos);
           $scope.llenar3Combos();
 
     }, 4000);
@@ -105,7 +105,7 @@ $scope.mostrarEmpre=function(){
           $scope.empresas[i].tipo_empresa="Emprendedora"
         }
       };
-			console.log($scope.empresas);
+			// console.log($scope.empresas);
 
 			$scope.configPages($scope.empresas);
 			$scope.cargarComboDpto();
@@ -127,7 +127,7 @@ $scope.mostrarEmpre=function(){
       usSpinnerService.stop('spinner-1');
       $scope.empresasE=data
 
-      console.log("Empresas Emprendedoras "+$scope.empresasE);
+      // console.log("Empresas Emprendedoras "+$scope.empresasE);
 
       
 
@@ -143,9 +143,9 @@ $scope.mostrarEmpre=function(){
       usSpinnerService.stop('spinner-1');
       $scope.empresasT=data
 
-     console.log("Empresas Turisticas ");
+     // console.log("Empresas Turisticas ");
 
-      console.log($scope.empresasT);
+      // console.log($scope.empresasT);
 
 
     })
@@ -168,7 +168,7 @@ usSpinnerService.spin('spinner-1');
 				}
 			};
 
-		console.log($scope.contactos);
+		// console.log($scope.contactos);
 		$scope.configPages($scope.contactos);
 		
 
@@ -181,7 +181,7 @@ usSpinnerService.spin('spinner-1');
 	$http.get('Modelo/servicesMincit/Asesor/cargaCombo_Dptos.php')
 
 		.success(function(data) {
-              console.log(data);
+              // console.log(data);
 
               if(data!=0){
               	 $scope.dptosCombo=data;
@@ -190,7 +190,7 @@ usSpinnerService.spin('spinner-1');
                    
              })
             .error(function(data) {
-                    console.log('Error: ' + data);
+                    // console.log('Error: ' + data);
             });
 }
 
@@ -209,14 +209,14 @@ for (var i = 0; i < $scope.dptosCombo.length; i++) {
 });
 
 $scope.$watch('filtro.nombreEmpFilter', function(newVal, oldVal){
- console.log("nombreEmpFilter changed to:"+newVal);
+ // console.log("nombreEmpFilter changed to:"+newVal);
     
 
 });
 
 //Escuchador que permite mostrar u ocultar los filtros para buscar en el inicio
 $scope.$watch('tipo_busqueda_inicio', function(newVal, oldVal){
- console.log("tipo_busqueda_inicio changed to:"+newVal);
+ // console.log("tipo_busqueda_inicio changed to:"+newVal);
     
  if($scope.tipo_busqueda_inicio=="Empresas"){
 	$scope.tipo_filter=true;
@@ -230,7 +230,7 @@ $scope.cargarComboCiudad=function(){
 	$http.post('Modelo/servicesMincit/Asesor/cargaCombo_Ciudades.php',{
 				dpto_select:$scope.id_dpto_seleccionado
 			}).success(function(data) {
-              console.log(data);
+              // console.log(data);
 
               if(data!=0){
               	 $scope.ciudadesCombo=data;
@@ -239,7 +239,7 @@ $scope.cargarComboCiudad=function(){
                    
              })
             .error(function(data) {
-                    console.log('Error: ' + data);
+                    // console.log('Error: ' + data);
             });
 }
 
@@ -329,7 +329,7 @@ for (var i = 0; i < $scope.dptosCombo.length; i++) {
 
 
 
-console.log($scope.contactoEdit.ciudad);
+// console.log($scope.contactoEdit.ciudad);
 
 });
 
@@ -352,7 +352,7 @@ for (var i = 0; i < $scope.dptosCombo.length; i++) {
 
 
 
-console.log($scope.contactoEdit.ciudad);
+// console.log($scope.contactoEdit.ciudad);
 
 });
 
@@ -399,7 +399,7 @@ function clone( obj ) {
     for ( var key in obj ) {
         temp[ key ] = clone( obj[ key ] );
     }
-  console.log(temp);
+  // console.log(temp);
     return temp;
 }
 
@@ -461,8 +461,8 @@ for (var i = 0; i < $scope.contactos.length; i++) {
   $scope.contactoEdit=clone($scope.contactos[i]);
   $scope.contactoOriginal=clone($scope.contactos[i]);
 
-console.log("contacto seleccionado")
-console.log($scope.contactoEdit);
+// console.log("contacto seleccionado")
+// console.log($scope.contactoEdit);
  $scope.contactoEdit.cc_contacto=parseInt($scope.contactoEdit.cc_contacto);
  $scope.contactoEdit.tel_cel=parseInt($scope.contactoEdit.tel_cel);
  $scope.contactoEdit.tel_fijo=parseInt($scope.contactoEdit.tel_fijo);
@@ -472,7 +472,7 @@ console.log($scope.contactoEdit);
  $scope.contactoOriginal.tel_fijo=parseInt($scope.contactoOriginal.tel_fijo);
 
  }
-console.log($scope.contactos[i].cc_contacto);
+// console.log($scope.contactos[i].cc_contacto);
 };
 
 
@@ -489,8 +489,8 @@ if(tipo=="Emprendedora"){
 
     $scope.EmpOriginalEmprend.nit_empresa=parseInt($scope.EmpOriginalEmprend.nit_empresa);
     $scope.EmpOriginalEmprend.cod_ciiu=parseInt($scope.EmpOriginalEmprend.cod_ciiu);
-console.log("info de Emprendedora");
-    console.log($scope.EmpEditEmprend);
+// console.log("info de Emprendedora");
+    // console.log($scope.EmpEditEmprend);
   }
 };
 }else if(tipo=="Turística"){
@@ -504,14 +504,14 @@ $scope.EmpEditTuristica.cc_extranj_opc=parseInt($scope.EmpEditTuristica.cc_extra
 $scope.EmpOriginalTuristica.cc_extranj_opc=parseInt($scope.EmpOriginalTuristica.cc_extranj_opc);
     
 
-console.log("info de turistica");
-console.log($scope.EmpEditTuristica);
+// console.log("info de turistica");
+// console.log($scope.EmpEditTuristica);
   }
 };
 }
 
 //$scope.EmpOriginal=clone($scope.empresas[index]);
-console.log($scope.EmpEdit);
+// console.log($scope.EmpEdit);
 }
 
 
@@ -531,7 +531,7 @@ $scope.esEditable=false;
 }
 
 $scope.updateEmpresaE=function(){
-console.log("llego update1")
+// console.log("llego update1")
 $scope.hayCambios=false;
 
 if($scope.EmpEdit.clasif_cliente!=$scope.EmpOriginal.clasif_cliente){
@@ -783,11 +783,11 @@ modificoNit: $scope.modificoNit
           }
        
      }
-        console.log(data);    
+        // console.log(data);    
 
     }).error(function(err){
       usSpinnerService.stop('spinner-1');
-        console.log(err);
+        // console.log(err);
 
     }); 
 } else{
@@ -811,7 +811,7 @@ $scope.tipo=$scope.aux.split("/");
   if($scope.tipo[1]=="jpeg"){
       $scope.tipo[1]="jpg";
     }
-  console.log("tipo "+$scope.tipo[1]);
+  // console.log("tipo "+$scope.tipo[1]);
 $scope.hayCambioLogo=true;
   
 });
@@ -833,10 +833,10 @@ $scope.subirLogo=function(){
         
         upload.uploadFile(file, name).then(function(res)
         {
-          console.log(res);
+          // console.log(res);
           if(res.data==1){
-            console.log("es 1. salio bien");
-            console.log("La ruta de la img es: "+name+"."+$scope.tipo[1])
+            // console.log("es 1. salio bien");
+            // console.log("La ruta de la img es: "+name+"."+$scope.tipo[1])
             $scope.urlLogo=name+"."+$scope.tipo[1];
             $scope.updateEmpresaE2(true);
           }else{
@@ -844,7 +844,7 @@ $scope.subirLogo=function(){
             $scope.urlLogo="nologo.jpg";
             $scope.updateEmpresaE2(false);
 
-            console.log("es 0. Algo salio mal o No desea subir logo");
+            // console.log("es 0. Algo salio mal o No desea subir logo");
           }
 
         })
@@ -856,7 +856,7 @@ $scope.subirLogo=function(){
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 $scope.updateEmpresaT=function(){
-console.log("llego update1 empTuristica")
+// console.log("llego update1 empTuristica")
 $scope.hayCambios=false;
 
 if($scope.EmpEdit.clasif_cliente!=$scope.EmpOriginal.clasif_cliente){
@@ -1064,7 +1064,7 @@ $scope.tipo2=$scope.aux2.split("/");
   if($scope.tipo2[1]=="jpeg"){
       $scope.tipo2[1]="jpg";
     }
-  console.log("tipo "+$scope.tipo2[1]);
+  // console.log("tipo "+$scope.tipo2[1]);
 $scope.hayCambioLogo2=true;
   
 });
@@ -1088,10 +1088,10 @@ $scope.subirLogo2=function(){
         
         upload.uploadFile(file, name).then(function(res)
         {
-          console.log(res);
+          // console.log(res);
           if(res.data==1){
-            console.log("es 1. salio bien");
-            console.log("La ruta de la img es: "+name+"."+$scope.tipo2[1])
+            // console.log("es 1. salio bien");
+            // console.log("La ruta de la img es: "+name+"."+$scope.tipo2[1])
             $scope.urlLogo2=name+"."+$scope.tipo2[1];
             $scope.updateEmpresaT2(true);
           }else{
@@ -1099,7 +1099,7 @@ $scope.subirLogo2=function(){
             $scope.urlLogo2="nologo.jpg";
             $scope.updateEmpresaT2(false);
 
-            console.log("es 0. Algo salio mal o No desea subir logo");
+            // console.log("es 0. Algo salio mal o No desea subir logo");
           }
 
         })
@@ -1225,11 +1225,11 @@ modificoNit: $scope.modificoNit
           }
        
      }
-        console.log(data);    
+        // console.log(data);    
 
     }).error(function(err){
       usSpinnerService.stop('spinner-1');
-        console.log(err);
+        // console.log(err);
 
     }); 
 } else{
@@ -1265,8 +1265,8 @@ $scope.verMasContacto=function(index, cc){
   $scope.contactoEdit=clone($scope.contactos[i]);
   $scope.contactoOriginal=clone($scope.contactos[i]);
 
-console.log("contacto seleccionado")
-console.log($scope.contactoEdit);
+// console.log("contacto seleccionado")
+// console.log($scope.contactoEdit);
  $scope.contactoEdit.cc_contacto=parseInt($scope.contactoEdit.cc_contacto);
  $scope.contactoEdit.tel_cel=parseInt($scope.contactoEdit.tel_cel);
  $scope.contactoEdit.tel_fijo=parseInt($scope.contactoEdit.tel_fijo);
@@ -1276,7 +1276,7 @@ console.log($scope.contactoEdit);
  $scope.contactoOriginal.tel_fijo=parseInt($scope.contactoOriginal.tel_fijo);
 
  }
-console.log($scope.contactos[i].cc_contacto );
+// console.log($scope.contactos[i].cc_contacto );
 };
 }
 
@@ -1292,13 +1292,13 @@ for (var i = 0; i < $scope.dptosCombo.length; i++) {
   
   }
   };
-console.log($scope.contactoEdit.ciudad);
+// console.log($scope.contactoEdit.ciudad);
 });
 
 
 
 $scope.updateContactos=function(){
-console.log("llego contactos")
+// console.log("llego contactos")
 $scope.hayCambios=false;
 
 
@@ -1435,11 +1435,11 @@ recibirCorreos: $scope.contactoEdit.recibir_correos
           }
        
      }
-        console.log(data);    
+        // console.log(data);    
 
     }).error(function(err){
       usSpinnerService.stop('spinner-1');
-        console.log(err);
+        // console.log(err);
 
     }); 
 } else{
@@ -1516,11 +1516,11 @@ $http.post('Modelo/servicesMincit/Asesor/eliminarEmpresaYContacto.php', {
           }
        
      }
-        console.log(data);    
+        // console.log(data);    
 
     }).error(function(err){
       usSpinnerService.stop('spinner-1');
-        console.log(err);
+        // console.log(err);
 
     }); 
 
@@ -1556,10 +1556,10 @@ if(localStorageService.get("miEmpresa")!=undefined){
 
 	 if($scope.emp.numRegistro=="" && $scope.emp.anoRenova=="" && tama==2){
 	 	tama=0;
-	 	console.log("if")
+	 	// console.log("if")
 	 }else{
 	 	
-	 	console.log("else")
+	 	// console.log("else")
 	 }
 	 
 }else{
@@ -1580,7 +1580,7 @@ $timeout(function() {
       timer: 2000
     });
           }
-          console.log($scope.combosLeidos);
+          // console.log($scope.combosLeidos);
           $scope.llenar2Combos();
 
     }, 4000);
@@ -1603,7 +1603,7 @@ $scope.llenar2Combos=function(){
 }
 
 
-console.log(tama);
+// console.log(tama);
 if(localStorageService.get("miEmpresa")!="vacio" && tama!=0){
 	swal({
   title: 'Autoguardado',
@@ -1643,7 +1643,7 @@ $scope.cargarComboDpto=function(){
 	$http.get('Modelo/servicesMincit/Asesor/cargaCombo_Dptos.php')
 
 		.success(function(data) {
-              console.log(data);
+              // console.log(data);
 
               if(data!=0){
               	 $scope.dptosCombo=data;
@@ -1652,7 +1652,7 @@ $scope.cargarComboDpto=function(){
                    
              })
             .error(function(data) {
-                    console.log('Error: ' + data);
+                    // console.log('Error: ' + data);
             });
 }
 $scope.cargarComboDpto();
@@ -1662,7 +1662,7 @@ $scope.cargarComboCiudad=function(){
 	$http.post('Modelo/servicesMincit/Asesor/cargaCombo_Ciudades.php',{
 				dpto_select:$scope.id_dpto_seleccionado
 			}).success(function(data) {
-              console.log(data);
+              // console.log(data);
 
               if(data!=0){
               	 $scope.ciudadesCombo=data;
@@ -1671,7 +1671,7 @@ $scope.cargarComboCiudad=function(){
                    
              })
             .error(function(data) {
-                    console.log('Error: ' + data);
+                    // console.log('Error: ' + data);
             });
 }
 
@@ -1679,7 +1679,7 @@ $scope.cargarComboCiudad2=function(){
 	$http.post('Modelo/servicesMincit/Asesor/cargaCombo_Ciudades.php',{
 				dpto_select:$scope.id_dpto_seleccionado2
 			}).success(function(data) {
-              console.log(data);
+              // console.log(data);
 
               if(data!=0){
               	 $scope.ciudadesCombo2=data;
@@ -1688,13 +1688,13 @@ $scope.cargarComboCiudad2=function(){
                    
              })
             .error(function(data) {
-                    console.log('Error: ' + data);
+                    // console.log('Error: ' + data);
             });
 }
 
 //en caso de que seleccione empresa formal el campo nit se vuelve requerido
 $scope.$watch('clasificacion', function(newVal, oldVal){
- console.log("clasificacion changed to:"+newVal);
+ // console.log("clasificacion changed to:"+newVal);
     
  if($scope.clasificacion=="Empresa Formal"){
 	$scope.requerido=true;
@@ -1804,7 +1804,7 @@ for (var i = 0; i < $scope.dptosCombo.length; i++) {
 
 
 $scope.$watch('registroM', function(newVal, oldVal){
-                       console.log("Search was changed to:"+newVal);
+                       // console.log("Search was changed to:"+newVal);
     
                                  if($scope.registroM=="si"){
 									$scope.tiene_rm=true;
@@ -1914,10 +1914,10 @@ var cant=0;
 for(i in miEmpresa){
 
  	var obj=miEmpresa[i];
- 	//console.log(obj);
+ 	//// console.log(obj);
  	 if((obj=="" || obj==undefined)){
  		cant++;
- 		//console.log("vacios "+(cant))
+ 		//// console.log("vacios "+(cant))
 		$scope.btnRegistrarEmpE=true;
 		$scope.subeLogo=true;
 	}
@@ -1996,12 +1996,12 @@ $scope.observaciones=datos.observaciones;
 for(i in datos){
 
  	var obj=datos[i];
- 	console.log(obj);
+ 	// console.log(obj);
  	cant++;
  }
  if(cant<=39){
  		
- 		console.log("vacios "+(cant))
+ 		// console.log("vacios "+(cant))
 		$scope.btnRegistrarEmpE=true;
 		$scope.subeLogo=true;
 	}else if(cant==40){
@@ -2377,47 +2377,47 @@ else if($scope.nombres==undefined){
 if($scope.nit==undefined){
   
               $scope.nit="";
-  console.log("entro ppor $scope.nit")
+  // console.log("entro ppor $scope.nit")
 } if($scope.nombreR==undefined){
   
               $scope.nombreR="";
-  console.log("entro ppor $scope.nombreR")
+  // console.log("entro ppor $scope.nombreR")
 } if($scope.tc==undefined){
   
               $scope.tc="";
-  console.log("entro ppor $scope.tc")
+  // console.log("entro ppor $scope.tc")
 } if($scope.mt==undefined){
   
               $scope.mt="";
-  console.log("entro ppor $scope.mt")
+  // console.log("entro ppor $scope.mt")
 } if($scope.directos==undefined){
   
               $scope.directos="";
-  console.log("entro ppor $scope.directos")
+  // console.log("entro ppor $scope.directos")
 } if($scope.indirectos==undefined){
   
               $scope.indirectos="";
-  console.log("entro ppor $scope.indirectos")
+  // console.log("entro ppor $scope.indirectos")
 } if($scope.ciiu==undefined){
   
               $scope.ciiu="";
-  console.log("entro ppor $scope.ciiu")
+  // console.log("entro ppor $scope.ciiu")
 } if($scope.actividadI==undefined){
   
               $scope.actividadI="";
-  console.log("entro ppor $scope.actividadI")
+  // console.log("entro ppor $scope.actividadI")
 } if($scope.paisesCome==undefined){
   
               $scope.paisesCome="";
-  console.log("entro ppor $scope.paisesCome")
+  // console.log("entro ppor $scope.paisesCome")
 } if($scope.neg_internet==undefined){
   
               $scope.neg_internet="";
-  console.log("entro ppor $scope.neg_internet")
+  // console.log("entro ppor $scope.neg_internet")
 } if($scope.observaciones==undefined){
   
               $scope.observaciones="";
-  console.log("entro ppor $scope.observaciones")
+  // console.log("entro ppor $scope.observaciones")
 }
 
 
@@ -2478,7 +2478,7 @@ if(!$scope.hayCamposVacios){
         'url_logo':$scope.urlLogo
         
         }).success(function(data){
-          console.log(data);
+          // console.log(data);
       usSpinnerService.stop('spinner-1');
       if(data==1){
         //localStorageService.set("miEmpresa","vacio");
@@ -2519,7 +2519,7 @@ if(!$scope.hayCamposVacios){
 
     }).error(function(err){
       usSpinnerService.stop('spinner-1');
-           console.log(err);
+           // console.log(err);
 
     });
 }
@@ -2536,7 +2536,7 @@ if(!$scope.hayCamposVacios){
 		usSpinnerService.spin('spinner-1');
 		$http.post("Modelo/servicesMincit/Asesor/buscarContacto.php",{'cedula':$scope.cedula})
 		.success(function(data){
-			console.log(data);
+			// console.log(data);
 			usSpinnerService.stop('spinner-1');
 			if(data!=0){
 			swal({
@@ -2564,7 +2564,7 @@ if(!$scope.hayCamposVacios){
 
 		}).error(function(err){
       	usSpinnerService.stop('spinner-1');
-        console.log(err);
+        // console.log(err);
 
     });
 
@@ -2594,7 +2594,7 @@ $scope.tipo=$scope.aux.split("/");
 	if($scope.tipo[1]=="jpeg"){
 	  	$scope.tipo[1]="jpg";
 	  }
-  console.log("tipo "+$scope.tipo[1]);
+  // console.log("tipo "+$scope.tipo[1]);
 });
 
 
@@ -2615,17 +2615,17 @@ $scope.subirLogo=function(){
 				
 				upload.uploadFile(file, name).then(function(res)
 				{
-					console.log(res);
+					// console.log(res);
 					if(res.data==1){
-						console.log("es 1. salio bien");
-						console.log("La ruta de la img es: "+name+"."+$scope.tipo[1])
+						// console.log("es 1. salio bien");
+						// console.log("La ruta de la img es: "+name+"."+$scope.tipo[1])
 						$scope.urlLogo=name+"."+$scope.tipo[1];
 						$scope.registrarEmpresa2(true);
 					}else{
 						$scope.urlLogo="nologo.jpg";
 						$scope.registrarEmpresa2(false);
 
-						console.log("es 0. Algo salio mal o No desea subir logo");
+						// console.log("es 0. Algo salio mal o No desea subir logo");
 					}
 				})
 		 return true;
@@ -2635,13 +2635,13 @@ $scope.subirLogo=function(){
 
 $scope.borrarLogo=function(){
 
-console.log($scope.nombreE);	
-console.log("borrando...");
+// console.log($scope.nombreE);	
+// console.log("borrando...");
 $http.post("Modelo/servicesMincit/ArchivosSubidos/borrarArchivo.php",{
 	nombre: $scope.nombreE,
 	tipo: $scope.tipo[1]
 }).success(function(data){
-		console.log(data);
+		// console.log(data);
 
 })
 
@@ -2661,16 +2661,16 @@ if(localStorageService.get("miEmpresaT")!=undefined){
 
 	 if($scope.emp.numRegistro=="" && $scope.emp.anoRenova=="" && tama==2){
 	 	tama=0;
-	 	console.log("if")
+	 	// console.log("if")
 	 }else{
 	 	
-	 	console.log("else")
+	 	// console.log("else")
 	 }
 	 
 }else{
 	tama=0;
 }
-console.log(tama);
+// console.log(tama);
 if(localStorageService.get("miEmpresaT")!="vacio" && tama!=0){
 	swal({
   title: 'Autoguardado',
@@ -2720,7 +2720,7 @@ $timeout(function() {
       timer: 2000
     });
           }
-          console.log($scope.combosLeidos);
+          // console.log($scope.combosLeidos);
           $scope.llenar2Combos();
 
     }, 4000);
@@ -2747,7 +2747,7 @@ $scope.cargarComboDpto=function(){
 	$http.get('Modelo/servicesMincit/Asesor/cargaCombo_Dptos.php')
 
 		.success(function(data) {
-              console.log(data);
+              // console.log(data);
 
               if(data!=0){
               	 $scope.dptosCombo=data;
@@ -2756,7 +2756,7 @@ $scope.cargarComboDpto=function(){
                    
              })
             .error(function(data) {
-                    console.log('Error: ' + data);
+                    // console.log('Error: ' + data);
             });
 }
 $scope.cargarComboDpto();
@@ -2766,7 +2766,7 @@ $scope.cargarComboCiudad=function(){
 	$http.post('Modelo/servicesMincit/Asesor/cargaCombo_Ciudades.php',{
 				dpto_select:$scope.id_dpto_seleccionado
 			}).success(function(data) {
-              console.log(data);
+              // console.log(data);
 
               if(data!=0){
               	 $scope.ciudadesCombo=data;
@@ -2775,7 +2775,7 @@ $scope.cargarComboCiudad=function(){
                    
              })
             .error(function(data) {
-                    console.log('Error: ' + data);
+                    // console.log('Error: ' + data);
             });
 }
 
@@ -2783,7 +2783,7 @@ $scope.cargarComboCiudad2=function(){
 	$http.post('Modelo/servicesMincit/Asesor/cargaCombo_Ciudades.php',{
 				dpto_select:$scope.id_dpto_seleccionado2
 			}).success(function(data) {
-              console.log(data);
+              // console.log(data);
 
               if(data!=0){
               	 $scope.ciudadesCombo2=data;
@@ -2792,7 +2792,7 @@ $scope.cargarComboCiudad2=function(){
                    
              })
             .error(function(data) {
-                    console.log('Error: ' + data);
+                    // console.log('Error: ' + data);
             });
 }
 // metodos on change aqui!
@@ -2840,7 +2840,7 @@ for (var i = 0; i < $scope.dptosCombo.length; i++) {
 });
 
 $scope.$watch('registroM', function(newVal, oldVal){
-console.log("Search was changed to:"+newVal);
+// console.log("Search was changed to:"+newVal);
 
 if($scope.registroM=="si"){
 $scope.tiene_rm=true;
@@ -2863,7 +2863,7 @@ $scope.tiene_rm=true;
 
 //lo hace siempre por si el dato quedo guardado se muestre correctamente
 $scope.$watch('seguro', function(newVal, oldVal){
- console.log("Search was changed to:"+newVal);
+ // console.log("Search was changed to:"+newVal);
     
  if($scope.seguro=="si"){
 	$scope.seguro_cual=true;
@@ -2876,7 +2876,7 @@ $scope.$watch('seguro', function(newVal, oldVal){
 
 //lo hace siempre por si el dato quedo guardado se muestre correctamente
 $scope.$watch('sostenibilidad', function(newVal, oldVal){
- console.log("Search was changed to:"+newVal);
+ // console.log("Search was changed to:"+newVal);
     
  if($scope.sostenibilidad=="Si" || $scope.sostenibilidad=="Parcial" || $scope.sostenibilidad=="General" || $scope.sostenibilidad=="NTS"){
 	$scope.sostenibilidad_cual=true;
@@ -2888,7 +2888,7 @@ $scope.$watch('sostenibilidad', function(newVal, oldVal){
 });
 
 $scope.$watch('tipo_tur_desarrolla', function(newVal, oldVal){
- console.log("Search was changed to:"+newVal);
+ // console.log("Search was changed to:"+newVal);
     
  if($scope.tipo_tur_desarrolla=="Otro"){
 	$scope.tipo_tur_cual=true;
@@ -2984,7 +2984,7 @@ for(i in miEmpresaT){
  	
  	 if((obj=="" || obj==undefined)){
  		cant++;
- 		console.log("vacios "+(cant))
+ 		// console.log("vacios "+(cant))
 		$scope.btnRegistrarEmpE=true;
 		$scope.subeLogo=true;
 	}
@@ -3498,31 +3498,31 @@ else if($scope.tipo_tur_desarrolla==undefined){
 if($scope.nit==undefined){
   
               $scope.nit="";
-  console.log("entro ppor $scope.nit")
+  // console.log("entro ppor $scope.nit")
 } if($scope.nombreR==undefined){
   
               $scope.nombreR="";
-  console.log("entro ppor $scope.nombreR")
+  // console.log("entro ppor $scope.nombreR")
 } if($scope.tc==undefined){
   
               $scope.tc="";
-  console.log("entro ppor $scope.tc")
+  // console.log("entro ppor $scope.tc")
 } if($scope.mt==undefined){
   
               $scope.mt="";
-  console.log("entro ppor $scope.mt")
+  // console.log("entro ppor $scope.mt")
 } if($scope.directos==undefined){
   
               $scope.directos="";
-  console.log("entro ppor $scope.directos")
+  // console.log("entro ppor $scope.directos")
 } if($scope.indirectos==undefined){
   
               $scope.indirectos="";
-  console.log("entro ppor $scope.indirectos")
+  // console.log("entro ppor $scope.indirectos")
 }  if($scope.observaciones==undefined){
   
               $scope.observaciones="";
-  console.log("entro ppor $scope.observaciones")
+  // console.log("entro ppor $scope.observaciones")
 }
 
 
@@ -3593,7 +3593,7 @@ if(!$scope.hayCamposVacios){
 		    
 		    }).success(function(data){
 
-		    	console.log(data);
+		    	// console.log(data);
 			usSpinnerService.stop('spinner-1');
 			if(data==1){
 			
@@ -3633,7 +3633,7 @@ if(!$scope.hayCamposVacios){
 			} 
 		}).error(function(err){
 			usSpinnerService.stop('spinner-1');
-           console.log(err);
+           // console.log(err);
 
     });
 	
@@ -3692,7 +3692,7 @@ $scope.tipo=$scope.aux.split("/");
 	if($scope.tipo[1]=="jpeg"){
 	  	$scope.tipo[1]="jpg";
 	  }
-  console.log("tipo "+$scope.tipo[1]);
+  // console.log("tipo "+$scope.tipo[1]);
 
   
 });
@@ -3715,19 +3715,19 @@ $scope.tipo=$scope.aux.split("/");
 				
 				upload.uploadFile(file, name).then(function(res) //http://sandbox1.ufps.edu.co/~ufps_11/LogosEmpresas/
 				{
-					console.log(res);
+					// console.log(res);
 					if(res.data==1){
-						console.log("es 1. salio bien");
-						console.log("La ruta de la img es: "+name+"."+$scope.tipo[1])
+						// console.log("es 1. salio bien");
+						// console.log("La ruta de la img es: "+name+"."+$scope.tipo[1])
 						$scope.urlLogo=name+"."+$scope.tipo[1];
-						console.log("el escope logo "+$scope.urlLogo);
+						// console.log("el escope logo "+$scope.urlLogo);
 						$scope.registrarEmpresa2(true);
 						
 					}else{
 						$scope.urlLogo="nologo.jpg";
 						$scope.registrarEmpresa2(false);
 
-						console.log("es 0. Algo salio mal o No desea subir logo");
+						// console.log("es 0. Algo salio mal o No desea subir logo");
 					}
 				})
 		 
@@ -3737,12 +3737,12 @@ $scope.tipo=$scope.aux.split("/");
 
 $scope.borrarLogo=function(){
 
-console.log("borrando...");
+// console.log("borrando...");
 $http.post("Modelo/servicesMincit/ArchivosSubidos/borrarArchivo.php",{
 	nombre: $scope.nombreE,
 	tipo: $scope.tipo[1]
 }).success(function(data){
-		console.log(data);
+		// console.log(data);
 
 })
 
@@ -3857,7 +3857,7 @@ $scope.cargarComboDpto=function(){
 	$http.get('Modelo/servicesMincit/Asesor/cargaCombo_Dptos.php')
 
 		.success(function(data) {
-              console.log(data);
+              // console.log(data);
 
               if(data!=0){
               	 $scope.dptosCombo=data;
@@ -3866,7 +3866,7 @@ $scope.cargarComboDpto=function(){
                    
              })
             .error(function(data) {
-                    console.log('Error: ' + data);
+                    // console.log('Error: ' + data);
             });
 }
 $scope.cargarComboDpto();
@@ -3876,7 +3876,7 @@ $scope.cargarComboCiudad=function(){
 	$http.post('Modelo/servicesMincit/Asesor/cargaCombo_Ciudades.php',{
 				dpto_select:$scope.id_dpto_seleccionado
 			}).success(function(data) {
-              console.log(data);
+              // console.log(data);
 
               if(data!=0){
               	 $scope.ciudadesCombo=data;
@@ -3885,7 +3885,7 @@ $scope.cargarComboCiudad=function(){
                    
              })
             .error(function(data) {
-                    console.log('Error: ' + data);
+                    // console.log('Error: ' + data);
             });
 }
 
@@ -3957,7 +3957,7 @@ $scope.$watchGroup(['nombres', 'apellidos', 'cedula', 'correo', 'genero', 'cargo
 
 		}).error(function(err){
 			usSpinnerService.stop('spinner-1');
-			console.log(err);
+			// console.log(err);
 		})
 
 	}
@@ -3983,7 +3983,7 @@ $scope.pages = [];
     $http.get("Modelo/servicesMincit/Administrador/listarEntidades.php")
     .success(function(data){
    usSpinnerService.stop('spinner-1');
-      console.log(data)
+      // console.log(data)
       $scope.entidades=data
       $scope.configPages();
     })
@@ -3997,7 +3997,7 @@ $scope.pages = [];
     $http.get("Modelo/servicesMincit/Administrador/listarServicioLogroEntidad.php")
     .success(function(data){
    usSpinnerService.stop('spinner-1');
-      console.log(data)
+      // console.log(data)
       $scope.SLE=data;
 
     })
@@ -4020,11 +4020,11 @@ $scope.SLEmostrar = new Array();
     if($scope.SLE[i].nit==nitLlega){
       
       $scope.SLEmostrar.push($scope.SLE[i]);
-      console.log($scope.SLEmostrar); 
+      // console.log($scope.SLEmostrar); 
     }
   };
   
-  console.log( $scope.entidadVerMas);
+  // console.log( $scope.entidadVerMas);
 
 }  
 
@@ -4152,7 +4152,7 @@ $scope.cambiarClave2=function(){
 
 	}).error(function(err){
 			usSpinnerService.stop('spinner-1');
-           console.log(err);
+           // console.log(err);
 
     });
 }
@@ -4165,13 +4165,13 @@ $scope.obtenerClaveActual=function(){
 			'id_user':datos_usuarios.id_usuario
 
 	}).success(function(data){
-		console.log(data[0].clave);
+		// console.log(data[0].clave);
 
 		usSpinnerService.stop('spinner-1');
 		if(data[0].clave!=2){
 			$scope.claveActualConsultada=data[0].clave;
 			if($scope.claveActualConsultada==$scope.claveActual){
-				console.log("clave digitada "+$scope.claveActual+" clave consultada "+$scope.claveActualConsultada);
+				// console.log("clave digitada "+$scope.claveActual+" clave consultada "+$scope.claveActualConsultada);
 
 					if($scope.claveActual!=$scope.claveNueva){
 						$scope.cambiarClave2();
@@ -4202,7 +4202,7 @@ $scope.obtenerClaveActual=function(){
 
 	}).error(function(err){
 		usSpinnerService.stop('spinner-1');		
-           console.log(err);
+           // console.log(err);
 
     });
 }

@@ -38,7 +38,7 @@ function actualURL(){
   var aux = url[1]+"";
   var url2=aux.split("_");
 
- console.log(url2[0]);
+ //console.log(url2[0]);
     if(url2[0]=="/Admin"){
 
          rta="/Admin_inicio";
@@ -236,7 +236,7 @@ function actualURL(){
 
 .run(["$rootScope", "$location", "CONFIG", "ROLES", "$http", "urlActual", function($rootScope, $location, CONFIG, ROLES, $http, urlActual)
 {
-  console.log("por run")
+  //console.log("por run")
   var sesion="false";
   $rootScope.sesion=sesion;
 
@@ -244,11 +244,11 @@ function verificar(){
 
   $http.get('Modelo/servicesMincit/Sesiones/verificaSession.php')
             .success(function(data) {
-              console.log(data);
+              //console.log(data);
                     sesion=data;
                     $rootScope.sesion=sesion;
                       $rootScope.$watch('sesion', function(newVal, oldVal){
-                       console.log("Search was changed to:"+newVal);
+                       //console.log("Search was changed to:"+newVal);
     
                                   $rootScope.ver();
     
@@ -257,10 +257,10 @@ function verificar(){
                         });
 
                     a();
-                       console.log(sesion);           
+                       //console.log(sesion);           
                 })
             .error(function(data) {
-                    console.log('Error: ' + data);
+                    //console.log('Error: ' + data);
             });
 
 
@@ -273,7 +273,7 @@ $rootScope.ver=function(){
         var x = location.href;
         var url = x.split("#");
         var aux = url[1]+"";
-        console.log(aux);
+        //console.log(aux);
       if((sesion=="ad" && aux=="/inicio") || (sesion=="ad" && aux=="/")){
       $location.path("/Admin_inicio");
     }
@@ -303,30 +303,30 @@ $rootScope.$on('$routeChangeStart', function (event, next)
   {
     if(next.data.authorized.indexOf(CONFIG.ROL_CURRENT_USER) !== -1)
     {
-     console.log("entra");
+     //console.log("entra");
      var x = location.href;
      urlActual.url=x;
-     console.log(x);
+     //console.log(x);
   
    }
    else
    { 
 
     
-     console.log("no entra ");
+     //console.log("no entra ");
       if(sesion=="false" || sesion==undefined){
-         console.log("la sesion es "+sesion);
-        console.log("else");
+         //console.log("la sesion es "+sesion);
+        //console.log("else");
        $location.path("/inicio");
 
       }  
 
      else if(CONFIG.ROL_CURRENT_USER == 1) 
      {
-     console.log("la sesion es "+sesion);
+     //console.log("la sesion es "+sesion);
 
       
-        console.log("if prevent");
+        //console.log("if prevent");
         event.preventDefault();
       
       
@@ -335,19 +335,19 @@ $rootScope.$on('$routeChangeStart', function (event, next)
      else if(CONFIG.ROL_CURRENT_USER == 2)
 
      {
-       console.log("la sesion es "+sesion);
+       //console.log("la sesion es "+sesion);
 
       
-        console.log("if prevent");
+        //console.log("if prevent");
       event.preventDefault();
        //$location.path(ROLES.ASESOR.PATH);
      }
      else if(CONFIG.ROL_CURRENT_USER == 3)
      {
-      console.log("la sesion es "+sesion);
+      //console.log("la sesion es "+sesion);
 
       
-        console.log("if prevent");
+        //console.log("if prevent");
       event.preventDefault();
        //$location.path(ROLES.GUEST.PATH);
      }
@@ -371,7 +371,7 @@ $rootScope.$on('$routeChangeStart', function (event, next)
 
            $http.get('Modelo/servicesMincit/Sesiones/verificaSession.php')
             .success(function(data) {
-              console.log(data);
+              //console.log(data);
                     sesion=data;
                     if(data==rol){
                        return true;
@@ -382,7 +382,7 @@ $rootScope.$on('$routeChangeStart', function (event, next)
                                    
                 })
             .error(function(data) {
-                    console.log('Error: ' + data);
+                    //console.log('Error: ' + data);
             });
         }
      }])
@@ -396,12 +396,12 @@ $rootScope.$on('$routeChangeStart', function (event, next)
             .success(function(data) {
               window.location.href='#inicio';
               location.reload();
-              console.log(data);
+              //console.log(data);
                     
                                    
                 })
             .error(function(data) {
-                    console.log('Error: ' + data);
+                    //console.log('Error: ' + data);
             });
         }
      }])
@@ -527,7 +527,7 @@ function cambiarClave2(claveNueva, id_usuario){
 
   }).error(function(err){
       usSpinnerService.stop('spinner-1');
-           console.log(err);
+           //console.log(err);
 
     });
 }
@@ -540,16 +540,16 @@ function obtenerClaveActual(id_usuario, claveActual, claveNueva){
       'id_user':id_usuario
 
   }).success(function(data){
-    console.log(data[0].clave);
+    //console.log(data[0].clave);
 
     usSpinnerService.stop('spinner-1');
     if(data[0].clave!=2){
       var claveActualConsultada=data[0].clave;
 
       var claveActualSha1 = hex_sha1(claveActual); /* SHA-1 */
-console.log(claveActualSha1);
+//console.log(claveActualSha1);
       if(claveActualConsultada==claveActualSha1){
-        console.log("clave digitada "+claveActualSha1+" clave consultada "+claveActualConsultada);
+        //console.log("clave digitada "+claveActualSha1+" clave consultada "+claveActualConsultada);
 
         var claveNuevaSha1=hex_sha1(claveNueva);
 
@@ -582,7 +582,7 @@ console.log(claveActualSha1);
 
   }).error(function(err){
     usSpinnerService.stop('spinner-1');   
-           console.log(err);
+           //console.log(err);
 
     });
 }
@@ -609,7 +609,7 @@ $http.get('Modelo/servicesMincit/Administrador/serviciosPendientes.php')
 
 .success(function (data) {
       usSpinnerService.stop('spinner-1');
-      console.log(data);    
+      //console.log(data);    
       var serviciosPendientes=data;
     
      //tam.tam=serviciosPendientes.length;
@@ -617,7 +617,7 @@ $http.get('Modelo/servicesMincit/Administrador/serviciosPendientes.php')
 
     }).error(function(err){
       usSpinnerService.stop('spinner-1');
-        console.log(err);
+        //console.log(err);
 
     }); 
     
@@ -645,7 +645,7 @@ return{
 
     .success(function(data) {
       usSpinnerService.stop('spinner-1');
-              console.log(data);
+              //console.log(data);
 
               if(data!=0){
                  var combos=data;
@@ -654,7 +654,7 @@ return{
                    
              })
             .error(function(data) {
-                    console.log('Error: ' + data);
+                    //console.log('Error: ' + data);
             });
 
 }

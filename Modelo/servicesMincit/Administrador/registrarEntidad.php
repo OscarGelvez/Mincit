@@ -1,5 +1,9 @@
 <?php
 include "../Conexion_BD/conexion_mysql.php";
+require '../Sesiones/smtpEnviarCorreo.php';
+require '../Sesiones/PHPMailer/PHPMailerAutoload.php';
+
+
 $data=json_decode(file_get_contents("php://input"));
 
 
@@ -30,6 +34,14 @@ if($numero_filas==1){
 			
 				$query2= "INSERT INTO `usuario`(nombre_usuario,correo,clave,privilegio,estado_actual) VALUES('$nombreEntidad','$correoUsuario','$claveUsuario','en','1')";
 				if(mysql_query($query2)){
+
+						$usuarioNombre=$correoUsuario; // el nombre es el mismo del correo
+				 		$Objmail = new PHPMailer;
+				 		$objCorreo = new enviarCorreo;
+				 		$claveSinEncrip=$data->claveUser;
+				 		$objCorreo->enviarA($usuarioNombre,$usuarioNombre,$claveSinEncrip,$Objmail);
+
+
 					echo (1); // Registro exitoso 
 				}else{
 					echo (4); // no se pudo registrar el usuario

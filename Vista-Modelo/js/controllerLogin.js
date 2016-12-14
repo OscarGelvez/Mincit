@@ -17,7 +17,7 @@ $scope.iniciar=function(){
                
         }
     ).success(function (data) {
-      console.log(data);
+      //console.log(data);
       usSpinnerService.stop('spinner-1');
       if(data.id_usuario==undefined){
        swal({
@@ -47,7 +47,7 @@ $scope.iniciar=function(){
     })
       }
         else{
-          console.log(data.privilegio);
+          //console.log(data.privilegio);
 
           var usuario= new Object();
                    usuario.id_usuario=data.id_usuario;
@@ -84,7 +84,7 @@ $scope.iniciar=function(){
 
     }).error(function(err){
     	 usSpinnerService.stop('spinner-1');
-        console.log(err);
+        //console.log(err);
 
     });
 }
@@ -112,11 +112,11 @@ $scope.iniciar=function(){
     ////////////////////////////////////////////VISTA RECUPERAR CLAVE /////////////////////////////////
 
 $scope.recuperarContrasena=function(){
-  console.log("lleo");
+  //console.log("lleo");
   $http.post("Modelo/servicesMincit/Sesiones/recuperarClave.php",{
               usuario: $scope.emailRecuperar
   }).success(function(data){
-    console.log(data);
+    //console.log(data);
   }).error(function(err){
 
   })
