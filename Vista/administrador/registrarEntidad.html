@@ -78,17 +78,20 @@
 
 
     <form ng-submit="registrarEntidadPorExcel()">
+      <font color="black" size="1"><b>El archivo excel no debe superar 500 KB de tamaño</b></font>
     <input  type="file" name="fileEntidadExcel" uploader-model="file" class="form-control" id="excel"  class="btn btn" size="30"/ required>
     <div class="col-sm-4  col-sm-offset-5 col-xs-offset-5">
       <br>
     <input type="submit" class="btn btn-success " value="Subir Excel">
+    <br>
+    
     </div>
     </form>
    <br><br>
    </div> 
     <div class="col-sm-6 col-xs-6 row2">  
   
-      <label class="acomodarFr text-center"> FORMATO EXCEL PARA SUBIR LAS ENTIDADES</label>
+      <label class="acomodarFr text-center"> FORMATO EXCEL PARA REGISTRAR ENTIDADES</label>
 
     <div class="col-sm-4  col-sm-offset-5 col-xs-offset-5">
   
@@ -147,7 +150,7 @@
             </div>
              <div class="col-xs-6">
                     <div class="form-group">
-                    <label for="pwd">Cargar Logo de la empresa (Formato jpg o png menores 100k) <font color="red" size="3"><b>*</b></font></label>
+                    <label for="pwd">Cargar Logo de la empresa (Formato jpg o png menores 500 KB) <font color="red" size="3"><b>*</b></font></label>
                       <p id="f1_upload_form" align=""><br/>
                        
                               <input  type="file" name="file" uploader-model="file" class="form-control" id="logo" class="btn btn" size="30"/>

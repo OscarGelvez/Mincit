@@ -122,10 +122,15 @@
         </form>
           
 <div class="clearfix"></div>
-       <label class="acomodarFr text-center" style="font-size:18px; ">Gestionar Opciones Combos</label>
-    <br>
+       <label class="acomodarFr text-center" style="font-size:18px; ">Gestionar Opciones Básicas de Formularios</label>
+    
+    <div class="col-md-12">
+    <h5>Aqui podrá registrar mas opciones para los campos de formulario Constitución legal, Tipo de empresa y Tipo de Cliente</h5>
+  </div>
+  <br>
     <br>
  <div class="col-sm-6 col-xs-offset-3">
+  
      <form class="form-horizontal" ng-submit="registrarOpcionCombo();">
             <div class="col-xs-12">
                 <div class="form-group">
@@ -157,7 +162,21 @@
             
           
         </form>
+
+     
 </div>
+ <div class="col-md-6 col-sm-6">
+           <div class="form-group">
+                 <label for="pwd">Organizar por:</label>
+                   <select class="form-control"  ng-model="comboPadreFiltro" name="combo" >
+                    <option value="">Ver Todo</option>
+                    <option value="Constitución Legal" >Combo Constitución Legal</option>
+                    <option value="Tipo Empresa" >Combo Tipo Empresa</option>
+                     <option value="Tipo Cliente" >Combo Tipo Cliente</option>
+                                            
+                   </select> 
+                </div>
+      </div>
         <label class="acomodarFr text-center" style="font-size:18px; ">Opciones Registradas en Combos</label>
    <table class="table table-responsive">
   <thead>
@@ -168,7 +187,7 @@
     </tr> 
   </thead>
   <tbody>
-   <tr ng-repeat='c in combos ' ng-class="$even?'odd':'even'">
+   <tr ng-repeat='c in combos |  filter:{combo_padre:comboPadreFiltro}' ng-class="$even?'odd':'even'">
        
         <td>{{c.nombre_opc}}</td>
         <td>{{c.combo_padre}}</td>

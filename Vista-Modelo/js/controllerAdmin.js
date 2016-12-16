@@ -505,10 +505,10 @@ $scope.tipo=$scope.aux.split("/");
 
 $scope.subirLogo=function(){
 
-  if($scope.tam>100){
+  if($scope.tam>500){
       swal({
           title: 'Error Peso Exedido',
-          text: 'El peso de la imagen seleccionada supera los 100KB',
+          text: 'El peso de la imagen seleccionada supera los 500 KB',
           type: 'warning',
          timer: 2000
         })  
@@ -986,10 +986,10 @@ $scope.hayCambioLogo=true;
 
 $scope.subirLogo=function(){
 
-  if($scope.tam>100){
+  if($scope.tam>500){
       swal({
           title: 'Error Peso Exedido',
-          text: 'El peso de la imagen seleccionada supera los 100KB',
+          text: 'El peso de la imagen seleccionada supera los 500 KB',
           type: 'warning',
          timer: 2000
         })  

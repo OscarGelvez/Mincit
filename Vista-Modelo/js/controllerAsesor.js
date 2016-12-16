@@ -2481,14 +2481,14 @@ if(!$scope.hayCamposVacios){
           // console.log(data);
       usSpinnerService.stop('spinner-1');
       if(data==1){
-        //localStorageService.set("miEmpresa","vacio");
+        localStorageService.set("miEmpresa","vacio");
               
       swal(
             'Exito',
            'La empresa fue registrada exitosamente',
             'success'
            );
-        //$location.path("/Asesor_inicio");
+        $location.path("/Asesor_inicio");
       }else{
         if(hayLogo){
           $scope.borrarLogo();
@@ -2600,10 +2600,10 @@ $scope.tipo=$scope.aux.split("/");
 
 $scope.subirLogo=function(){
 
-	if($scope.tam>100){
+	if($scope.tam>500){
 			swal({
   				title: 'Error Peso Exedido',
-  				text: 'El peso de la imagen seleccionada supera los 100KB',
+  				text: 'El peso de la imagen seleccionada supera los 500 KB',
   				type: 'warning',
  				 timer: 2000
 				})	
@@ -3597,14 +3597,14 @@ if(!$scope.hayCamposVacios){
 			usSpinnerService.stop('spinner-1');
 			if(data==1){
 			
-			//localStorageService.set("miEmpresaT","vacio");
+			localStorageService.set("miEmpresaT","vacio");
 			
 			swal(
       			'Exito',
      			 'La empresa fue registrada exitosamente',
     			  'success'
    				 );
-				//$location.path("/Asesor_inicio");
+				$location.path("/Asesor_inicio");
 			}else{
 				if(hayLogo){
 					$scope.borrarLogo();
@@ -3700,10 +3700,10 @@ $scope.tipo=$scope.aux.split("/");
 
   $scope.subirLogo=function(){
 
-	if($scope.tam>100){
+	if($scope.tam>500){
 			swal({
   				title: 'Error Peso Exedido',
-  				text: 'El peso de la imagen seleccionada supera los 100KB',
+  				text: 'El peso de la imagen seleccionada supera los 500 KB',
   				type: 'warning',
  				 timer: 2000
 				})	
