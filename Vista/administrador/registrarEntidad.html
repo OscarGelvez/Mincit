@@ -70,18 +70,36 @@
 </nav>
 
 <div class="col-sm-12 col-xs-12 row2">
-    
-    <h4 class="text-center"><b>REGISTRO DE ENTIDADES </b></h4><br>
+  <h4 class="text-center"><b>REGISTRO DE ENTIDADES </b></h4><br>
+  <div class="col-sm-6 col-xs-6 row2">  
+  
       <label class="acomodarFr text-center"> REGISTRAR ENTIDADES DESDE ARCHIVO EXCEL</label>
+
+
+
     <form ng-submit="registrarEntidadPorExcel()">
     <input  type="file" name="fileEntidadExcel" uploader-model="file" class="form-control" id="excel"  class="btn btn" size="30"/ required>
     <div class="col-sm-4  col-sm-offset-5 col-xs-offset-5">
       <br>
-    <input type="submit" class="btn btn-success " value="Subir Excel"></input>
-    </form>
-    <br><br>
-    
+    <input type="submit" class="btn btn-success " value="Subir Excel">
     </div>
+    </form>
+   <br><br>
+   </div> 
+    <div class="col-sm-6 col-xs-6 row2">  
+  
+      <label class="acomodarFr text-center"> FORMATO EXCEL PARA SUBIR LAS ENTIDADES</label>
+
+    <div class="col-sm-4  col-sm-offset-5 col-xs-offset-5">
+  
+   <a href='FORMATO_ENTIDAD_WEB.xlsx'><img class="img-responsive img-thumbnail" src="Vista/img/archivo.png"></a>
+    </div>
+    
+   <br><br>
+   </div> 
+
+ 
+  </div>
 
     <form   ng-submit="registrarEntidad()">
     
