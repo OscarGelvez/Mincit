@@ -383,6 +383,7 @@ $scope.EmpOriginalTuristica.cc_extranj_opc=parseInt($scope.EmpOriginalTuristica.
 //console.log($scope.EmpEdit);
 }
 
+
 	
 }]).filter('startFromGrid', function() {
 
@@ -410,13 +411,19 @@ if($scope.claveUsuario!=$scope.claveUsuario2){
             'info'
            );
 }else{
+ 
    $scope.subirLogo();
 }
 
- 
+
 }
+
+
+
 $scope.registrarEntidad2=function(hayLogo){
-usSpinnerService.spin('spinner-1');
+
+
+ usSpinnerService.spin('spinner-1');
 $http.post('Modelo/servicesMincit/Administrador/registrarEntidad.php', {
             id_usuario_registro: datos_usuarios.id_usuario,
             nombre: $scope.nombreEntidad,
@@ -431,15 +438,24 @@ $http.post('Modelo/servicesMincit/Administrador/registrarEntidad.php', {
                
         }
     ).success(function (data) {
-      usSpinnerService.stop('spinner-1');
-      if(data==1){
+     usSpinnerService.stop('spinner-1');
+      if(data==10){
           swal({
           title: 'Exito',
           text: "La entidad se registro exitosamente",
           type: 'success',         
           confirmButtonColor: '#388E3C'          
           }).then(function() {
-          location.reload();
+          //location.reload();
+        })
+      }if(data==11){
+          swal({
+          title: 'Exito',
+          text: "La entidad se registro exitosamente. Los datos de acceso se enviaron al correo registrado",
+          type: 'success',         
+          confirmButtonColor: '#388E3C'          
+          }).then(function() {
+          //location.reload();
         })
       }else{
         if(hayLogo){
@@ -540,10 +556,10 @@ $scope.subirLogo=function(){
 
 $scope.borrarLogo=function(){
 
-//console.log($scope.$scope.nombreEntidad);  
+//console.log($scope.nombreEntidad);  
 //console.log("borrando...");
 $http.post("Modelo/servicesMincit/ArchivosSubidos/borrarArchivo.php",{
-  nombre: $scope.$scope.nombreEntidad,
+  nombre: $scope.nombreEntidad,
   tipo: $scope.tipo[1]
 }).success(function(data){
     //console.log(data);

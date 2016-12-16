@@ -82,10 +82,10 @@ class enviarCorreo{
 				//$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
 				if(!$mail->send()) {
-				    //echo 0;// mensaje no fue enviado
+				    echo 0;// mensaje no fue enviado
 				    //echo 'Mailer Error: ' . $mail->ErrorInfo;
 				} else {
-				    //echo 1; // mensaje enviado correctamente
+				    echo 1; // mensaje enviado correctamente
 				}
 		}
 
