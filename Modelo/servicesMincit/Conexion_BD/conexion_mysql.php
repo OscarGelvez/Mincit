@@ -5,11 +5,16 @@
 	$password="ufps_82";  
 	$db="ufps_13"; 	
 	
-   */
+   
 	$server="localhost";
 	$username="root";
 	$password="";  
-	$db="bd_mincit_respaldo"; 	
+	$db="bd_mincit_respaldo"; */
+
+	$server="sql302.epizy.com";
+	$username="epiz_19227766";
+	$password="12345678";  
+	$db="epiz_19227766_mincit"; 	
 
 	conectar($server, $username, $password, $db);
 	//Realizando conexión a la base de datos
